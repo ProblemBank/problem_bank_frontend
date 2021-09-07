@@ -10,7 +10,6 @@ import { IntlProvider } from 'react-redux-multilingual';
 import { useHistory } from 'react-router';
 
 import Notifier from './components/Notifications/Notifications';
-import { initParseServer } from './parse/init';
 import { initRedirectAction } from './redux/slices/redirect';
 import Root from './root';
 import MuiTheme from './Theme/MuiThemes/MuiTheme';
@@ -45,10 +44,6 @@ const App = ({ dir, redirectTo, forceRedirect, initRedirect, isFetching }) => {
   useEffect(() => {
     document.body.dir = dir;
   }, [dir]);
-
-  useEffect(() => {
-    initParseServer();
-  }, []);
 
   const Loading = () => {
     if (isFetching) {
@@ -95,9 +90,12 @@ const mapStateToProps = (state) => ({
   dir: state.Intl.locale === 'fa' ? 'rtl' : 'ltr',
   redirectTo: state.redirect.redirectTo,
   forceRedirect: state.redirect.force,
-  isFetching: state.account.isFetching || state.events.isFetching,
+  isFetching: state.account.isFetching,
 });
 
-export default connect(mapStateToProps, { initRedirect: initRedirectAction })(
-  App
-);
+export default connect(
+  mapStateToProps,
+  {
+    initRedirect: initRedirectAction,
+  }
+)(App);

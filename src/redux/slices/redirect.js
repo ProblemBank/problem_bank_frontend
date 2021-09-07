@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { createArticleAction } from '../../redux/slices/acticle';
 
 const initialState = { redirectTo: null, force: false };
 
@@ -11,12 +10,6 @@ const redirectSlice = createSlice({
     initRedirect: () => initialState,
   },
   extraReducers: {
-    [createArticleAction.fulfilled.toString()]: (
-      state,
-      { payload: { response } }
-    ) => ({
-      redirectTo: `/edit_article/${response.id}`,
-    }),
   },
 });
 
