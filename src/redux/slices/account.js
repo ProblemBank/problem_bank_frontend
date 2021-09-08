@@ -3,12 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { Apis } from '../apis';
 import { createAsyncThunkApi } from '../apis/cerateApiAsyncThunk';
 import {
-  accountCRUDUrl,
-  discountCRUDUrl,
+  createAccountUrl,
   loginUrl,
-  merchandiseDiscountCodeUrl,
-  profileCRUDUrl,
-  studentshipCRUDUrl,
 } from '../constants/urls';
 
 const initialState = {
@@ -25,6 +21,19 @@ export const loginAction = createAsyncThunkApi(
     defaultNotification: {
       success: 'دوباره سلام!',
       error: 'نام کاربری یا رمز عبور اشتباه است!',
+    },
+  }
+);
+
+
+export const createAccountAction = createAsyncThunkApi(
+  'account/createAccountAction',
+  Apis.POST,
+  createAccountUrl,
+  {
+    defaultNotification: {
+      success: 'حساب کاربری با موفقیت ساخته شد.',
+      error: 'مشکلی وجود دارد. دوباره تلاش کن!',
     },
   }
 );
@@ -46,11 +55,15 @@ const accountSlice = createSlice({
   extraReducers: {
     [loginAction.pending.toString()]: isFetching,
     [loginAction.fulfilled.toString()]: (state, { payload: { response } }) => {
-      state.userAccount = response.account;
+      console.log(response)
       state.token = response.access;
       state.isFetching = false;
     },
     [loginAction.rejected.toString()]: isNotFetching,
+
+    [createAccountAction.pending.toString()]: isFetching,
+    [createAccountAction.fulfilled.toString()]: isNotFetching,
+    [createAccountAction.rejected.toString()]: isNotFetching,
   },
 });
 

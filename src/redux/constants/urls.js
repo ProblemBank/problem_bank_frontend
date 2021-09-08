@@ -1,5 +1,8 @@
 // account:
 export const loginUrl = 'account/login/';
+export const createAccountUrl = 'account/create/';
+
+
 export const changePasswordUrl = 'account/change_pass/';
 export const verificationCodeUrl = 'account/verification_code/';
 export const accountCRUDUrl = ({ userId }) =>

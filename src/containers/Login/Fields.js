@@ -1,7 +1,7 @@
-import { Button, Grid, TextField } from '@material-ui/core';
+import { Button, Grid, TextField, Typography } from '@material-ui/core';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import { loginAction } from '../../redux/slices/account';
 import { addNotificationAction } from '../../redux/slices/notifications';
@@ -86,6 +86,14 @@ const InputFields = ({ isFetching, login, addNotification, token }) => {
           fullWidth>
           بزن بریم
         </Button>
+      </Grid>
+
+      <Grid item>
+        <Typography align="center">
+          {'حساب کاربری نداری؟ به '}
+          <Link to="/create_account">{'این‌جا'}</Link>
+          {' برو.'}
+        </Typography>
       </Grid>
     </>
   );
