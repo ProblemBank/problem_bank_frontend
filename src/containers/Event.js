@@ -7,16 +7,20 @@ import {
   makeStyles,
   Paper,
   Table,
+  Box,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
+  Tooltip,
   TableRow,
+  TextField,
 } from '@material-ui/core';
 import ClassIcon from '@material-ui/icons/Class';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import GroupIcon from '@material-ui/icons/Group';
 import React, { useEffect, useState } from 'react';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { connect } from 'react-redux';
 import { useTranslate } from 'react-redux-multilingual/lib/context';
 import { Link, useParams } from 'react-router-dom';
@@ -28,6 +32,7 @@ import {
 import {
   editProblemGroupAction,
   getProblemGroupAction,
+  addProblemGroupAction,
 } from '../redux/slices/problemGroup';
 import { toPersianNumber } from '../utils/translateNumber';
 import Layout from './Event (unused)/Layout';
@@ -43,6 +48,7 @@ const Event = ({
   editEvent,
   editProblemGroup,
   getProblemGroup,
+  addProblemGroup,
 
 
   event,
@@ -51,6 +57,7 @@ const Event = ({
 }) => {
   const t = useTranslate();
   const { eventId } = useParams();
+  const [problemGroupName, setProblemGroupName] = useState();
 
   const [tabIndex, setTabIndex] = useState(0);
   const classes = useStyles();
@@ -60,7 +67,7 @@ const Event = ({
   }, []);
 
   useEffect(() => {
-    if (event?.problem_groups) {
+    if (event?.problem_groups.length > 0) {
 
       getProblemGroup({ problemGroupId: event.problem_groups[tabIndex].id });
     }
@@ -68,6 +75,14 @@ const Event = ({
 
   console.log(event)
   console.log(problemGroup)
+
+  const doAddProblemGroup = () => {
+    addProblemGroup({
+      title: problemGroupName,
+      event: eventId,
+      problems: [],
+    })
+  }
 
   return (
     <Layout>
@@ -78,28 +93,43 @@ const Event = ({
           sm={3}
           xs={12}
           direction="column"
+          spacing={2}
           justify="space-between">
-          <Grid item>
-            <ButtonGroup orientation="vertical" color="primary" fullWidth>
-              {event?.problem_groups?.map((problemGroup, index) => (
-                <Button
-                  key={index}
-                  onClick={() => setTabIndex(index)}
-                  variant={tabIndex == index && 'contained'}>
-                  {problemGroup.title}
-                </Button>
-              ))}
-            </ButtonGroup>
-          </Grid>
-          <Grid item>
-            <Button
-              fullWidth
-              color="primary"
-              component={Link}
-              to="/"
-              startIcon={<ExitToAppIcon />}>
-              {t('back')}
-            </Button>
+          {event?.problem_groups.length > 0 &&
+            <Grid item>
+              <ButtonGroup orientation="vertical" color="primary" fullWidth>
+                {event?.problem_groups?.map((problemGroup, index) => (
+                  <Button
+                    key={index}
+                    onClick={() => setTabIndex(index)}
+                    variant={tabIndex == index && 'contained'}>
+                    {problemGroup.title}
+                  </Button>
+                ))}
+              </ButtonGroup>
+            </Grid>
+          }
+          <Grid item container>
+            <Grid item xs={12}>
+              <TextField
+                onChange={(e) => {
+                  setProblemGroupName(e.target.value);
+                }}
+                fullWidth
+                value={problemGroupName}
+                label='عنوان'
+                variant="outlined"
+                size='small' />
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                onClick={doAddProblemGroup}
+                fullWidth
+                color='primary'
+                variant='outlined'>
+                {'افزودن گروه‌مسئله'}
+              </Button>
+            </Grid>
           </Grid>
         </Grid>
         <Grid item sm={9} xs={12}>
@@ -131,7 +161,7 @@ const Event = ({
           </Paper>
         </Grid>
       </Grid>
-    </Layout>
+    </Layout >
   );
 };
 
@@ -148,5 +178,6 @@ export default connect(
     editEvent: editEventAction,
     editProblemGroup: editProblemGroupAction,
     getProblemGroup: getProblemGroupAction,
+    addProblemGroup: addProblemGroupAction,
   }
 )(Event);

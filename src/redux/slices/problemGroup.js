@@ -71,7 +71,12 @@ const eventSlice = createSlice({
     [editProblemGroupAction.rejected.toString()]: isNotFetching,
 
     [addProblemGroupAction.pending.toString()]: isFetching,
-    [addProblemGroupAction.fulfilled.toString()]: isNotFetching,
+    [addProblemGroupAction.fulfilled.toString()]: (state, { payload: { response } }) => {
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000)
+      state.isFetching = false;
+    },
     [addProblemGroupAction.rejected.toString()]: isNotFetching,
 
   },
