@@ -3,6 +3,7 @@ import {
   ButtonGroup,
   Grid,
   Hidden,
+  Typography,
   IconButton,
   makeStyles,
   Paper,
@@ -97,6 +98,9 @@ const Event = ({
           justify="space-between">
           {event?.problem_groups.length > 0 &&
             <Grid item>
+              <Typography align='center' variant='h3' gutterBottom>
+                {'گروه‌مسئله‌ها'}
+              </Typography>
               <ButtonGroup orientation="vertical" color="primary" fullWidth>
                 {event?.problem_groups?.map((problemGroup, index) => (
                   <Button
@@ -109,8 +113,11 @@ const Event = ({
               </ButtonGroup>
             </Grid>
           }
-          <Grid item container>
-            <Grid item xs={12}>
+          <Grid item container justify='center'>
+            <Typography align='center' variant='h3' gutterBottom>
+              {'گروه‌مسئله‌ی جدید'}
+            </Typography>
+            <Grid item xs={8}>
               <TextField
                 onChange={(e) => {
                   setProblemGroupName(e.target.value);
@@ -121,13 +128,13 @@ const Event = ({
                 variant="outlined"
                 size='small' />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={4}>
               <Button
                 onClick={doAddProblemGroup}
                 fullWidth
                 color='primary'
                 variant='outlined'>
-                {'افزودن گروه‌مسئله'}
+                {'افزودن'}
               </Button>
             </Grid>
           </Grid>
