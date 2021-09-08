@@ -27,10 +27,7 @@ reduxStore.subscribe(() => {
   localStorage.setItem(
     'rastaState',
     JSON.stringify({
-      account: {
-        userAccount: state.account.userAccount,
-        token: state.account.token,
-      },
+      account: state.account,
       Intl: state.Intl,
     })
   );

@@ -5,6 +5,7 @@ import { createAsyncThunkApi } from '../apis/cerateApiAsyncThunk';
 import {
   addProblemToGroupUrl,
   problemCRUDUrl,
+  removeProblemFromGroupUrl,
 } from '../constants/urls';
 
 
@@ -56,6 +57,18 @@ export const addProblemToGroupAction = createAsyncThunkApi(
   }
 );
 
+export const removeProblemFromGroupAction = createAsyncThunkApi(
+  'events/removeProblemFromGroupAction',
+  Apis.POST,
+  removeProblemFromGroupUrl,
+  {
+    defaultNotification: {
+      success: 'مسئله با موفقیت از گروه مسئله حذف شد!',
+      error: 'مشکلی وجود داشت. دوباره تلاش کنید.',
+    },
+  }
+);
+
 const initialState = {
   isFetching: false,
   problems: [],
@@ -84,24 +97,26 @@ const eventSlice = createSlice({
     [editProblemAction.pending.toString()]: isFetching,
     [editProblemAction.fulfilled.toString()]: (state, { payload: { response } }) => {
       state.isFetching = false;
-      setTimeout(() => {
-        history.back();
-      }, 2000)
+      history.back();
     },
     [editProblemAction.rejected.toString()]: isNotFetching,
 
     [addProblemAction.pending.toString()]: isFetching,
     [addProblemAction.fulfilled.toString()]: (state, { payload: { response } }) => {
       state.isFetching = false;
-      setTimeout(() => {
-        history.back();
-      }, 2000)
+      history.back();
     },
     [addProblemAction.rejected.toString()]: isNotFetching,
 
     [addProblemToGroupAction.pending.toString()]: isFetching,
     [addProblemToGroupAction.fulfilled.toString()]: isNotFetching,
     [addProblemToGroupAction.rejected.toString()]: isNotFetching,
+
+
+    [removeProblemFromGroupAction.pending.toString()]: isFetching,
+    [removeProblemFromGroupAction.fulfilled.toString()]: isNotFetching,
+    [removeProblemFromGroupAction.rejected.toString()]: isNotFetching,
+
   },
 });
 

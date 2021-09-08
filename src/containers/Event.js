@@ -1,38 +1,44 @@
 import {
+  Box,
   Button,
   ButtonGroup,
   Grid,
   Hidden,
-  Typography,
   IconButton,
   makeStyles,
   Paper,
   Table,
-  Box,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
-  Tooltip,
   TableRow,
   TextField,
+  Tooltip,
+  Typography,
 } from '@material-ui/core';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import ClassIcon from '@material-ui/icons/Class';
+import ClearIcon from '@material-ui/icons/Clear';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import GroupIcon from '@material-ui/icons/Group';
 import React, { useEffect, useState } from 'react';
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { connect } from 'react-redux';
 import { useTranslate } from 'react-redux-multilingual/lib/context';
 import { Link, useParams } from 'react-router-dom';
+
 import {
   editEventAction,
   getEventAction,
 } from '../redux/slices/event';
 import {
+  removeProblemFromGroupAction
+} from '../redux/slices/problem';
+import {
+  addProblemGroupAction,
   editProblemGroupAction,
   getProblemGroupAction,
-  addProblemGroupAction,
+  removeProblemGroupAction,
 } from '../redux/slices/problemGroup';
 import { toPersianNumber } from '../utils/translateNumber';
 import Layout from './Event (unused)/Layout';
@@ -49,6 +55,8 @@ const Event = ({
   editProblemGroup,
   getProblemGroup,
   addProblemGroup,
+  removeProblemGroup,
+  removeProblemFromGroup,
 
 
   event,
@@ -106,6 +114,13 @@ const Event = ({
                     onClick={() => setTabIndex(index)}
                     variant={tabIndex == index && 'contained'}>
                     {problemGroup.title}
+                    {/* <IconButton
+                      onClick={() => {
+                        removeProblemGroup({ problemGroupId: event.problem_groups[tabIndex].id })
+                      }}
+                      size='small'>
+                      <ClearIcon style={{ fontSize: 15, color: 'red' }} />
+                    </IconButton> */}
                   </Button>
                 ))}
               </ButtonGroup>
@@ -126,7 +141,7 @@ const Event = ({
                 variant="outlined"
                 size='small' />
             </Grid>
-            <Grid item>
+            <Grid item container justify='flex-end'>
               <Button
                 onClick={doAddProblemGroup}
                 color='primary'
@@ -144,6 +159,7 @@ const Event = ({
                   <TableRow>
                     <TableCell align='center'>شناسه</TableCell>
                     <TableCell align='center'>عنوان</TableCell>
+                    <TableCell align='center'>حذف از گروه‌مسئله</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -157,22 +173,36 @@ const Event = ({
                           {problem.title}
                         </Button>
                       </TableCell>
+                      <TableCell align='center'>
+                        <IconButton
+                          onClick={() => {
+                            removeProblemFromGroup({
+                              problemId: problem.id,
+                              problemGroupId: event.problem_groups[tabIndex].id,
+                            })
+                          }}
+                          size='small'>
+                          <ClearIcon />
+                        </IconButton>
+                      </TableCell>
                     </TableRow>
                   )}
                 </TableBody>
               </Table>
             </TableContainer>
-            <Grid item container justify='center'>
-              <Box mt={1}>
-                <Button
-                  variant='contained'
-                  color='primary'
-                  component={Link}
-                  to={`/problem/add/problem_group/${event?.problem_groups[tabIndex].id}/`}>
-                  {'افزودن مسئله‌ی جدید'}
-                </Button>
-              </Box>
-            </Grid>
+            {event?.problem_groups?.length > 0 &&
+              <Grid item container justify='center'>
+                <Box mt={1}>
+                  <Button
+                    variant='contained'
+                    color='primary'
+                    component={Link}
+                    to={`/problem/add/problem_group/${event?.problem_groups[tabIndex].id}/`}>
+                    {'افزودن مسئله‌ی جدید'}
+                  </Button>
+                </Box>
+              </Grid>
+            }
           </Paper>
         </Grid>
       </Grid>
@@ -191,8 +221,10 @@ export default connect(
   {
     getEvent: getEventAction,
     editEvent: editEventAction,
+    removeProblemGroup: removeProblemGroupAction,
     editProblemGroup: editProblemGroupAction,
     getProblemGroup: getProblemGroupAction,
     addProblemGroup: addProblemGroupAction,
+    removeProblemFromGroup: removeProblemFromGroupAction,
   }
 )(Event);

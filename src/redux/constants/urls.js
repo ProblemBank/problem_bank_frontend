@@ -1,19 +1,19 @@
 // account:
-export const loginUrl = 'auth/accounts/login/';
-export const changePasswordUrl = 'auth/accounts/change_pass/';
-export const verificationCodeUrl = 'auth/accounts/verification_code/';
+export const loginUrl = 'account/login/';
+export const changePasswordUrl = 'account/change_pass/';
+export const verificationCodeUrl = 'account/verification_code/';
 export const accountCRUDUrl = ({ userId }) =>
-  userId ? `auth/accounts/${userId}/` : 'auth/accounts/';
+  userId ? `account/${userId}/` : 'account/';
 export const profileCRUDUrl = ({ userId }) =>
-  userId ? `auth/profile/${userId}/` : 'auth/profile/';
+  userId ? `profile/${userId}/` : 'profile/';
 export const studentshipCRUDUrl = ({ userId }) =>
-  userId ? `auth/studentship/${userId}/` : 'auth/studentship/';
+  userId ? `studentship/${userId}/` : 'studentship/';
 export const discountCRUDUrl = ({ discountCodeId }) =>
   discountCodeId
-    ? `auth/discount_code/${discountCodeId}/`
-    : 'auth/discount_code/';
+    ? `discount_code/${discountCodeId}/`
+    : 'discount_code/';
 export const merchandiseDiscountCodeUrl = ({ merchandiseId }) =>
-  `/auth/merchandise/${merchandiseId}/discount_codes/`;
+  `/merchandise/${merchandiseId}/discount_codes/`;
 
 
 // problem:
@@ -23,3 +23,4 @@ export const problemGroupCRUDUrl = ({ problemGroupId }) => problemGroupId ? `pro
 
 
 export const addProblemToGroupUrl = ({ problemId, problemGroupId }) => `problembank/addproblemtogroup/${problemId}/${problemGroupId}/`;
+export const removeProblemFromGroupUrl = ({ problemId, problemGroupId }) => `problembank/removeproblemfromgroup/${problemId}/${problemGroupId}/`;

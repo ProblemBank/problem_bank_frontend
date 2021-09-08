@@ -29,6 +29,19 @@ export const addProblemGroupAction = createAsyncThunkApi(
   }
 );
 
+export const removeProblemGroupAction = createAsyncThunkApi(
+  'events/removeProblemGroupAction',
+  Apis.DELETE,
+  problemGroupCRUDUrl,
+  {
+    defaultNotification: {
+      success: 'گروه‌مسئله با موفقیت حذف شد!',
+      error: 'مشکلی وجود داشت. دوباره تلاش کنید.',
+    },
+  }
+);
+
+
 export const editProblemGroupAction = createAsyncThunkApi(
   'events/editProblemGroupAction',
   Apis.PATCH,
@@ -78,6 +91,15 @@ const eventSlice = createSlice({
       state.isFetching = false;
     },
     [addProblemGroupAction.rejected.toString()]: isNotFetching,
+
+    [removeProblemGroupAction.pending.toString()]: isFetching,
+    [removeProblemGroupAction.fulfilled.toString()]: (state, { payload: { response } }) => {
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000)
+      state.isFetching = false;
+    },
+    [removeProblemGroupAction.rejected.toString()]: isNotFetching,
 
   },
 });

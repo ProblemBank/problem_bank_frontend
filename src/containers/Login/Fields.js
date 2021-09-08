@@ -50,7 +50,6 @@ const InputFields = ({ isFetching, login, addNotification, token }) => {
     <>
       <Grid item>
         <TextField
-          autoComplete="off"
           variant="outlined"
           fullWidth
           onChange={(e) => {
@@ -68,7 +67,6 @@ const InputFields = ({ isFetching, login, addNotification, token }) => {
 
       <Grid item>
         <TextField
-          autoComplete="off"
           variant="outlined"
           fullWidth
           onChange={putData}
