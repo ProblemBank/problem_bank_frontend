@@ -44,7 +44,7 @@ const ProblemSet = ({
   fetchProblemsListByPage,
   getAllTags,
 
-  tags: allTags,
+  // tags: allTags,
   totalNumberOfPages,
   problems,
   isFetching
@@ -55,8 +55,8 @@ const ProblemSet = ({
   const [properties, setProperties] = useState({ tags: [], subtags: [], events: [], sources: [] });
 
   useEffect(() => {
-    search(currentPage);
-    getAllTags();
+    // search(currentPage);
+    // getAllTags();
   }, [])
 
   const handlePaginationChange = (event, value) => {
@@ -83,7 +83,7 @@ const ProblemSet = ({
                     <TableRow>
                       <TableCell>شناسه</TableCell>
                       <TableCell>نام</TableCell>
-                      <TableCell>موضوعات اصلی</TableCell>
+                      {/* <TableCell>موضوعات اصلی</TableCell> */}
                       <TableCell>درجه سختی</TableCell>
                     </TableRow>
                   </TableHead>
@@ -94,7 +94,7 @@ const ProblemSet = ({
                         <TableCell >
                           <a as={Link} href={'/problem/' + problem.id}>{problem.name}</a>
                         </TableCell>
-                        <TableCell>
+                        {/* <TableCell>
                           {allTags
                             .filter(tag => problem.tags.includes(tag.id))
                             .map((tag, index) => (
@@ -103,7 +103,7 @@ const ProblemSet = ({
                                 key={index}
                               />
                             ))}
-                        </TableCell>
+                        </TableCell> */}
                         <TableCell>{toPersianNumber(problem.hardness.level)}</TableCell>
                       </TableRow>
                     )}
@@ -122,7 +122,7 @@ const ProblemSet = ({
           </Grid>
           <Grid item container xs={12} md={4}>
             <Paper className={classes.paper}>
-              <Grid item container direction='column' spacing={2}>
+              {/* <Grid item container direction='column' spacing={2}>
                 <Grid item>
                   <Typography variant="h2" align='center'>جستجو</Typography>
                 </Grid>
@@ -133,7 +133,7 @@ const ProblemSet = ({
                 <Grid item>
                   <Button fullWidth variant='contained' color='primary' onClick={() => search(currentPage)}>جستجو کن</Button>
                 </Grid>
-              </Grid>
+              </Grid> */}
             </Paper>
           </Grid>
         </Grid>

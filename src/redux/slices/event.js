@@ -7,7 +7,7 @@ import {
 } from '../constants/urls';
 
 export const getEventAction = createAsyncThunkApi(
-  'events/getProblemAction',
+  'events/getEventAction',
   Apis.GET,
   eventCRUDUrl,
   {
@@ -18,7 +18,7 @@ export const getEventAction = createAsyncThunkApi(
 );
 
 export const addEventAction = createAsyncThunkApi(
-  'events/addProblemAction',
+  'events/addEventAction',
   Apis.POST,
   eventCRUDUrl,
   {
@@ -30,7 +30,7 @@ export const addEventAction = createAsyncThunkApi(
 );
 
 export const editEventAction = createAsyncThunkApi(
-  'events/editProblemAction',
+  'events/editEventAction',
   Apis.PATCH,
   eventCRUDUrl,
   {

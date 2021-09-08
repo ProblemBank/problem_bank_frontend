@@ -25,7 +25,6 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { connect } from 'react-redux';
 import { useTranslate } from 'react-redux-multilingual/lib/context';
 import { Link, useParams } from 'react-router-dom';
-
 import {
   editEventAction,
   getEventAction,
@@ -69,7 +68,6 @@ const Event = ({
 
   useEffect(() => {
     if (event?.problem_groups.length > 0) {
-
       getProblemGroup({ problemGroupId: event.problem_groups[tabIndex].id });
     }
   }, [event, tabIndex])
@@ -95,7 +93,7 @@ const Event = ({
           xs={12}
           direction="column"
           spacing={2}
-          justify="space-between">
+          justify="flex-start">
           {event?.problem_groups.length > 0 &&
             <Grid item>
               <Typography align='center' variant='h3' gutterBottom>
@@ -113,11 +111,11 @@ const Event = ({
               </ButtonGroup>
             </Grid>
           }
-          <Grid item container justify='center'>
+          <Grid item container justify='center' alignItems='center'>
             <Typography align='center' variant='h3' gutterBottom>
               {'گروه‌مسئله‌ی جدید'}
             </Typography>
-            <Grid item xs={8}>
+            <Grid item xs={12}>
               <TextField
                 onChange={(e) => {
                   setProblemGroupName(e.target.value);
@@ -128,13 +126,12 @@ const Event = ({
                 variant="outlined"
                 size='small' />
             </Grid>
-            <Grid item xs={4}>
+            <Grid item>
               <Button
                 onClick={doAddProblemGroup}
-                fullWidth
                 color='primary'
                 variant='outlined'>
-                {'افزودن'}
+                {'ایجاد'}
               </Button>
             </Grid>
           </Grid>
@@ -165,6 +162,17 @@ const Event = ({
                 </TableBody>
               </Table>
             </TableContainer>
+            <Grid item container justify='center'>
+              <Box mt={1}>
+                <Button
+                  variant='contained'
+                  color='primary'
+                  component={Link}
+                  to={`/problem/add/problem_group/${event?.problem_groups[tabIndex].id}/`}>
+                  {'افزودن مسئله‌ی جدید'}
+                </Button>
+              </Box>
+            </Grid>
           </Paper>
         </Grid>
       </Grid>

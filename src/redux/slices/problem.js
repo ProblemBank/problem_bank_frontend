@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { Apis } from '../apis';
 import { createAsyncThunkApi } from '../apis/cerateApiAsyncThunk';
 import {
+  addProblemToGroupUrl,
   problemCRUDUrl,
 } from '../constants/urls';
 
@@ -36,13 +37,24 @@ export const editProblemAction = createAsyncThunkApi(
   problemCRUDUrl,
   {
     defaultNotification: {
-      success: 'مسئله با موفقیت اضافه شد!',
+      success: 'مسئله با موفقیت ویرایش شد!',
       error: 'مشکلی وجود داشت. دوباره تلاش کنید.',
     },
   }
 );
 
-
+// todo: fix url
+export const addProblemToGroupAction = createAsyncThunkApi(
+  'events/addProblemToGroupAction',
+  Apis.POST,
+  addProblemToGroupUrl,
+  {
+    defaultNotification: {
+      success: 'مسئله با موفقیت به گروه مسئله اضافه شد!',
+      error: 'مشکلی وجود داشت. دوباره تلاش کنید.',
+    },
+  }
+);
 
 const initialState = {
   isFetching: false,
@@ -70,76 +82,26 @@ const eventSlice = createSlice({
     [getProblemAction.rejected.toString()]: isNotFetching,
 
     [editProblemAction.pending.toString()]: isFetching,
-    [editProblemAction.fulfilled.toString()]: isNotFetching,
+    [editProblemAction.fulfilled.toString()]: (state, { payload: { response } }) => {
+      state.isFetching = false;
+      setTimeout(() => {
+        history.back();
+      }, 2000)
+    },
     [editProblemAction.rejected.toString()]: isNotFetching,
-
-    [addProblemAction.pending.toString()]: isFetching,
-    [addProblemAction.fulfilled.toString()]: isNotFetching,
-    [addProblemAction.rejected.toString()]: isNotFetching,
-
-
-    // [getAllGameSubjectsAction.pending.toString()]: isFetching,
-    // [getAllGameSubjectsAction.fulfilled.toString()]: (state, { payload: { response } }) => {
-    //   state.allGameSubjects = response;
-    //   state.isFetching = false;
-    // },
-    // [getAllGameSubjectsAction.rejected.toString()]: isNotFetching,
-
-
-    // [getAllPlayerProblemsAction.pending.toString()]: isFetching,
-    // [getAllPlayerProblemsAction.fulfilled.toString()]: (state, { payload: { response } }) => {
-    //   state.allPlayerProblems = response;
-    //   state.isFetching = false;
-    // },
-    // [getAllPlayerProblemsAction.rejected.toString()]: isNotFetching,
-
-    // [buyRandomProblemAction.pending.toString()]: isFetching,
-    // [buyRandomProblemAction.fulfilled.toString()]: (state, { payload: { response } }) => {
-    //   const allPlayerProblems = [...state.allPlayerProblems, response]
-    //   state.allPlayerProblems = allPlayerProblems;
-    //   state.isFetching = false;
-    // },
-    // [buyRandomProblemAction.rejected.toString()]: isNotFetching,
-
-
-    // [answerProblemAction.pending.toString()]: isFetching,
-    // [answerProblemAction.fulfilled.toString()]: isNotFetching,
-    // [answerProblemAction.rejected.toString()]: isNotFetching,
-
-
-    // [getOnePlayerProblemAction.pending.toString()]: isFetching,
-    // [getOnePlayerProblemAction.fulfilled.toString()]: (state, { payload: { response } }) => {
-    //   state.playerProblem = response;
-    //   state.isFetching = false;
-    // },
-    // [getOnePlayerProblemAction.rejected.toString()]: isNotFetching,
-
-
-    // [getOneAnswerForCorrectionAction.pending.toString()]: isFetching,
-    // [getOneAnswerForCorrectionAction.fulfilled.toString()]: (state, { payload: { response } }) => {
-    //   state.playerAnswer = response;
-    //   state.isFetching = false;
-    // },
-    // [getOneAnswerForCorrectionAction.rejected.toString()]: isNotFetching,
-
 
     [addProblemAction.pending.toString()]: isFetching,
     [addProblemAction.fulfilled.toString()]: (state, { payload: { response } }) => {
       state.isFetching = false;
       setTimeout(() => {
-        window.location.reload();
-      }, 1000)
+        history.back();
+      }, 2000)
     },
     [addProblemAction.rejected.toString()]: isNotFetching,
 
-
-    // [getScoreboardAction.pending.toString()]: isFetching,
-    // [getScoreboardAction.fulfilled.toString()]: (state, { payload: { response } }) => {
-    //   state.isFetching = false;
-    //   state.players = response;
-    // },
-    // [getScoreboardAction.rejected.toString()]: isNotFetching,
-
+    [addProblemToGroupAction.pending.toString()]: isFetching,
+    [addProblemToGroupAction.fulfilled.toString()]: isNotFetching,
+    [addProblemToGroupAction.rejected.toString()]: isNotFetching,
   },
 });
 

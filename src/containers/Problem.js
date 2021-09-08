@@ -23,6 +23,7 @@ import {
 } from '../redux/slices/notifications';
 import {
   addProblemAction,
+  addProblemToGroupAction,
   editProblemAction,
   getProblemAction,
 } from '../redux/slices/problem';
@@ -55,6 +56,7 @@ const Index = ({
   getAllTopics,
   getAllSubtopics,
   getProblem,
+  addProblemToGroup,
 
   addProblem,
   editProblem,
@@ -65,7 +67,7 @@ const Index = ({
   isFetching,
 }) => {
   const classes = useStyles();
-  const { mode, problemId } = useParams();
+  const { mode, problemId, problemGroupId, eventId } = useParams();
 
   const [properties, setProperties] = useState({
     answer: {
@@ -91,13 +93,12 @@ const Index = ({
     }
   }, [])
 
+  console.log(problem);
+  console.log(properties);
+
   useEffect(() => {
-    if (problem) {
-      let newProperties = { ...properties };
-      for (let key in properties) {
-        newProperties[key] = problem[key];
-      }
-      setProperties(newProperties);
+    if (problem && mode == 'edit') {
+      setProperties(problem);
     }
   }, [problem]);
 
@@ -127,6 +128,9 @@ const Index = ({
     }
   };
 
+
+  console.log(problemGroupId)
+
   const handleAddProblem = () => {
     const { text, title, difficulty, problem_type, grade } = properties;
     if (!text || !title || !difficulty || !problem_type || !grade) {
@@ -137,13 +141,19 @@ const Index = ({
       return;
     }
     if (mode == 'add') {
-      addProblem(properties);
+      addProblem(properties).then((action) => {
+        if (action.type.includes('fulfilled') && problemGroupId) {
+          addProblemToGroup({
+            problemId: action.payload.response.id,
+            problemGroupId,
+            eventId,
+          })
+        }
+      });
     } else {
       editProblem({ ...properties, problemId });
     }
   }
-
-  console.log(properties)
 
   return (
     <Layout>
@@ -285,6 +295,7 @@ const mapStateToProps = (state) => ({
 export default connect(
   mapStateToProps,
   {
+    addProblemToGroup: addProblemToGroupAction,
     getProblem: getProblemAction,
     addProblem: addProblemAction,
     editProblem: editProblemAction,
