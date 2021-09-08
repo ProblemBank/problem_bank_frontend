@@ -19,15 +19,13 @@ import { useParams } from 'react-router-dom';
 import AreYouSure from '../components/Dialog/AreYouSure';
 import TinyEditor from '../components/tiny_editor/react_tiny/TinyEditorComponent';
 import {
-  addProblemAction,
-  editProblemAction,
-  // getAllGameSubjectsAction,
-  // getOneAnswerForCorrectionAction,
-  // setAnswerMarkAction,
-} from '../redux/slices/problem';
-import {
   addNotificationAction,
 } from '../redux/slices/notifications';
+import {
+  addProblemAction,
+  editProblemAction,
+  getProblemAction,
+} from '../redux/slices/problem';
 import Layout from './Layout';
 
 const useStyles = makeStyles((theme) => ({
@@ -56,6 +54,7 @@ const Index = ({
   addNotification,
   getAllTopics,
   getAllSubtopics,
+  getProblem,
 
   addProblem,
   editProblem,
@@ -77,10 +76,8 @@ const Index = ({
     text: '',
     grade: '',
     difficulty: '',
-    suitable_for_over: 1,
-    suitable_for_under: 12,
     is_checked: false,
-    source: null,
+    source: '',
     topics: [],
     subtopics: [],
     author: 1,
@@ -90,13 +87,19 @@ const Index = ({
   useEffect(() => {
     // getAllSubjects({ gameId });
     if (mode == 'edit') {
-      // getProblem({ problemId });
+      getProblem({ problemId });
     }
   }, [])
 
   useEffect(() => {
-    // setProperties()
-  }, [])
+    if (problem) {
+      let newProperties = { ...properties };
+      for (let key in properties) {
+        newProperties[key] = problem[key];
+      }
+      setProperties(newProperties);
+    }
+  }, [problem]);
 
   const putData = (e) => {
     if (e.target.name == 'answer') {
@@ -125,18 +128,18 @@ const Index = ({
   };
 
   const handleAddProblem = () => {
-    const { title, text, difficulty, subject, cost, answer } = properties;
-    // if (!title || !text || !difficulty || !subject || !cost) {
-    //   addNotification({
-    //     message: 'لطفاً همه‌ی موارد رو پر کنید.',
-    //     type: 'error',
-    //   });
-    //   return;
-    // }
+    const { text, title, difficulty, problem_type, grade } = properties;
+    if (!text || !title || !difficulty || !problem_type || !grade) {
+      addNotification({
+        message: 'لطفاً همه‌ی موارد رو پر کنید.',
+        type: 'error',
+      });
+      return;
+    }
     if (mode == 'add') {
       addProblem(properties);
     } else {
-      editProblem(properties);
+      editProblem({ ...properties, problemId });
     }
   }
 
@@ -163,6 +166,7 @@ const Index = ({
                 <Divider className={classes.divider} />
                 <Grid item>
                   <TinyEditor
+                    content={properties.text}
                     onChange={(text) => {
                       setProperties({
                         ...properties,
@@ -177,7 +181,7 @@ const Index = ({
                     label='پاسخ کوتاه'
                     name='answer'
                     onChange={putData}
-                    value={properties.answer.text} />
+                    value={properties.answer?.text} />
                 </Grid>
                 <Grid item>
                   <Button fullWidth variant='contained' color='primary' onClick={() => setDialogStatus(true)}>ذخیره</Button>
@@ -281,6 +285,7 @@ const mapStateToProps = (state) => ({
 export default connect(
   mapStateToProps,
   {
+    getProblem: getProblemAction,
     addProblem: addProblemAction,
     editProblem: editProblemAction,
     addNotification: addNotificationAction,

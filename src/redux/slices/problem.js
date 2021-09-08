@@ -4,80 +4,19 @@ import { Apis } from '../apis';
 import { createAsyncThunkApi } from '../apis/cerateApiAsyncThunk';
 import {
   problemCRUDUrl,
-  // answerCorrectionUrl,
-  // playerProblemUrl,
-  // playerUrl,
-  // scoreboardUrl,
-  // subjectUrl,
 } from '../constants/urls';
 
-// export const getPlayerAction = createAsyncThunkApi(
-//   'account/getProfileInfoAction',
-//   Apis.GET,
-//   playerUrl,
-// );
 
-// export const getAllPlayerProblemsAction = createAsyncThunkApi(
-//   'events/getAllPlayerProblemsAction',
-//   Apis.GET,
-//   playerProblemUrl,
-// );
-
-// export const getOnePlayerProblemAction = createAsyncThunkApi(
-//   'events/getOnePlayerProblemAction',
-//   Apis.GET,
-//   playerProblemUrl,
-// );
-
-
-// export const getAllGameSubjectsAction = createAsyncThunkApi(
-//   'events/getAllGameSubjectsAction',
-//   Apis.GET,
-//   subjectUrl,
-// );
-
-// export const buyRandomProblemAction = createAsyncThunkApi(
-//   'events/buyRandomProblemAction',
-//   Apis.POST,
-//   playerProblemUrl,
-//   {
-//     defaultNotification: {
-//       success: 'مسئله با موفقیت دریافت شد!',
-//       error: 'مشکلی وجود داشت. دوباره تلاش کنید.',
-//     },
-//   }
-// );
-
-// export const answerProblemAction = createAsyncThunkApi(
-//   'events/answerProblemAction',
-//   Apis.POST_FORM_DATA,
-//   playerProblemUrl,
-//   {
-//     defaultNotification: {
-//       success: 'پاسخ مسئله با موفقیت ثبت شد!',
-//       error: 'مشکلی وجود داشت. دوباره تلاش کنید.',
-//     },
-//   }
-// );
-
-
-// export const setAnswerMarkAction = createAsyncThunkApi(
-//   'events/setAnswerMarkAction',
-//   Apis.POST,
-//   answerCorrectionUrl,
-//   {
-//     defaultNotification: {
-//       success: 'نمره‌ی شما با موفقیت ثبت شد!',
-//       error: 'مشکلی وجود داشت. دوباره تلاش کنید.',
-//     },
-//   }
-// );
-
-// export const getOneAnswerForCorrectionAction = createAsyncThunkApi(
-//   'events/getOneAnswerForCorrectionAction',
-//   Apis.POST,
-//   answerCorrectionUrl,
-// );
+export const getProblemAction = createAsyncThunkApi(
+  'events/getProblemAction',
+  Apis.GET,
+  problemCRUDUrl,
+  {
+    defaultNotification: {
+      error: 'مشکلی وجود داشت. دوباره تلاش کنید.',
+    },
+  }
+);
 
 export const addProblemAction = createAsyncThunkApi(
   'events/addProblemAction',
@@ -92,7 +31,7 @@ export const addProblemAction = createAsyncThunkApi(
 );
 
 export const editProblemAction = createAsyncThunkApi(
-  'events/addProblemAction',
+  'events/editProblemAction',
   Apis.PATCH,
   problemCRUDUrl,
   {
@@ -103,18 +42,11 @@ export const editProblemAction = createAsyncThunkApi(
   }
 );
 
-// export const getScoreboardAction = createAsyncThunkApi(
-//   'events/getScoreboardAction',
-//   Apis.GET,
-//   scoreboardUrl,
-// );
 
 
 const initialState = {
   isFetching: false,
-  allGameSubjects: [],
-  allPlayerProblems: [],
-  players: [],
+  problems: [],
 };
 
 const isFetching = (state) => {
@@ -130,12 +62,20 @@ const eventSlice = createSlice({
   initialState,
   extraReducers: {
 
-    // [getPlayerAction.pending.toString()]: isFetching,
-    // [getPlayerAction.fulfilled.toString()]: (state, { payload: { response } }) => {
-    //   state.player = response;
-    //   state.isFetching = false;
-    // },
-    // [getPlayerAction.rejected.toString()]: isNotFetching,
+    [getProblemAction.pending.toString()]: isFetching,
+    [getProblemAction.fulfilled.toString()]: (state, { payload: { response } }) => {
+      state.problem = response;
+      state.isFetching = false;
+    },
+    [getProblemAction.rejected.toString()]: isNotFetching,
+
+    [editProblemAction.pending.toString()]: isFetching,
+    [editProblemAction.fulfilled.toString()]: isNotFetching,
+    [editProblemAction.rejected.toString()]: isNotFetching,
+
+    [addProblemAction.pending.toString()]: isFetching,
+    [addProblemAction.fulfilled.toString()]: isNotFetching,
+    [addProblemAction.rejected.toString()]: isNotFetching,
 
 
     // [getAllGameSubjectsAction.pending.toString()]: isFetching,
