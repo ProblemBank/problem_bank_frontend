@@ -169,12 +169,11 @@ const Index = ({
         <Grid item container spacing={2} alignItems='flex-start'>
           <Grid item xs={12} md={8}>
             <Paper className={classes.paper}>
-              <Grid item container direction='column' spacing={1}>
-                <Grid item>
+              <Grid container spacing={2} justify='center'>
+                <Grid item >
                   <Typography gutterBottom variant='h3' align='center'>صورت</Typography>
                 </Grid>
-                <Divider className={classes.divider} />
-                <Grid item>
+                <Grid item xs={12}>
                   <TinyEditor
                     content={properties.text}
                     onChange={(text) => {
@@ -185,13 +184,19 @@ const Index = ({
                     }} />
                 </Grid>
                 <Grid item>
-                  <TextField
-                    fullWidth
-                    variant='outlined'
-                    label='پاسخ کوتاه'
-                    name='answer'
-                    onChange={putData}
-                    value={properties.answer?.text} />
+                  <Typography gutterBottom variant='h3' align='center'>پاسخ</Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <TinyEditor
+                    content={properties.answer?.text}
+                    onChange={(text) => {
+                      setProperties({
+                        ...properties,
+                        answer: {
+                          text,
+                        }
+                      })
+                    }} />
                 </Grid>
                 <Grid item>
                   <Button fullWidth variant='contained' color='primary' onClick={() => setDialogStatus(true)}>ذخیره</Button>

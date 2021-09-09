@@ -7,7 +7,7 @@ import AppBar from '../components/Appbar/ResponsiveAppBar';
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    padding: theme.spacing(4),
+    padding: theme.spacing(2),
     display: 'flex',
     justifyContent: 'center',
     maxWidth: '900px !important',
