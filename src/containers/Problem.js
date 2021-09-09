@@ -187,16 +187,13 @@ const Index = ({
                   <Typography gutterBottom variant='h3' align='center'>پاسخ</Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  <TinyEditor
-                    content={properties.answer?.text}
-                    onChange={(text) => {
-                      setProperties({
-                        ...properties,
-                        answer: {
-                          text,
-                        }
-                      })
-                    }} />
+                  <TextField
+                    fullWidth
+                    variant='outlined'
+                    label='پاسخ'
+                    name='answer'
+                    onChange={putData}
+                    value={properties.answer?.text} />
                 </Grid>
                 <Grid item>
                   <Button fullWidth variant='contained' color='primary' onClick={() => setDialogStatus(true)}>ذخیره</Button>
