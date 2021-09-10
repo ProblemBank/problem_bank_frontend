@@ -103,6 +103,21 @@ const Index = ({
         <Grid item xs={12}>
           <Paper className={classes.paper}>
             <Typography gutterBottom variant='h2'>
+              {'پاسخ نمونه'}
+            </Typography>
+            <TinyPreview
+              content={problem?.answer?.text}
+              frameProps={{
+                frameBorder: '0',
+                scrolling: 'no',
+                width: '100%',
+              }}
+            />
+          </Paper>
+        </Grid>
+        <Grid item xs={12}>
+          <Paper className={classes.paper}>
+            <Typography gutterBottom variant='h2'>
               {'پاسخ'}
             </Typography>
             <TinyPreview
