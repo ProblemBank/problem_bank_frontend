@@ -64,11 +64,12 @@ const Index = ({
   }, [])
 
   const filteredData = allSubmittedProblems?.filter((submittedProblem) => {
-    if (!submittedProblem.upload_file_answer && submittedProblem.text_answer?.text == 'بدون پاسخ') {
+    if (!submittedProblem.upload_file_answer &&
+      (submittedProblem.text_answer?.text == 'بدون پاسخ تایپی' || submittedProblem.text_answer?.text == 'بدون پاسخ')) {
       return false;
     }
     return true;
-  })
+  }).sort((a, b) => a.id - b.id);
 
   return (
     <Layout>

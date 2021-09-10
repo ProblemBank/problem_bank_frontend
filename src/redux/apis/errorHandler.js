@@ -14,9 +14,15 @@ export const errorHandler = (
     });
   }
 
+  if (error.response.data?.message) {
+    return rejectWithValue({
+      message: error.response.data?.message,
+    });
+  }
+
   if (error.response.data?.code) {
     return rejectWithValue({
-      message: persianMessages[error.response.data.code] || error.response.data.detail
+      message: persianMessages[error.response.data.code]
     });
   }
 
