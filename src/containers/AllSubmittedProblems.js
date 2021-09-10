@@ -63,12 +63,7 @@ const Index = ({
     getAllSubmittedProblems();
   }, [])
 
-  const filteredData = allSubmittedProblems?.filter((submittedProblem) => {
-    if (!submittedProblem.upload_file_answer && submittedProblem.text_answer?.text == 'بدون پاسخ تایپی') {
-      return false;
-    }
-    return true;
-  }).sort((a, b) => a.id - b.id);
+  const filteredData = allSubmittedProblems?.sort((a, b) => a.id - b.id);
 
   return (
     <Layout>
