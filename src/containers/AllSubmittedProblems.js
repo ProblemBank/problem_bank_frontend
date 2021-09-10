@@ -63,7 +63,7 @@ const Index = ({
     getAllSubmittedProblems();
   }, [])
 
-  const filteredData = allSubmittedProblems?.sort((a, b) => a.id - b.id);
+  const filteredData = allSubmittedProblems?.slice()?.sort((a, b) => a.id - b.id);
 
   return (
     <Layout>
