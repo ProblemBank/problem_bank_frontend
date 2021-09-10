@@ -1,6 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
+import AllSubmittedProblems from '../containers/AllSubmittedProblems';
+import CorrectSubmittedProblem from '../containers/CorrectSubmittedProblem';
 import CreateAccount from '../containers/CreateAccount';
 import Event from '../containers/Event';
 import Login from '../containers/Login';
@@ -11,6 +13,8 @@ import PrivateRoute from './PrivateRoute';
 const Root = () => {
   return (
     <Switch>
+      <PrivateRoute path="/answer/:submitId/" component={CorrectSubmittedProblem} />
+      <PrivateRoute path="/answer/" component={AllSubmittedProblems} />
       <PrivateRoute path="/problem_set/:page/" component={ProblemSet} />
       <PrivateRoute path="/problem/:mode/problem_group/:problemGroupId/" component={Problem} />
       <PrivateRoute path="/problem/:mode/:problemId?/" component={Problem} />

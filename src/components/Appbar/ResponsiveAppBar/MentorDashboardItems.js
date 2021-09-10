@@ -10,15 +10,16 @@ const DashboardItems = () => {
   const logoButton = <LogoButton />;
   // todo: fix hard code
   const dashboard = <DashboardButton name={'رویداد'} to={'/event/1/'} />;
+  const judgeAnswers = <DashboardButton name={'تصحیح'} to={'/answer/'} />;
   const logoutButton = <LogoutButton />;
   const Avatar = <AvatarComponent />;
   const backButton = <BackButton />;
 
   return {
     desktopLeftItems: [logoutButton, Avatar],
-    desktopRightItems: [dashboard],
+    desktopRightItems: [dashboard, judgeAnswers],
     mobileLeftItems: [Avatar],
-    mobileRightItems: [dashboard],
+    mobileRightItems: [dashboard, judgeAnswers],
     mobileMenuListItems: [logoutButton],
   };
 };
