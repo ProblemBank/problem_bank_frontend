@@ -4,13 +4,24 @@ import { Apis } from '../apis';
 import { createAsyncThunkApi } from '../apis/cerateApiAsyncThunk';
 import {
   addProblemToGroupUrl,
+  getProblemsByFilter,
   problemCRUDUrl,
   removeProblemFromGroupUrl,
 } from '../constants/urls';
 
+export const getProblemsByFilterAction = createAsyncThunkApi(
+  'events/getProblemsByFilterAction',
+  Apis.POST,
+  getProblemsByFilter,
+  {
+    defaultNotification: {
+      error: 'مشکلی در دریافت فیلترشده‌ی مسئله‌ها وجود داشت. دوباره تلاش کنید.',
+    },
+  }
+);
 
-export const getProblemAction = createAsyncThunkApi(
-  'events/getProblemAction',
+export const getOneProblemAction = createAsyncThunkApi(
+  'events/getOneProblemAction',
   Apis.GET,
   problemCRUDUrl,
   {
@@ -44,7 +55,6 @@ export const editProblemAction = createAsyncThunkApi(
   }
 );
 
-// todo: fix url
 export const addProblemToGroupAction = createAsyncThunkApi(
   'events/addProblemToGroupAction',
   Apis.POST,
@@ -87,26 +97,27 @@ const eventSlice = createSlice({
   initialState,
   extraReducers: {
 
-    [getProblemAction.pending.toString()]: isFetching,
-    [getProblemAction.fulfilled.toString()]: (state, { payload: { response } }) => {
+    [getOneProblemAction.pending.toString()]: isFetching,
+    [getOneProblemAction.fulfilled.toString()]: (state, { payload: { response } }) => {
       state.problem = response;
       state.isFetching = false;
     },
-    [getProblemAction.rejected.toString()]: isNotFetching,
+    [getOneProblemAction.rejected.toString()]: isNotFetching,
 
     [editProblemAction.pending.toString()]: isFetching,
     [editProblemAction.fulfilled.toString()]: (state, { payload: { response } }) => {
-      state.isFetching = false;
       history.back();
+      state.isFetching = false;
     },
     [editProblemAction.rejected.toString()]: isNotFetching,
 
     [addProblemAction.pending.toString()]: isFetching,
     [addProblemAction.fulfilled.toString()]: (state, { payload: { response } }) => {
-      state.isFetching = false;
       history.back();
+      state.isFetching = false;
     },
     [addProblemAction.rejected.toString()]: isNotFetching,
+
 
     [addProblemToGroupAction.pending.toString()]: isFetching,
     [addProblemToGroupAction.fulfilled.toString()]: isNotFetching,
@@ -116,6 +127,15 @@ const eventSlice = createSlice({
     [removeProblemFromGroupAction.pending.toString()]: isFetching,
     [removeProblemFromGroupAction.fulfilled.toString()]: isNotFetching,
     [removeProblemFromGroupAction.rejected.toString()]: isNotFetching,
+
+
+    [getProblemsByFilterAction.pending.toString()]: isFetching,
+    [getProblemsByFilterAction.fulfilled.toString()]: (state, { payload: { response } }) => {
+      state.filteredProblems = response.problems;
+      state.totalNumberOfPages = response.page;
+      state.isFetching = false;
+    },
+    [getProblemsByFilterAction.rejected.toString()]: isNotFetching,
 
   },
 });

@@ -1,7 +1,7 @@
-import MentorDashboardItems from './MentorDashboardItems';
+import GeneralDashboardItems from './GeneralDashboard';
 
 const AppbarModes = {
-  MENTOR_DASHBOARD: MentorDashboardItems,
+  GENERAL_DASHBOARD: GeneralDashboardItems,
 };
 
 export default AppbarModes;

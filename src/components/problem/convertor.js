@@ -32,21 +32,10 @@ const converter = ({
 
   return (
     {
-      hardness: {
-        id: null,
-        level: difficultyLevel,
-        appropriate_grades_min: appropriateGrades[0],
-        appropriate_grades_max: appropriateGrades[1],
-      },
-      answers: [
-      ],
-      name,
-      verification_status: "w",
-      verification_comment: "",
-      text: problem,
-      source: selectedSource,
-      tags,
-      sub_tags,
+      difficulties: [],
+      sources: [],
+      topis: [],
+      subtopics: [],
       events,
       comments: [],
     }

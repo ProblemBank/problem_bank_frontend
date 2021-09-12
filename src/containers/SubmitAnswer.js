@@ -31,19 +31,11 @@ import {
   addNotificationAction,
 } from '../redux/slices/notifications';
 import {
-  getProblemAction,
+  getOneProblemAction,
 } from '../redux/slices/problem';
 import Layout from './Layout';
 
 const useStyles = makeStyles((theme) => ({
-  centerItems: {
-    paddingTop: theme.spacing(2),
-    paddingRight: theme.spacing(2),
-    minHeight: '100vh',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   paper: {
     padding: theme.spacing(2),
     width: '100%',
@@ -172,7 +164,7 @@ const mapStateToProps = (state) => ({
 export default connect(
   mapStateToProps,
   {
-    getProblem: getProblemAction,
+    getProblem: getOneProblemAction,
     getOneSubmittedProblem: getOneSubmittedProblemAction,
     judgeOneSubmittedProblem: judgeOneSubmittedProblemAction,
   }

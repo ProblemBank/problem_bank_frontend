@@ -161,45 +161,56 @@ const Event = ({
             container item
             direction="column"
             spacing={2}>
-            <Grid item>
-              <TableContainer>
-                <Table>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell align='center'>شناسه</TableCell>
-                      <TableCell align='center'>عنوان</TableCell>
-                      <TableCell align='center'>حذف از گروه‌مسئله</TableCell>
+            <TableContainer>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell align='center'>شناسه</TableCell>
+                    <TableCell align='center'>عنوان</TableCell>
+                    <TableCell align='center'>حذف از گروه‌مسئله</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {problemGroup?.problems?.map((problem, index) =>
+                    <TableRow key={index}>
+                      <TableCell align='center'>
+                        {toPersianNumber(problem.id)}
+                      </TableCell>
+                      <TableCell align='center'>
+                        <Button component={Link} to={`/problem/edit/${problem.id}/`}>
+                          {problem.title}
+                        </Button>
+                      </TableCell>
+                      <TableCell align='center'>
+                        <IconButton
+                          onClick={() => {
+                            removeProblemFromGroup({
+                              problemId: problem.id,
+                              problemGroupId: event.problem_groups[tabIndex].id,
+                            })
+                          }}
+                          size='small'>
+                          <ClearIcon />
+                        </IconButton>
+                      </TableCell>
                     </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {problemGroup?.problems?.map((problem, index) =>
-                      <TableRow key={index}>
-                        <TableCell align='center'>
-                          {toPersianNumber(problem.id)}
-                        </TableCell>
-                        <TableCell align='center'>
-                          <Button component={Link} to={`/problem/edit/${problem.id}/`}>
-                            {problem.title}
-                          </Button>
-                        </TableCell>
-                        <TableCell align='center'>
-                          <IconButton
-                            onClick={() => {
-                              removeProblemFromGroup({
-                                problemId: problem.id,
-                                problemGroupId: event.problem_groups[tabIndex].id,
-                              })
-                            }}
-                            size='small'>
-                            <ClearIcon />
-                          </IconButton>
-                        </TableCell>
-                      </TableRow>
-                    )}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </Grid>
+                  )}
+                </TableBody>
+              </Table>
+            </TableContainer>
+            {event?.problem_groups?.length > 0 &&
+              <Grid item container justify='center'>
+                <Box mt={1}>
+                  <Button
+                    variant='contained'
+                    color='primary'
+                    component={Link}
+                    to={`/problem/add/problem_group/${event?.problem_groups[tabIndex].id}/`}>
+                    {'افزودن مسئله‌ی جدید'}
+                  </Button>
+                </Box>
+              </Grid>
+            }
           </Grid>
         </Grid>
       </Grid>

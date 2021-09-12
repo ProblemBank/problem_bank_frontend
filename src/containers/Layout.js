@@ -21,7 +21,7 @@ const Layout = (props) => {
 
   return (
     <>
-      <AppBar mode='MENTOR_DASHBOARD' position='relative' />
+      <AppBar mode='GENERAL_DASHBOARD' position='relative' />
       <Container className={classes.container} >
         {props.children}
       </Container>

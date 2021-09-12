@@ -1,26 +1,27 @@
 import React from 'react';
 
 import AvatarComponent from './components/Avatar';
+import BackButton from './components/BackButton';
 import DashboardButton from './components/DashboardButton';
 import LogoButton from './components/LogoButton';
 import LogoutButton from './components/LogoutButton';
-import BackButton from './components/BackButton';
 
 const DashboardItems = () => {
   const logoButton = <LogoButton />;
   // todo: fix hard code
-  const dashboard = <DashboardButton name={'رویداد'} to={'/event/1/'} />;
+  const events = <DashboardButton name={'رویدادها'} to={'/event/1/'} />;
   const judgeAnswers = <DashboardButton name={'تصحیح'} to={'/answer/'} />;
+  const allProblems = <DashboardButton name={'مجموعه مسائل'} to={'/filtered_problems/1/'} />;
   const logoutButton = <LogoutButton />;
   const Avatar = <AvatarComponent />;
   const backButton = <BackButton />;
 
   return {
     desktopLeftItems: [logoutButton, Avatar],
-    desktopRightItems: [dashboard, judgeAnswers],
+    desktopRightItems: [events, judgeAnswers, allProblems],
     mobileLeftItems: [Avatar],
-    mobileRightItems: [dashboard, judgeAnswers],
-    mobileMenuListItems: [logoutButton],
+    mobileRightItems: [],
+    mobileMenuListItems: [events, judgeAnswers, allProblems, logoutButton],
   };
 };
 

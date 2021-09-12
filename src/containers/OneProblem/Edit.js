@@ -16,18 +16,18 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import AreYouSure from '../components/Dialog/AreYouSure';
-import TinyEditor from '../components/tiny_editor/react_tiny/TinyEditorComponent';
+import AreYouSure from '../../components/Dialog/AreYouSure';
+import TinyEditor from '../../components/tiny_editor/react_tiny/TinyEditorComponent';
 import {
   addNotificationAction,
-} from '../redux/slices/notifications';
+} from '../../redux/slices/notifications';
 import {
   addProblemAction,
   addProblemToGroupAction,
   editProblemAction,
-  getProblemAction,
-} from '../redux/slices/problem';
-import Layout from './Layout';
+  getOneProblemAction,
+} from '../../redux/slices/problem';
+import Layout from '../Layout';
 
 const useStyles = makeStyles((theme) => ({
   centerItems: {
@@ -298,7 +298,7 @@ export default connect(
   mapStateToProps,
   {
     addProblemToGroup: addProblemToGroupAction,
-    getProblem: getProblemAction,
+    getProblem: getOneProblemAction,
     addProblem: addProblemAction,
     editProblem: editProblemAction,
     addNotification: addNotificationAction,
