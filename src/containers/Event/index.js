@@ -95,7 +95,7 @@ const Event = ({
   return (
     <Layout>
       <Grid container spacing={4} justify="center" alignItems='flex-start'>
-        <Grid item xs={12} sm={4} md={3}>
+        <Grid item xs={12} sm={4} >
           <Grid
             component={Paper}
             container item
@@ -155,7 +155,7 @@ const Event = ({
             }
           </Grid>
         </Grid>
-        <Grid item xs={12} sm={8} md={9} >
+        <Grid item xs={12} sm={8}>
           <Grid
             component={Paper}
             container item

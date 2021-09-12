@@ -36,8 +36,7 @@ const converter = ({
       sources: [],
       topis: [],
       subtopics: [],
-      events,
-      comments: [],
+      event: '',
     }
   )
 }
