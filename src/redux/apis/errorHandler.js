@@ -10,25 +10,19 @@ export const errorHandler = (
 
   if (!error.response) {
     return rejectWithValue({
-      message: 'ارتباطت با مشکل مواجه شده. یه چند لحظه دیگه دوباره تلاش کن!',
+      message: 'ارتباط با سرور دچار مشکل شده است. دوباره تلاش کنید.',
     });
   }
 
-  if (error.response.data?.message) {
+  if (persianMessages?.[error.response.data?.code]) {
     return rejectWithValue({
-      message: error.response.data?.message,
+      message: persianMessages[error.response.data.code],
     });
   }
 
-  if (error.response.data?.code) {
+  if (error.response.detail) {
     return rejectWithValue({
-      message: persianMessages[error.response.data.code]
-    });
-  }
-
-  if (error.response.data?.detail) {
-    return rejectWithValue({
-      message: error.response.data.detail,
+      message: error.response.detail,
     });
   }
 
@@ -39,15 +33,15 @@ export const errorHandler = (
       }
       dispatch({ type: 'account/logout' });
       return rejectWithValue({
-        message: 'لطفا دوباره وارد سامانه شو!',
+        message: 'نشست شما به پایان رسیده. لطفاً دوباره وارد سامانه شوید.',
       });
     case 404:
       return rejectWithValue({
-        message: 'موردی یافت نشد!',
+        message: 'موردی یافت نشد.',
       });
     case 500:
       return rejectWithValue({
-        message: 'ایرادی پیش اومده! لطفا ما را در جریان بذار!',
+        message: 'ایراد سروری پیش آمده! لطفاً ما را در جریان بگذارید.',
       });
   }
 
