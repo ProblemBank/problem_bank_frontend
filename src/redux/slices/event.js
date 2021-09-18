@@ -6,13 +6,24 @@ import {
   eventCRUDUrl,
 } from '../constants/urls';
 
-export const getEventAction = createAsyncThunkApi(
-  'events/getEventAction',
+export const getAllEventsAction = createAsyncThunkApi(
+  'events/getAllEventsAction',
   Apis.GET,
   eventCRUDUrl,
   {
     defaultNotification: {
-      error: 'مشکلی وجود داشت. دوباره تلاش کنید.',
+      error: 'مشکلی  در دریافت رویدادها وجود داشت. دوباره تلاش کنید.',
+    },
+  }
+);
+
+export const getOneEventAction = createAsyncThunkApi(
+  'events/getOneEventAction',
+  Apis.GET,
+  eventCRUDUrl,
+  {
+    defaultNotification: {
+      error: 'مشکلی در دریافت یک رویداد وجود داشت. دوباره تلاش کنید.',
     },
   }
 );
@@ -45,7 +56,7 @@ export const editEventAction = createAsyncThunkApi(
 
 const initialState = {
   isFetching: false,
-  problems: [],
+  allEvents: [],
 };
 
 const isFetching = (state) => {
@@ -61,12 +72,12 @@ const eventSlice = createSlice({
   initialState,
   extraReducers: {
 
-    [getEventAction.pending.toString()]: isFetching,
-    [getEventAction.fulfilled.toString()]: (state, { payload: { response } }) => {
+    [getOneEventAction.pending.toString()]: isFetching,
+    [getOneEventAction.fulfilled.toString()]: (state, { payload: { response } }) => {
       state.event = response;
       state.isFetching = false;
     },
-    [getEventAction.rejected.toString()]: isNotFetching,
+    [getOneEventAction.rejected.toString()]: isNotFetching,
 
     [editEventAction.pending.toString()]: isFetching,
     [editEventAction.fulfilled.toString()]: isNotFetching,
@@ -75,6 +86,13 @@ const eventSlice = createSlice({
     [addEventAction.pending.toString()]: isFetching,
     [addEventAction.fulfilled.toString()]: isNotFetching,
     [addEventAction.rejected.toString()]: isNotFetching,
+
+    [getAllEventsAction.pending.toString()]: isFetching,
+    [getAllEventsAction.fulfilled.toString()]: (state, { payload: { response } }) => {
+      state.allEvents = response;
+      state.isFetching = false;
+    },
+    [getAllEventsAction.rejected.toString()]: isNotFetching,
 
   },
 });

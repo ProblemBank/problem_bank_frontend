@@ -1,4 +1,13 @@
-import { Button, Card, Chip, Grid, Typography } from '@material-ui/core';
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  Chip,
+  Grid,
+  Typography,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import React from 'react';
@@ -40,111 +49,30 @@ const useStyles = makeStyles(() => ({
 }));
 
 const Event = ({
-  cover_page,
   id,
-  name,
-  description,
-  is_active,
-  team_size,
-  is_user_participating,
-  user_registration_status,
+  title,
 }) => {
   const classes = useStyles();
   const t = useTranslate();
 
   return (
     <Card className={classes.paper}>
-      <Grid container justifyContent="center" spacing={1}>
-        <Grid
-          className={classes.noPadding}
-          item
-          container
-          justifyContent="center"
-          alignItems="center"
-          xs={12}
-          sm={5}>
-          <img src={cover_page} alt="" className={classes.eventImage} />
-        </Grid>
-        <Grid
-          item
-          container
-          xs={12}
-          sm={7}
-          direction="column"
-          justifyContent="space-between"
-          spacing={2}
-          className={classes.content}>
-          <Grid item>
-            <Typography variant="h3" className={classes.notificationTitle}>
-              {name}
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Typography variant="body2" color="textSecondary">
-              {description}
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Chip
-              variant="outlined"
-              icon={<PeopleAltIcon />}
-              label={
-                team_size == 1
-                  ? 'انفرادی'
-                  : `${toPersianNumber(team_size)} ${t('person')}`
-              }
-            />
-          </Grid>
-          <Grid item>
-            {user_registration_status === 'NotRegistered' && (
-              <Button
-                disabled={!is_active}
-                size="small"
-                variant="outlined"
-                fullWidth
-                component={Link}
-                to={`/event/${id}/registration_form/`}
-                color="secondary">
-                {t('register')}
-              </Button>
-            )}
-            {!is_user_participating &&
-              user_registration_status != 'NotRegistered' && (
-                <Button
-                  size="small"
-                  variant="outlined"
-                  fullWidth
-                  component={Link}
-                  to={`/event/${id}/status/`}
-                  color="secondary">
-                  {'وضعیت ثبت‌نام'}
-                </Button>
-              )}
-            {/* {is_user_participating && (
-              <Button
-                size="small"
-                variant="outlined"
-                fullWidth
-                component={Link}
-                to={`/event/${id}/team_selection/`}
-                color="secondary">
-                {'تیم‌کشی'}
-              </Button>
-            )} */}
-            {is_user_participating && (
-              <Button
-                size="small"
-                variant="outlined"
-                fullWidth
-                component={Link}
-                to={`/event/${id}/`}
-                color="secondary">
-                {'ورود'}
-              </Button>
-            )}
-          </Grid>
-        </Grid>
-      </Grid>
+      <CardContent>
+        <Typography variant="h3" className={classes.notificationTitle} align='center'>
+          {title}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button
+          size="small"
+          variant="outlined"
+          fullWidth
+          component={Link}
+          to={`/event/${id}/`}
+          color="secondary">
+          {'ورود'}
+        </Button>
+      </CardActions>
     </Card>
   );
 };

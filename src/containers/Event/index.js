@@ -30,7 +30,7 @@ import { Link, useParams } from 'react-router-dom';
 
 import {
   editEventAction,
-  getEventAction,
+  getOneEventAction,
 } from '../../redux/slices/event';
 import {
   removeProblemFromGroupAction
@@ -227,7 +227,7 @@ const mapStateToProps = (state, props) => ({
 export default connect(
   mapStateToProps,
   {
-    getEvent: getEventAction,
+    getEvent: getOneEventAction,
     editEvent: editEventAction,
     removeProblemGroup: removeProblemGroupAction,
     editProblemGroup: editProblemGroupAction,
