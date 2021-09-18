@@ -59,7 +59,7 @@ const Index = ({
       ...properties,
       page,
     })
-    history.push(`/filtered_problems/${value}/`)
+    history.push(`/problem_set/${value}/`)
   }
 
   return (

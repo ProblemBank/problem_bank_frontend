@@ -30,6 +30,9 @@ import {
 import Layout from '../Layout';
 
 const useStyles = makeStyles((theme) => ({
+  paper: {
+    padding: theme.spacing(2),
+  },
 }))
 
 const Index = ({
@@ -60,27 +63,31 @@ const Index = ({
                 <Typography gutterBottom variant='h3' align='center'>صورت</Typography>
               </Grid>
               <Grid item xs={12}>
-                <TinyPreview
-                  content={problem?.text}
-                  frameProps={{
-                    frameBorder: '0',
-                    scrolling: 'no',
-                    width: '100%',
-                  }}
-                />
+                <Paper className={classes.paper} elevation={2}>
+                  <TinyPreview
+                    content={problem?.text}
+                    frameProps={{
+                      frameBorder: '0',
+                      scrolling: 'no',
+                      width: '100%',
+                    }}
+                  />
+                </Paper>
               </Grid>
               <Grid item>
                 <Typography gutterBottom variant='h3' align='center'>پاسخ</Typography>
               </Grid>
               <Grid item xs={12}>
-                <TinyPreview
-                  content={problem?.text}
-                  frameProps={{
-                    frameBorder: '0',
-                    scrolling: 'no',
-                    width: '100%',
-                  }}
-                />
+                <Paper className={classes.paper} elevation={2}>
+                  <TinyPreview
+                    content={problem?.text}
+                    frameProps={{
+                      frameBorder: '0',
+                      scrolling: 'no',
+                      width: '100%',
+                    }}
+                  />
+                </Paper>
               </Grid>
             </Grid>
           </Grid>

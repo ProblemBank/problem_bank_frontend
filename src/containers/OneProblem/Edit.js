@@ -71,7 +71,7 @@ const Index = ({
 
   const [properties, setProperties] = useState({
     answer: {
-      text: 'no answer',
+      text: '',
     },
     problem_type: '',
     title: '',
@@ -93,12 +93,16 @@ const Index = ({
     }
   }, [])
 
-  console.log(problem);
-  console.log(properties);
-
   useEffect(() => {
     if (problem && mode == 'edit') {
-      setProperties(problem);
+      const newProblem = {}
+      for (const key in problem) {
+        if ((Array.isArray(problem[key]) && problem[key].length > 0) ||
+          (!Array.isArray(problem[key]) && problem[key])) {
+          newProblem[key] = problem[key];
+        }
+      }
+      setProperties(newProblem);
     }
   }, [problem]);
 
@@ -127,9 +131,6 @@ const Index = ({
       return false;
     }
   };
-
-
-  console.log(problemGroupId)
 
   const handleAddProblem = () => {
     const { text, title, difficulty, problem_type, grade } = properties;
@@ -183,17 +184,37 @@ const Index = ({
                       })
                     }} />
                 </Grid>
-                <Grid item>
+                <Grid item xs={12}>
                   <Typography gutterBottom variant='h3' align='center'>پاسخ</Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
-                    fullWidth
-                    variant='outlined'
-                    label='پاسخ'
-                    name='answer'
-                    onChange={putData}
-                    value={properties.answer?.text} />
+                  {!properties.problem_type &&
+                    <Typography align='center'>
+                      {'برای ثبت پاسخ، لطفاً ابتدا نوع مسئله را انتخاب کنید.'}
+                    </Typography>
+                  }
+                  {properties.problem_type == 'ShortAnswerProblem' &&
+                    <TextField
+                      fullWidth
+                      variant='outlined'
+                      label='پاسخ'
+                      name='answer'
+                      onChange={putData}
+                      value={properties.answer?.text} />
+                  }
+                  {properties.problem_type == 'DescriptiveProblem' &&
+                    <TinyEditor
+                      content={properties.answer.text}
+                      onChange={(text) => {
+                        setProperties({
+                          ...properties,
+                          answer: {
+                            ...properties.answer,
+                            text,
+                          }
+                        })
+                      }} />
+                  }
                 </Grid>
                 <Grid item>
                   <Button fullWidth variant='contained' color='primary' onClick={() => setDialogStatus(true)}>ذخیره</Button>
@@ -212,19 +233,21 @@ const Index = ({
                     onChange={putData}
                     value={properties.title} />
                 </Grid>
-                <Grid item>
-                  <FormControl variant="outlined" fullWidth>
-                    <InputLabel>نوع</InputLabel>
-                    <Select
-                      value={properties.problem_type}
-                      onChange={putData}
-                      name='problem_type'
-                      label='مبحث'>
-                      <MenuItem value={'ShortAnswerProblem'}>{'کوتاه‌پاسخ'}</MenuItem>
-                      <MenuItem value={'DescriptiveProblem'}>{'تشریحی'}</MenuItem>
-                    </Select>
-                  </FormControl >
-                </Grid>
+                {mode == 'add' &&
+                  <Grid item>
+                    <FormControl variant="outlined" fullWidth>
+                      <InputLabel>نوع مسئله</InputLabel>
+                      <Select
+                        value={properties.problem_type}
+                        onChange={putData}
+                        name='problem_type'
+                        label='نوع مسئله'>
+                        <MenuItem value={'ShortAnswerProblem'}>{'کوتاه‌پاسخ'}</MenuItem>
+                        <MenuItem value={'DescriptiveProblem'}>{'تشریحی'}</MenuItem>
+                      </Select>
+                    </FormControl >
+                  </Grid>
+                }
                 <Grid item>
                   <FormControl variant="outlined" fullWidth>
                     <InputLabel>پایه</InputLabel>
@@ -283,7 +306,7 @@ const Index = ({
         handleClose={() => { setDialogStatus(!isDialogOpen) }}
         callBackFunction={handleAddProblem}
       />
-    </Layout>
+    </Layout >
   )
 }
 
