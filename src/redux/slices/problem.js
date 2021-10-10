@@ -6,11 +6,13 @@ import {
   addProblemToGroupUrl,
   getProblemsByFilter,
   problemCRUDUrl,
+  topicCRUDUrl,
+  subtopicCRUDUrl,
   removeProblemFromGroupUrl,
 } from '../constants/urls';
 
 export const getProblemsByFilterAction = createAsyncThunkApi(
-  'events/getProblemsByFilterAction',
+  'problem/getProblemsByFilterAction',
   Apis.POST,
   getProblemsByFilter,
   {
@@ -21,7 +23,7 @@ export const getProblemsByFilterAction = createAsyncThunkApi(
 );
 
 export const getOneProblemAction = createAsyncThunkApi(
-  'events/getOneProblemAction',
+  'problem/getOneProblemAction',
   Apis.GET,
   problemCRUDUrl,
   {
@@ -32,7 +34,7 @@ export const getOneProblemAction = createAsyncThunkApi(
 );
 
 export const addProblemAction = createAsyncThunkApi(
-  'events/addProblemAction',
+  'problem/addProblemAction',
   Apis.POST,
   problemCRUDUrl,
   {
@@ -44,7 +46,7 @@ export const addProblemAction = createAsyncThunkApi(
 );
 
 export const editProblemAction = createAsyncThunkApi(
-  'events/editProblemAction',
+  'problem/editProblemAction',
   Apis.PATCH,
   problemCRUDUrl,
   {
@@ -56,7 +58,7 @@ export const editProblemAction = createAsyncThunkApi(
 );
 
 export const addProblemToGroupAction = createAsyncThunkApi(
-  'events/addProblemToGroupAction',
+  'problem/addProblemToGroupAction',
   Apis.POST,
   addProblemToGroupUrl,
   {
@@ -68,7 +70,7 @@ export const addProblemToGroupAction = createAsyncThunkApi(
 );
 
 export const removeProblemFromGroupAction = createAsyncThunkApi(
-  'events/removeProblemFromGroupAction',
+  'problem/removeProblemFromGroupAction',
   Apis.POST,
   removeProblemFromGroupUrl,
   {
@@ -78,6 +80,30 @@ export const removeProblemFromGroupAction = createAsyncThunkApi(
     },
   }
 );
+
+export const getTopicAction = createAsyncThunkApi(
+  'problem/getTopicAction',
+  Apis.GET,
+  topicCRUDUrl,
+  {
+    defaultNotification: {
+      error: 'مشکلی در دریافت همه‌ی موضوعات وجود داشت. دوباره تلاش کنید.',
+    },
+  }
+);
+
+export const getSubtopicAction = createAsyncThunkApi(
+  'problem/getSubtopicAction',
+  Apis.GET,
+  subtopicCRUDUrl,
+  {
+    defaultNotification: {
+      error: 'مشکلی در دریافت همه‌ی زیرموضوعات وجود داشت. دوباره تلاش کنید.',
+    },
+  }
+);
+
+
 
 const initialState = {
   isFetching: false,

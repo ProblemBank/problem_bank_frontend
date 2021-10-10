@@ -13,6 +13,14 @@ import { Link } from 'react-router-dom';
 
 import { toPersianNumber } from '../../utils/translateNumber';
 
+const PERSIAN_DIFFICULTIES = {
+  'VeryEasy': 'بسیار آسان',
+  'Easy': 'آسان',
+  'Medium': 'متوسط',
+  'Hard': 'سخت',
+  'VeryHard': 'خیلی سخت',
+}
+
 const Index = ({
   problems,
 }) => {
@@ -61,7 +69,7 @@ const Index = ({
                     ))} */}
                 </TableCell>
                 <TableCell align='center'>
-                  {toPersianNumber(problem.difficulty)}
+                  {PERSIAN_DIFFICULTIES[problem.difficulty]}
                 </TableCell>
               </TableRow>
           )}

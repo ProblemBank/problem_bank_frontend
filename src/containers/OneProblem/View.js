@@ -48,6 +48,9 @@ const Index = ({
     getProblem({ problemId });
   }, [])
 
+
+  console.log(problem)
+
   return (
     <Layout>
       <Grid container spacing={2} justify='center'>
@@ -80,7 +83,7 @@ const Index = ({
               <Grid item xs={12}>
                 <Paper className={classes.paper} elevation={2}>
                   <TinyPreview
-                    content={problem?.text}
+                    content={problem?.answer?.text}
                     frameProps={{
                       frameBorder: '0',
                       scrolling: 'no',
