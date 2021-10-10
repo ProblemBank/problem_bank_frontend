@@ -8,6 +8,7 @@ import {
   problemCRUDUrl,
   topicCRUDUrl,
   subtopicCRUDUrl,
+  sourceCRUDUrl,
   removeProblemFromGroupUrl,
 } from '../constants/urls';
 
@@ -99,6 +100,28 @@ export const getSubtopicAction = createAsyncThunkApi(
   {
     defaultNotification: {
       error: 'مشکلی در دریافت همه‌ی زیرموضوعات وجود داشت. دوباره تلاش کنید.',
+    },
+  }
+);
+
+export const getSourceAction = createAsyncThunkApi(
+  'problem/getSourceAction',
+  Apis.GET,
+  sourceCRUDUrl,
+  {
+    defaultNotification: {
+      error: 'مشکلی در دریافت منابع وجود داشت. دوباره تلاش کنید.',
+    },
+  }
+);
+
+export const submitAnswerAction = createAsyncThunkApi(
+  'problem/submitAnswerAction',
+  Apis.GET,
+  sourceCRUDUrl,
+  {
+    defaultNotification: {
+      error: 'مشکلی در ارسال پاسخ وجود داشت. دوباره تلاش کنید.',
     },
   }
 );
