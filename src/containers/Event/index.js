@@ -59,7 +59,6 @@ const Event = ({
   removeProblemGroup,
   removeProblemFromGroup,
 
-
   event,
   problemGroup,
   isFetching,
@@ -98,33 +97,37 @@ const Event = ({
             container item
             direction="column"
             spacing={2}>
-            <Grid item container justify='center' alignItems='center'>
-              <Typography align='center' variant='h3' gutterBottom>
-                {'گروه‌مسئله‌ی جدید'}
-              </Typography>
-              <Grid item xs={12}>
-                <TextField
-                  onChange={(e) => {
-                    setProblemGroupName(e.target.value);
-                  }}
-                  fullWidth
-                  value={problemGroupName}
-                  label='عنوان'
-                  variant="outlined"
-                  size='small' />
-              </Grid>
-              <Grid item container justify='flex-end'>
-                <Button
-                  onClick={doAddProblemGroup}
-                  color='primary'
-                  variant='outlined'>
-                  {'ایجاد'}
-                </Button>
-              </Grid>
-            </Grid>
-            <Grid item>
-              <Divider />
-            </Grid>
+            {(event?.role == 'mentor' || event?.role == 'owner') &&
+              <>
+                <Grid item container justify='center' alignItems='center'>
+                  <Typography align='center' variant='h3' gutterBottom>
+                    {'گروه‌مسئله‌ی جدید'}
+                  </Typography>
+                  <Grid item xs={12}>
+                    <TextField
+                      onChange={(e) => {
+                        setProblemGroupName(e.target.value);
+                      }}
+                      fullWidth
+                      value={problemGroupName}
+                      label='عنوان'
+                      variant="outlined"
+                      size='small' />
+                  </Grid>
+                  <Grid item container justify='flex-end'>
+                    <Button
+                      onClick={doAddProblemGroup}
+                      color='primary'
+                      variant='outlined'>
+                      {'ایجاد'}
+                    </Button>
+                  </Grid>
+                </Grid>
+                <Grid item>
+                  <Divider />
+                </Grid>
+              </>
+            }
             {event?.problem_groups.length > 0 &&
               <Grid item>
                 <Typography align='center' variant='h3' gutterBottom>
@@ -138,13 +141,15 @@ const Event = ({
                       onClick={() => setTabIndex(index)}
                       variant={tabIndex == index && 'contained'}>
                       {problemGroup.title}
-                      <IconButton
-                        onClick={() => {
-                          removeProblemGroup({ problemGroupId: event.problem_groups[tabIndex].id })
-                        }}
-                        size='small'>
-                        <ClearIcon style={{ fontSize: 15, color: 'red' }} />
-                      </IconButton>
+                      {(event?.role == 'mentor' || event?.role == 'owner') &&
+                        <IconButton
+                          onClick={() => {
+                            removeProblemGroup({ problemGroupId: event.problem_groups[tabIndex].id })
+                          }}
+                          size='small'>
+                          <ClearIcon style={{ fontSize: 15, color: 'red' }} />
+                        </IconButton>
+                      }
                     </Button>
                   ))}
                 </ButtonGroup>
@@ -164,7 +169,9 @@ const Event = ({
                   <TableRow>
                     <TableCell align='center'>شناسه</TableCell>
                     <TableCell align='center'>عنوان</TableCell>
-                    <TableCell align='center'>حذف از گروه‌مسئله</TableCell>
+                    {(event?.role == 'mentor' || event?.role == 'owner') &&
+                      <TableCell align='center'>حذف از گروه‌مسئله</TableCell>
+                    }
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -174,22 +181,31 @@ const Event = ({
                         {toPersianNumber(problem.id)}
                       </TableCell>
                       <TableCell align='center'>
-                        <Button component={Link} to={`/problem/edit/${problem.id}/`}>
-                          {problem.title}
-                        </Button>
+                        {(event?.role == 'mentor' || event?.role == 'owner') &&
+                          <Button component={Link} to={`/problem/edit/${problem.id}/`}>
+                            {problem.title}
+                          </Button>
+                        }
+                        {(event?.role == 'participant') &&
+                          <Button component={Link} to={`/problem/submit/${problem.id}/`}>
+                            {problem.title}
+                          </Button>
+                        }
                       </TableCell>
-                      <TableCell align='center'>
-                        <IconButton
-                          onClick={() => {
-                            removeProblemFromGroup({
-                              problemId: problem.id,
-                              problemGroupId: event.problem_groups[tabIndex].id,
-                            })
-                          }}
-                          size='small'>
-                          <ClearIcon />
-                        </IconButton>
-                      </TableCell>
+                      {(event?.role == 'mentor' || event?.role == 'owner') &&
+                        <TableCell align='center'>
+                          <IconButton
+                            onClick={() => {
+                              removeProblemFromGroup({
+                                problemId: problem.id,
+                                problemGroupId: event.problem_groups[tabIndex].id,
+                              })
+                            }}
+                            size='small'>
+                            <ClearIcon />
+                          </IconButton>
+                        </TableCell>
+                      }
                     </TableRow>
                   )}
                 </TableBody>

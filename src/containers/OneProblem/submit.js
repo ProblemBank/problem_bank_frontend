@@ -74,21 +74,6 @@ const Index = ({
                   />
                 </Paper>
               </Grid>
-              <Grid item>
-                <Typography gutterBottom variant='h3' align='center'>پاسخ</Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Paper className={classes.paper} elevation={2}>
-                  <TinyPreview
-                    content={problem?.answer?.text}
-                    frameProps={{
-                      frameBorder: '0',
-                      scrolling: 'no',
-                      width: '100%',
-                    }}
-                  />
-                </Paper>
-              </Grid>
             </Grid>
           </Grid>
           <Grid item container xs={12} md={4}>
