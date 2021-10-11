@@ -25,8 +25,6 @@ const Index = ({
   problems,
 }) => {
 
-  console.log(problems)
-
   return (
     <TableContainer component={Paper}>
       <Table>
