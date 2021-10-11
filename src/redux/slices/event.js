@@ -4,6 +4,7 @@ import { Apis } from '../apis';
 import { createAsyncThunkApi } from '../apis/cerateApiAsyncThunk';
 import {
   eventCRUDUrl,
+  getOneEventUrl,
 } from '../constants/urls';
 
 export const getAllEventsAction = createAsyncThunkApi(
@@ -20,7 +21,7 @@ export const getAllEventsAction = createAsyncThunkApi(
 export const getOneEventAction = createAsyncThunkApi(
   'events/getOneEventAction',
   Apis.GET,
-  eventCRUDUrl,
+  getOneEventUrl,
   {
     defaultNotification: {
       error: 'مشکلی در دریافت یک رویداد وجود داشت. دوباره تلاش کنید.',

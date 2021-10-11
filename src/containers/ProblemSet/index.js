@@ -47,10 +47,7 @@ const Index = ({
     subtopics: [],
   });
 
-  console.log(filteredProblems)
-
   useEffect(() => {
-    console.log(properties)
     getProblemsByFilter(properties);
   }, [page])
 

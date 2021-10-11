@@ -6,11 +6,14 @@ import {
   addProblemToGroupUrl,
   getProblemsByFilter,
   problemCRUDUrl,
+  topicCRUDUrl,
+  subtopicCRUDUrl,
+  sourceCRUDUrl,
   removeProblemFromGroupUrl,
 } from '../constants/urls';
 
 export const getProblemsByFilterAction = createAsyncThunkApi(
-  'events/getProblemsByFilterAction',
+  'problem/getProblemsByFilterAction',
   Apis.POST,
   getProblemsByFilter,
   {
@@ -21,7 +24,7 @@ export const getProblemsByFilterAction = createAsyncThunkApi(
 );
 
 export const getOneProblemAction = createAsyncThunkApi(
-  'events/getOneProblemAction',
+  'problem/getOneProblemAction',
   Apis.GET,
   problemCRUDUrl,
   {
@@ -32,7 +35,7 @@ export const getOneProblemAction = createAsyncThunkApi(
 );
 
 export const addProblemAction = createAsyncThunkApi(
-  'events/addProblemAction',
+  'problem/addProblemAction',
   Apis.POST,
   problemCRUDUrl,
   {
@@ -44,7 +47,7 @@ export const addProblemAction = createAsyncThunkApi(
 );
 
 export const editProblemAction = createAsyncThunkApi(
-  'events/editProblemAction',
+  'problem/editProblemAction',
   Apis.PATCH,
   problemCRUDUrl,
   {
@@ -56,7 +59,7 @@ export const editProblemAction = createAsyncThunkApi(
 );
 
 export const addProblemToGroupAction = createAsyncThunkApi(
-  'events/addProblemToGroupAction',
+  'problem/addProblemToGroupAction',
   Apis.POST,
   addProblemToGroupUrl,
   {
@@ -68,7 +71,7 @@ export const addProblemToGroupAction = createAsyncThunkApi(
 );
 
 export const removeProblemFromGroupAction = createAsyncThunkApi(
-  'events/removeProblemFromGroupAction',
+  'problem/removeProblemFromGroupAction',
   Apis.POST,
   removeProblemFromGroupUrl,
   {
@@ -78,6 +81,52 @@ export const removeProblemFromGroupAction = createAsyncThunkApi(
     },
   }
 );
+
+export const getAllTopicsAction = createAsyncThunkApi(
+  'problem/getAllTopicsAction',
+  Apis.GET,
+  topicCRUDUrl,
+  {
+    defaultNotification: {
+      error: 'مشکلی در دریافت همه‌ی موضوعات وجود داشت. دوباره تلاش کنید.',
+    },
+  }
+);
+
+export const getAllSubtopicsAction = createAsyncThunkApi(
+  'problem/getAllSubtopicsAction',
+  Apis.GET,
+  subtopicCRUDUrl,
+  {
+    defaultNotification: {
+      error: 'مشکلی در دریافت همه‌ی زیرموضوعات وجود داشت. دوباره تلاش کنید.',
+    },
+  }
+);
+
+export const getAllSourcesAction = createAsyncThunkApi(
+  'problem/getAllSourcesAction',
+  Apis.GET,
+  sourceCRUDUrl,
+  {
+    defaultNotification: {
+      error: 'مشکلی در دریافت منابع وجود داشت. دوباره تلاش کنید.',
+    },
+  }
+);
+
+export const submitAnswerAction = createAsyncThunkApi(
+  'problem/submitAnswerAction',
+  Apis.GET,
+  sourceCRUDUrl,
+  {
+    defaultNotification: {
+      error: 'مشکلی در ارسال پاسخ وجود داشت. دوباره تلاش کنید.',
+    },
+  }
+);
+
+
 
 const initialState = {
   isFetching: false,
@@ -136,6 +185,30 @@ const eventSlice = createSlice({
       state.isFetching = false;
     },
     [getProblemsByFilterAction.rejected.toString()]: isNotFetching,
+
+
+    [getAllTopicsAction.pending.toString()]: isFetching,
+    [getAllTopicsAction.fulfilled.toString()]: (state, { payload: { response } }) => {
+      state.allTopics = response;
+      state.isFetching = false;
+    },
+    [getAllTopicsAction.rejected.toString()]: isNotFetching,
+
+
+    [getAllSubtopicsAction.pending.toString()]: isFetching,
+    [getAllSubtopicsAction.fulfilled.toString()]: (state, { payload: { response } }) => {
+      state.allSubtopics = response;
+      state.isFetching = false;
+    },
+    [getAllSubtopicsAction.rejected.toString()]: isNotFetching,
+
+
+    [getAllSourcesAction.pending.toString()]: isFetching,
+    [getAllSourcesAction.fulfilled.toString()]: (state, { payload: { response } }) => {
+      state.allResources = response;
+      state.isFetching = false;
+    },
+    [getAllSourcesAction.rejected.toString()]: isNotFetching,
 
   },
 });

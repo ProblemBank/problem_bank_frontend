@@ -1,6 +1,6 @@
 import './Theme/Styles/App.css';
 
-import { CssBaseline, LinearProgress } from '@material-ui/core';
+import { CssBaseline, LinearProgress, Button } from '@material-ui/core';
 import { StylesProvider } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { SnackbarProvider } from 'notistack';
@@ -53,7 +53,7 @@ const App = ({ dir, redirectTo, forceRedirect, initRedirect, isFetching }) => {
             width: '100%',
             position: 'fixed',
             top: '0px',
-            zIndex: '1000',
+            zIndex: '99999',
           }}>
           <LinearProgress />
         </div>
@@ -90,7 +90,7 @@ const mapStateToProps = (state) => ({
   dir: state.Intl.locale === 'fa' ? 'rtl' : 'ltr',
   redirectTo: state.redirect.redirectTo,
   forceRedirect: state.redirect.force,
-  isFetching: state.account.isFetching,
+  isFetching: state.account.isFetching || state.problem.isFetching || state.event.isFetching || state.problemGroup.isFetching,
 });
 
 export default connect(

@@ -12,7 +12,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Tag = ({ name, selected = false, clickable, ...rest }) => {
+const Tag = ({
+  name,
+  selected = false,
+  clickable,
+  ...rest
+}) => {
   const classes = useStyles();
 
   return (

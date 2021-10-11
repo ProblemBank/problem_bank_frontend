@@ -55,7 +55,6 @@ const accountSlice = createSlice({
   extraReducers: {
     [loginAction.pending.toString()]: isFetching,
     [loginAction.fulfilled.toString()]: (state, { payload: { response } }) => {
-      console.log(response)
       state.token = response.access;
       state.isFetching = false;
     },

@@ -17,8 +17,17 @@ export const profileCRUDUrl = ({ userId }) =>
 // problem:
 export const problemCRUDUrl = ({ problemId }) => problemId ? `problembank/problem/${problemId}/` : 'problembank/problem/';
 export const eventCRUDUrl = ({ eventId }) => eventId ? `problembank/event/${eventId}/` : 'problembank/event/';
+export const getOneEventUrl = ({ eventId }) => `problembank/getevent/${eventId}/`;
 export const problemGroupCRUDUrl = ({ problemGroupId }) => problemGroupId ? `problembank/problemgroup/${problemGroupId}/` : 'problembank/problemgroup/';
 
 export const addProblemToGroupUrl = ({ problemId, problemGroupId }) => `problembank/addproblemtogroup/${problemId}/${problemGroupId}/`;
 export const removeProblemFromGroupUrl = ({ problemId, problemGroupId }) => `problembank/removeproblemfromgroup/${problemId}/${problemGroupId}/`;
 export const getProblemsByFilter = 'problembank/getproblembyfilter/ '
+
+export const submitAnswerUrl = ({ sourceId }) => sourceId ? `problembank/source/${sourceId}/` : 'problembank/source/';
+
+
+// properties:
+export const topicCRUDUrl = ({ topicId }) => topicId ? `problembank/topic/${topicId}/` : 'problembank/topic/';
+export const subtopicCRUDUrl = ({ subtopicId }) => subtopicId ? `problembank/subtopic/${subtopicId}/` : 'problembank/subtopic/';
+export const sourceCRUDUrl = ({ sourceId }) => sourceId ? `problembank/source/${sourceId}/` : 'problembank/source/';
