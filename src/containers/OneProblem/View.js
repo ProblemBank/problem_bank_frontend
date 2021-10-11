@@ -48,9 +48,6 @@ const Index = ({
     getProblem({ problemId });
   }, [])
 
-
-  console.log(problem)
-
   return (
     <Layout>
       <Grid container spacing={2} justify='center'>

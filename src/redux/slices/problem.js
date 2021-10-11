@@ -82,8 +82,8 @@ export const removeProblemFromGroupAction = createAsyncThunkApi(
   }
 );
 
-export const getTopicAction = createAsyncThunkApi(
-  'problem/getTopicAction',
+export const getAllTopicsAction = createAsyncThunkApi(
+  'problem/getAllTopicsAction',
   Apis.GET,
   topicCRUDUrl,
   {
@@ -93,8 +93,8 @@ export const getTopicAction = createAsyncThunkApi(
   }
 );
 
-export const getSubtopicAction = createAsyncThunkApi(
-  'problem/getSubtopicAction',
+export const getAllSubtopicsAction = createAsyncThunkApi(
+  'problem/getAllSubtopicsAction',
   Apis.GET,
   subtopicCRUDUrl,
   {
@@ -104,8 +104,8 @@ export const getSubtopicAction = createAsyncThunkApi(
   }
 );
 
-export const getSourceAction = createAsyncThunkApi(
-  'problem/getSourceAction',
+export const getAllSourcesAction = createAsyncThunkApi(
+  'problem/getAllSourcesAction',
   Apis.GET,
   sourceCRUDUrl,
   {
@@ -185,6 +185,30 @@ const eventSlice = createSlice({
       state.isFetching = false;
     },
     [getProblemsByFilterAction.rejected.toString()]: isNotFetching,
+
+
+    [getAllTopicsAction.pending.toString()]: isFetching,
+    [getAllTopicsAction.fulfilled.toString()]: (state, { payload: { response } }) => {
+      state.allTopics = response;
+      state.isFetching = false;
+    },
+    [getAllTopicsAction.rejected.toString()]: isNotFetching,
+
+
+    [getAllSubtopicsAction.pending.toString()]: isFetching,
+    [getAllSubtopicsAction.fulfilled.toString()]: (state, { payload: { response } }) => {
+      state.allSubtopics = response;
+      state.isFetching = false;
+    },
+    [getAllSubtopicsAction.rejected.toString()]: isNotFetching,
+
+
+    [getAllSourcesAction.pending.toString()]: isFetching,
+    [getAllSourcesAction.fulfilled.toString()]: (state, { payload: { response } }) => {
+      state.allResources = response;
+      state.isFetching = false;
+    },
+    [getAllSourcesAction.rejected.toString()]: isNotFetching,
 
   },
 });

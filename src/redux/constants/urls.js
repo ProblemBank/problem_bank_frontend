@@ -23,6 +23,9 @@ export const addProblemToGroupUrl = ({ problemId, problemGroupId }) => `problemb
 export const removeProblemFromGroupUrl = ({ problemId, problemGroupId }) => `problembank/removeproblemfromgroup/${problemId}/${problemGroupId}/`;
 export const getProblemsByFilter = 'problembank/getproblembyfilter/ '
 
+export const submitAnswerUrl = ({ sourceId }) => sourceId ? `problembank/source/${sourceId}/` : 'problembank/source/';
+
+
 // properties:
 export const topicCRUDUrl = ({ topicId }) => topicId ? `problembank/topic/${topicId}/` : 'problembank/topic/';
 export const subtopicCRUDUrl = ({ subtopicId }) => subtopicId ? `problembank/subtopic/${subtopicId}/` : 'problembank/subtopic/';

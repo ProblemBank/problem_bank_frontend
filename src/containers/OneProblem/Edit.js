@@ -28,6 +28,7 @@ import {
   getOneProblemAction,
 } from '../../redux/slices/problem';
 import Layout from '../Layout';
+import PropertiesBox from '../../components/problem/PropertiesBox';
 
 const useStyles = makeStyles((theme) => ({
   centerItems: {
@@ -95,14 +96,16 @@ const Index = ({
 
   useEffect(() => {
     if (problem && mode == 'edit') {
-      const newProblem = {}
+      const newProperties = {
+        ...properties
+      }
       for (const key in problem) {
         if ((Array.isArray(problem[key]) && problem[key].length > 0) ||
           (!Array.isArray(problem[key]) && problem[key])) {
-          newProblem[key] = problem[key];
+          newProperties[key] = problem[key];
         }
       }
-      setProperties(newProblem);
+      setProperties(newProperties);
     }
   }, [problem]);
 
@@ -295,6 +298,9 @@ const Index = ({
                       <MenuItem value={'VeryHard'}>{'بسیارسخت'}</MenuItem>
                     </Select>
                   </FormControl >
+                </Grid>
+                <Grid item>
+                  <PropertiesBox properties={properties} setProperties={setProperties} />
                 </Grid>
               </Grid>
             </Paper>

@@ -45,11 +45,8 @@ const App = ({ dir, redirectTo, forceRedirect, initRedirect, isFetching }) => {
     document.body.dir = dir;
   }, [dir]);
 
-  console.log(isFetching)
-
   const Loading = () => {
     if (isFetching) {
-      console.log("@@@@@@@")
       return (
         <div
           style={{

@@ -1,28 +1,27 @@
 import React from 'react';
-import { useParams } from 'react-router';
 import { connect } from 'react-redux';
-
-import EditMode from './Edit';
-import ViewMode from './View';
-import SubmitMode from './submit';
+import { useParams } from 'react-router';
 
 import {
-  getTopicAction,
-  getSubtopicAction,
-  getSourceAction,
+  getAllSourcesAction,
+  getAllSubtopicsAction,
+  getAllTopicsAction,
 } from '../../redux/slices/problem';
+import EditMode from './Edit';
+import SubmitMode from './submit';
+import ViewMode from './View';
 
 const Index = ({
-  getTopic,
-  getSubtopic,
-  getSource,
+  getAllTopics,
+  getAllSubtopics,
+  getAllSources,
 }) => {
 
-  React.useEffect(() => {
-    getTopic({});
-    getSubtopic({});
-    getSource({});
-  }, []);
+  // React.useEffect(() => {
+  //   getAllTopics({});
+  //   getAllSubtopics({});
+  //   getAllSources({});
+  // }, []);
 
   const { mode } = useParams();
   if (mode == 'edit' || mode == 'add') {
@@ -43,8 +42,8 @@ const mapStateToProps = (state) => ({
 export default connect(
   mapStateToProps,
   {
-    getTopic: getTopicAction,
-    getSubtopic: getSubtopicAction,
-    getSource: getSourceAction,
+    getAllTopics: getAllTopicsAction,
+    getAllSubtopics: getAllSubtopicsAction,
+    getAllSources: getAllSourcesAction,
   }
 )(Index);

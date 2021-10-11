@@ -81,9 +81,6 @@ const Event = ({
     }
   }, [event, tabIndex])
 
-  console.log(event)
-  console.log(problemGroup)
-
   const doAddProblemGroup = () => {
     addProblemGroup({
       title: problemGroupName,
