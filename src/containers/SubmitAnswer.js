@@ -124,7 +124,7 @@ const Index = ({
           <Box mt={2}>
             <Button variant='outlined' fullWidth
               disabled={!answer?.upload_file_answer}
-              href={'https://bankbackend.rastaiha.ir/' + answer?.upload_file_answer}
+              href={'https://bankbackend.esfoly.ir/' + answer?.upload_file_answer}
               component="a" target="_blank">
               {'دانلود فایل پاسخ'}
             </Button>
