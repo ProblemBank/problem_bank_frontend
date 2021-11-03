@@ -1,4 +1,3 @@
-/* eslint-disable no-prototype-builtins */
 import {
   Button,
   Divider,
@@ -28,6 +27,10 @@ import {
   getOneProblemAction,
 } from '../../redux/slices/problem';
 import Layout from '../Layout';
+
+import {
+  submitAnswerAction,
+} from '../../redux/slices/problem'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -104,6 +107,7 @@ const mapStateToProps = (state) => ({
 export default connect(
   mapStateToProps,
   {
+    submitAnswer: submitAnswerAction,
     addProblemToGroup: addProblemToGroupAction,
     getProblem: getOneProblemAction,
     addProblem: addProblemAction,

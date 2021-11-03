@@ -19,8 +19,7 @@ const Root = () => {
       <PrivateRoute path="/answer/:submitId/" component={CorrectSubmittedProblem} />
       <PrivateRoute path="/answer/" component={AllSubmittedProblems} />
       <PrivateRoute path="/problem_set/:page/" component={ProblemSet} />
-      <PrivateRoute path="/problem/:mode/problem_group/:problemGroupId/" component={Problem} />
-      <PrivateRoute path="/problem/:mode/:problemId?/" component={Problem} />
+      <PrivateRoute path="/problem/:mode/:problemId?/:problemGroupId?/" component={Problem} />
       <Route path="/create_account" component={CreateAccount} />
       <Route path="/" component={Login} />
     </Switch>

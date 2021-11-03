@@ -8,7 +8,7 @@ import {
   getAllTopicsAction,
 } from '../../redux/slices/problem';
 import EditMode from './Edit';
-import SubmitMode from './submit';
+import SubmitMode from './Submit';
 import ViewMode from './View';
 
 const Index = ({

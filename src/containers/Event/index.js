@@ -2,27 +2,21 @@ import {
   Box,
   Button,
   ButtonGroup,
+  Divider,
   Grid,
-  Hidden,
   IconButton,
   makeStyles,
   Paper,
   Table,
   TableBody,
-  Divider,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
   TextField,
-  Tooltip,
   Typography,
 } from '@material-ui/core';
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import ClassIcon from '@material-ui/icons/Class';
 import ClearIcon from '@material-ui/icons/Clear';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import GroupIcon from '@material-ui/icons/Group';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useTranslate } from 'react-redux-multilingual/lib/context';
@@ -52,8 +46,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Event = ({
   getEvent,
-  editEvent,
-  editProblemGroup,
   getProblemGroup,
   addProblemGroup,
   removeProblemGroup,
@@ -61,14 +53,11 @@ const Event = ({
 
   event,
   problemGroup,
-  isFetching,
 }) => {
-  const t = useTranslate();
   const { eventId } = useParams();
   const [problemGroupName, setProblemGroupName] = useState();
 
   const [tabIndex, setTabIndex] = useState(0);
-  const classes = useStyles();
 
   useEffect(() => {
     getEvent({ eventId });
@@ -187,7 +176,7 @@ const Event = ({
                           </Button>
                         }
                         {(event?.role == 'participant') &&
-                          <Button component={Link} to={`/problem/submit/${problem.id}/`}>
+                          <Button component={Link} to={`/problem/submit/${problem.id}/${event.problem_groups[tabIndex].id}/`}>
                             {problem.title}
                           </Button>
                         }
@@ -231,11 +220,10 @@ const Event = ({
   );
 };
 
-const mapStateToProps = (state, props) => ({
+const mapStateToProps = (state) => ({
   event: state.event.event,
   problemGroup: state.problemGroup.problemGroup,
 })
-
 
 export default connect(
   mapStateToProps,

@@ -6,10 +6,11 @@ import {
   addProblemToGroupUrl,
   getProblemsByFilter,
   problemCRUDUrl,
-  topicCRUDUrl,
-  subtopicCRUDUrl,
-  sourceCRUDUrl,
   removeProblemFromGroupUrl,
+  sourceCRUDUrl,
+  submitAnswerUrl,
+  subtopicCRUDUrl,
+  topicCRUDUrl,
 } from '../constants/urls';
 
 export const getProblemsByFilterAction = createAsyncThunkApi(
@@ -117,11 +118,11 @@ export const getAllSourcesAction = createAsyncThunkApi(
 
 export const submitAnswerAction = createAsyncThunkApi(
   'problem/submitAnswerAction',
-  Apis.GET,
-  sourceCRUDUrl,
+  Apis.POST_FORM_DATA,
+  submitAnswerUrl,
   {
     defaultNotification: {
-      error: 'مشکلی در ارسال پاسخ وجود داشت. دوباره تلاش کنید.',
+      error: 'مشکلی در ارسال پاسخِ مسئله وجود داشت. دوباره تلاش کنید.',
     },
   }
 );
@@ -167,16 +168,13 @@ const eventSlice = createSlice({
     },
     [addProblemAction.rejected.toString()]: isNotFetching,
 
-
     [addProblemToGroupAction.pending.toString()]: isFetching,
     [addProblemToGroupAction.fulfilled.toString()]: isNotFetching,
     [addProblemToGroupAction.rejected.toString()]: isNotFetching,
 
-
     [removeProblemFromGroupAction.pending.toString()]: isFetching,
     [removeProblemFromGroupAction.fulfilled.toString()]: isNotFetching,
     [removeProblemFromGroupAction.rejected.toString()]: isNotFetching,
-
 
     [getProblemsByFilterAction.pending.toString()]: isFetching,
     [getProblemsByFilterAction.fulfilled.toString()]: (state, { payload: { response } }) => {
@@ -186,14 +184,12 @@ const eventSlice = createSlice({
     },
     [getProblemsByFilterAction.rejected.toString()]: isNotFetching,
 
-
     [getAllTopicsAction.pending.toString()]: isFetching,
     [getAllTopicsAction.fulfilled.toString()]: (state, { payload: { response } }) => {
       state.allTopics = response;
       state.isFetching = false;
     },
     [getAllTopicsAction.rejected.toString()]: isNotFetching,
-
 
     [getAllSubtopicsAction.pending.toString()]: isFetching,
     [getAllSubtopicsAction.fulfilled.toString()]: (state, { payload: { response } }) => {
@@ -202,14 +198,12 @@ const eventSlice = createSlice({
     },
     [getAllSubtopicsAction.rejected.toString()]: isNotFetching,
 
-
     [getAllSourcesAction.pending.toString()]: isFetching,
     [getAllSourcesAction.fulfilled.toString()]: (state, { payload: { response } }) => {
       state.allResources = response;
       state.isFetching = false;
     },
     [getAllSourcesAction.rejected.toString()]: isNotFetching,
-
   },
 });
 
