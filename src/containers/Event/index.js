@@ -91,7 +91,7 @@ const Event = ({
             container item
             direction="column"
             spacing={2}>
-            {(event?.role == 'mentor' || event?.role == 'owner') &&
+            {event?.role != 'participant' &&
               <>
                 <Grid item container justify='center' alignItems='center'>
                   <Typography align='center' variant='h3' gutterBottom>
@@ -205,7 +205,7 @@ const Event = ({
                 </TableBody>
               </Table>
             </TableContainer>
-            {event?.problem_groups?.length > 0 &&
+            {(event?.problem_groups?.length > 0 && event.role != 'participant') &&
               <Grid item container justify='center'>
                 <Box mt={1}>
                   <Button
