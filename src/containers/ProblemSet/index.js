@@ -69,18 +69,14 @@ const Index = ({
             {'«مجموعه مسائل»'}
           </Typography>
         </Grid>
-        <Grid item xs={12} md={8}>
-          <Grid container direction='column' spacing={2} component={Paper}>
-            <Grid item>
-              <ProblemTables problems={filteredProblems} />
-            </Grid>
-            <Grid item>
-              <Pagination
-                count={totalNumberOfPages}
-                page={page}
-                onChange={handlePaginationChange}
-              />
-            </Grid>
+        <Grid item xs={12} md={8} container spacing={2}>
+            <ProblemTables problems={filteredProblems} />
+          <Grid item>
+            <Pagination
+              count={totalNumberOfPages}
+              page={page}
+              onChange={handlePaginationChange}
+            />
           </Grid>
         </Grid>
         <Grid item container xs={12} md={4}>

@@ -50,44 +50,42 @@ const Index = ({
 
   return (
     <Layout>
-      <Grid container spacing={2} justify='center'>
+      <Grid container spacing={4} justify="center" alignItems='flex-start'>
         <Grid item>
           <Typography variant="h1" align="center">
-            {problem?.title}
+            {problem?.title && `«${problem?.title}»`}
           </Typography>
         </Grid>
         <Grid item container spacing={4} alignItems='flex-start'>
           <Grid item xs={12} md={8}>
             <Grid container spacing={2} justify='center' component={Paper}>
-              <Grid item>
+              <Grid item xs={12}>
                 <Typography gutterBottom variant='h3' align='center'>صورت</Typography>
+                <Divider />
               </Grid>
               <Grid item xs={12}>
-                <Paper className={classes.paper} elevation={2}>
-                  <TinyPreview
-                    content={problem?.text}
-                    frameProps={{
-                      frameBorder: '0',
-                      scrolling: 'no',
-                      width: '100%',
-                    }}
-                  />
-                </Paper>
+                <TinyPreview
+                  content={problem?.text}
+                  frameProps={{
+                    frameBorder: '0',
+                    scrolling: 'no',
+                    width: '100%',
+                  }}
+                />
               </Grid>
-              <Grid item>
+              <Grid item xs={12}>
                 <Typography gutterBottom variant='h3' align='center'>پاسخ</Typography>
+                <Divider />
               </Grid>
               <Grid item xs={12}>
-                <Paper className={classes.paper} elevation={2}>
-                  <TinyPreview
-                    content={problem?.answer?.text}
-                    frameProps={{
-                      frameBorder: '0',
-                      scrolling: 'no',
-                      width: '100%',
-                    }}
-                  />
-                </Paper>
+                <TinyPreview
+                  content={problem?.answer?.text}
+                  frameProps={{
+                    frameBorder: '0',
+                    scrolling: 'no',
+                    width: '100%',
+                  }}
+                />
               </Grid>
             </Grid>
           </Grid>
