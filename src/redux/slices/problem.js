@@ -179,7 +179,7 @@ const eventSlice = createSlice({
     [getProblemsByFilterAction.pending.toString()]: isFetching,
     [getProblemsByFilterAction.fulfilled.toString()]: (state, { payload: { response } }) => {
       state.filteredProblems = response.problems;
-      state.totalNumberOfPages = response.page;
+      state.totalNumberOfPages = response.pages_count;
       state.isFetching = false;
     },
     [getProblemsByFilterAction.rejected.toString()]: isNotFetching,

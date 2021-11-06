@@ -49,13 +49,15 @@ const Index = ({
 
   useEffect(() => {
     getProblemsByFilter(properties);
-  }, [page])
+  }, [])
 
   const handlePaginationChange = (event, value) => {
-    setProperties({
+    const newProperties = {
       ...properties,
-      page,
-    })
+      page: value,
+    };
+    setProperties(newProperties);
+    getProblemsByFilter(newProperties);
     history.push(`/problem_set/${value}/`)
   }
 
