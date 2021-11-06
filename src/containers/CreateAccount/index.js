@@ -22,13 +22,6 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
   },
-  image: {
-    height: '80vh',
-    background: `url(${process.env.PUBLIC_URL}'/ZeroJourneyer/Dr.Rastaranj.png')`,
-    backgroundSize: 'contain',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center bottom',
-  },
 }))
 
 

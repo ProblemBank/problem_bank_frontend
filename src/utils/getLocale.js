@@ -1,6 +1,6 @@
 const getLocale = () => {
   try {
-    const Intl = JSON.parse(localStorage.getItem('rastaState')).Intl;
+    const Intl = JSON.parse(localStorage.getItem('ProblemBankState')).Intl;
     return Intl ? Intl.locale : 'fa';
   } catch {
     return 'fa';

@@ -9,8 +9,8 @@ const removeOldJsonData = (delta, data = {}) => {
   }
 };
 
-const persistedState = localStorage.getItem('rastaState')
-  ? JSON.parse(localStorage.getItem('rastaState'))
+const persistedState = localStorage.getItem('ProblemBankState')
+  ? JSON.parse(localStorage.getItem('ProblemBankState'))
   : {};
 
 removeOldJsonData(108000000, persistedState?.mentor?.teams);
@@ -25,7 +25,7 @@ const reduxStore = createStore(persistedState);
 reduxStore.subscribe(() => {
   const state = reduxStore.getState();
   localStorage.setItem(
-    'rastaState',
+    'ProblemBankState',
     JSON.stringify({
       account: state.account,
       Intl: state.Intl,
