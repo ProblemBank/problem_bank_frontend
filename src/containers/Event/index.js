@@ -36,7 +36,7 @@ import {
   removeProblemGroupAction,
 } from '../../redux/slices/problemGroup';
 import { toPersianNumber } from '../../utils/translateNumber';
-import Layout from '../Event (unused)/Layout';
+import Layout from '../Layout';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -80,7 +80,12 @@ const Event = ({
   return (
     <Layout>
       <Grid container spacing={4} justify="center" alignItems='flex-start'>
-        <Grid item xs={12} sm={4} >
+        <Grid item xs={12}>
+          <Typography variant="h1" align="center" gutterBottom>
+            {`«${event.title}»`}
+          </Typography>
+        </Grid>
+        <Grid item xs={12} sm={4}>
           <Grid
             component={Paper}
             container item
