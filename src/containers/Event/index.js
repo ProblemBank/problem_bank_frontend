@@ -82,7 +82,7 @@ const Event = ({
       <Grid container spacing={4} justify="center" alignItems='flex-start'>
         <Grid item xs={12}>
           <Typography variant="h1" align="center" gutterBottom>
-            {`«${event.title}»`}
+            {event?.title && `«${event?.title}»`}
           </Typography>
         </Grid>
         <Grid item xs={12} sm={4}>

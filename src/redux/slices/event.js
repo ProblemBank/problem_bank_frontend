@@ -4,13 +4,14 @@ import { Apis } from '../apis';
 import { createAsyncThunkApi } from '../apis/cerateApiAsyncThunk';
 import {
   eventCRUDUrl,
+  getAllEventUrl,
   getOneEventUrl,
 } from '../constants/urls';
 
 export const getAllEventsAction = createAsyncThunkApi(
   'events/getAllEventsAction',
   Apis.GET,
-  eventCRUDUrl,
+  getAllEventUrl,
   {
     defaultNotification: {
       error: 'مشکلی  در دریافت رویدادها وجود داشت. دوباره تلاش کنید.',
@@ -90,7 +91,7 @@ const eventSlice = createSlice({
 
     [getAllEventsAction.pending.toString()]: isFetching,
     [getAllEventsAction.fulfilled.toString()]: (state, { payload: { response } }) => {
-      state.allEvents = response;
+      state.allEvents = response.events;
       state.isFetching = false;
     },
     [getAllEventsAction.rejected.toString()]: isNotFetching,

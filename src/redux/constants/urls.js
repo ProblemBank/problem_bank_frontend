@@ -23,6 +23,7 @@ export const problemGroupCRUDUrl = ({ problemGroupId }) => problemGroupId ? `pro
 export const addProblemToGroupUrl = ({ problemId, problemGroupId }) => `problembank/addproblemtogroup/${problemId}/${problemGroupId}/`;
 export const removeProblemFromGroupUrl = ({ problemId, problemGroupId }) => `problembank/removeproblemfromgroup/${problemId}/${problemGroupId}/`;
 export const getProblemsByFilter = 'problembank/getproblembyfilter/ '
+export const getAllEventUrl = 'problembank/getevents/';
 
 export const submitAnswerUrl = ({ problemId, problemGroupId }) => `problembank/submit/${problemId}/${problemGroupId}/`;
 

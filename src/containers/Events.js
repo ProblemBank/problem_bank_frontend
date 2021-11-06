@@ -41,6 +41,8 @@ const Events = ({
     getAllEvents({});
   }, []);
 
+  console.log(allEvents)
+
   return (
     <Layout>
       <Grid container spacing={4} justify='center' alignItems='flex-start'>
