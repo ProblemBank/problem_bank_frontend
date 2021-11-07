@@ -55,7 +55,7 @@ const Index = ({
     setPage(value);
     getProblemsByFilter({
       ...properties,
-      page,
+      page: value,
     });
     history.push(`/problem_set/${value}/`)
   }
