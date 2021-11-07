@@ -76,12 +76,17 @@ const Index = ({
 
   return (
     <Layout>
-      <Grid container spacing={2} justify='center'>
-        <Grid item xs={12}>
-          <Paper className={classes.paper}>
+      <Paper className={classes.paper}>
+
+        <Grid container spacing={2} justify='center'>
+
+          <Grid item xs={12}>
             <Typography gutterBottom variant='h2'>
-              {'مسئله'}
+              {'صورت مسئله'}
             </Typography>
+            <Divider />
+          </Grid>
+          <Grid item xs={12}>
             <TinyPreview
               content={problem?.text}
               frameProps={{
@@ -90,13 +95,14 @@ const Index = ({
                 width: '100%',
               }}
             />
-          </Paper>
-        </Grid>
-        <Grid item xs={12}>
-          <Paper className={classes.paper}>
+          </Grid>
+          <Grid item xs={12}>
             <Typography gutterBottom variant='h2'>
               {'پاسخ نمونه'}
             </Typography>
+            <Divider />
+          </Grid>
+          <Grid item xs={12}>
             <TinyPreview
               content={problem?.answer?.text}
               frameProps={{
@@ -105,13 +111,14 @@ const Index = ({
                 width: '100%',
               }}
             />
-          </Paper>
-        </Grid>
-        <Grid item xs={12}>
-          <Paper className={classes.paper}>
+          </Grid>
+          <Grid item xs={12}>
             <Typography gutterBottom variant='h2'>
-              {'پاسخ'}
+              {'پاسخ دانش‌آموز'}
             </Typography>
+            <Divider />
+          </Grid>
+          <Grid item xs={12}>
             <TinyPreview
               content={answer?.text_answer?.text}
               frameProps={{
@@ -120,39 +127,38 @@ const Index = ({
                 width: '100%',
               }}
             />
-          </Paper>
-          <Box mt={2}>
-            <Button variant='outlined' fullWidth
-              disabled={!answer?.upload_file_answer}
-              href={'https://bankbackend.esfoly.ir/' + answer?.upload_file_answer}
-              component="a" target="_blank">
-              {'دانلود فایل پاسخ'}
-            </Button>
-          </Box>
-
-        </Grid>
-        <Grid item xs={12}>
-          <ButtonGroup variant='contained' fullWidth color='primary'>
-            <Button
-              onClick={() => {
-                judgeOneSubmittedProblem({ submitId, mark: 0 }).then(() => {
-                  history.push('/answer/');
-                })
-              }}>
-              {'غلط'}
-            </Button>
-            <Button
-              onClick={() => {
-                judgeOneSubmittedProblem({ submitId, mark: 1 }).then(() => {
-                  history.push('/answer/')
-                })
-              }}>
-              {'درست'}
-            </Button>
-          </ButtonGroup>
-        </Grid>
-      </Grid >
-    </Layout>
+            <Box mt={2}>
+              <Button variant='outlined' fullWidth
+                disabled={!answer?.upload_file_answer}
+                href={'https://bankbackend.esfoly.ir/' + answer?.upload_file_answer}
+                component="a" target="_blank">
+                {'دانلود فایل پاسخ'}
+              </Button>
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <ButtonGroup variant='contained' fullWidth color='primary'>
+              <Button
+                onClick={() => {
+                  judgeOneSubmittedProblem({ submitId, mark: 0 }).then(() => {
+                    history.push('/submitted_answers/');
+                  })
+                }}>
+                {'غلط'}
+              </Button>
+              <Button
+                onClick={() => {
+                  judgeOneSubmittedProblem({ submitId, mark: 1 }).then(() => {
+                    history.push('/submitted_answers/')
+                  })
+                }}>
+                {'درست'}
+              </Button>
+            </ButtonGroup>
+          </Grid>
+        </Grid >
+      </Paper>
+    </Layout >
   )
 }
 
