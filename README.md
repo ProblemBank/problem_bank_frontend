@@ -1,9 +1,9 @@
-# Workshop Mentor Frontend
+# Problem Bank Frontend
 
 ## Installation
 
-- `git clone https://github.com/Rastaiha/workshop_mentor_frontend.git`
-- `cd workshop_mentor_frontend`
+- `git clone https://github.com/Rastaiha/problem_bank_frontend.git`
+- `cd problem_bank_frontend`
 - `yarn`
 - `yarn start`
 - visit http://localhost:3000/
