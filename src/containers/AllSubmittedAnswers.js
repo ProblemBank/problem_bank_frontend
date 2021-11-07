@@ -84,7 +84,7 @@ const Index = ({
                     <Button
                       variant='outlined'
                       component={Link}
-                      to={`/answer/${data.id}/`}>
+                      to={`/submitted_answer/${data.id}/`}>
                       {data.id}
                     </Button>
                   </TableCell>

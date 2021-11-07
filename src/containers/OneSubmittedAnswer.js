@@ -141,7 +141,7 @@ const Index = ({
               <Button
                 onClick={() => {
                   judgeOneSubmittedProblem({ submitId, mark: 0 }).then(() => {
-                    history.push('/submitted_answers/');
+                    history.push('/submitted_answer/');
                   })
                 }}>
                 {'غلط'}
@@ -149,7 +149,7 @@ const Index = ({
               <Button
                 onClick={() => {
                   judgeOneSubmittedProblem({ submitId, mark: 1 }).then(() => {
-                    history.push('/submitted_answers/')
+                    history.push('/submitted_answer/')
                   })
                 }}>
                 {'درست'}
