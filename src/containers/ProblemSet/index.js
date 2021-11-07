@@ -60,8 +60,6 @@ const Index = ({
     history.push(`/problem_set/${value}/`)
   }
 
-  console.log(page)
-
   return (
     <Layout>
       <Grid container spacing={4} justify='center' alignItems='flex-start'>

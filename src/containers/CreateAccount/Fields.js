@@ -24,7 +24,7 @@ const InputFields = ({
   });
 
   if (token) {
-    return <Redirect to="/event/1/" />;
+    return <Redirect to="/events/" />;
   }
 
   const putData = (event) => {

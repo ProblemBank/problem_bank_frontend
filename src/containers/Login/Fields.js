@@ -14,7 +14,7 @@ const InputFields = ({ isFetching, login, addNotification, token }) => {
   });
 
   if (token) {
-    return <Redirect to="/event/1/" />;
+    return <Redirect to="/events/" />;
   }
 
   const isJustDigits = (number) => {

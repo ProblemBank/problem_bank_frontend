@@ -101,8 +101,6 @@ const Index = ({
     setFile({ file: '', value: '' });
   }
 
-  console.log(file, text)
-
   return (
     <Layout>
       <Grid container spacing={4} justify="center" alignItems='flex-start'>

@@ -73,9 +73,6 @@ const Index = ({
     }
   }, [answer])
 
-
-  console.log(answer);
-
   return (
     <Layout>
       <Paper className={classes.paper}>

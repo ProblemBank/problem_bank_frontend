@@ -41,8 +41,6 @@ const Events = ({
     getAllEvents({});
   }, []);
 
-  console.log(allEvents)
-
   return (
     <Layout>
       <Grid container spacing={4} justify='center' alignItems='flex-start'>
@@ -51,7 +49,7 @@ const Events = ({
             {'«رویدادها»'}
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12}>
           {allEvents?.map((event, index) => (
             <Grid key={index} item>
               <EventCard {...event} />
