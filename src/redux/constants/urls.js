@@ -2,17 +2,10 @@
 export const loginUrl = 'account/login/';
 export const createAccountUrl = 'account/create/';
 
-
 // mentor:
-export const getAllSubmittedProblemsUrl = 'problembank/jugeablesubmit/';
+export const getAllSubmittedProblemsUrl = 'problembank/getsubmits/';
 export const getOneSubmittedProblemUrl = ({ submitId }) => `problembank/jugeablesubmit/${submitId}/`;
-export const judgeOneSubmittedProblemUrl = ({ submitId, mark }) => `game/judge/${submitId}/${mark}/`;
-
-export const changePasswordUrl = 'account/change_pass/';
-export const accountCRUDUrl = ({ userId }) =>
-  userId ? `account/${userId}/` : 'account/';
-export const profileCRUDUrl = ({ userId }) =>
-  userId ? `profile/${userId}/` : 'profile/';
+export const judgeOneSubmittedProblemUrl = ({ submitId, mark }) => `problembank/judge/${submitId}/${mark}/`;
 
 // problem:
 export const problemCRUDUrl = ({ problemId }) => problemId ? `problembank/problem/${problemId}/` : 'problembank/problem/';
@@ -26,7 +19,6 @@ export const getProblemsByFilter = 'problembank/getproblembyfilter/ '
 export const getAllEventUrl = 'problembank/getevents/';
 
 export const submitAnswerUrl = ({ problemId, problemGroupId }) => `problembank/submit/${problemId}/${problemGroupId}/`;
-
 
 // properties:
 export const topicCRUDUrl = ({ topicId }) => topicId ? `problembank/topic/${topicId}/` : 'problembank/topic/';
