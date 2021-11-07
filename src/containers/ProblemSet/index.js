@@ -70,11 +70,13 @@ const Index = ({
           </Typography>
         </Grid>
         <Grid item xs={12} md={8} container spacing={2}>
-            <ProblemTables problems={filteredProblems} />
+          <ProblemTables problems={filteredProblems} />
           <Grid item>
             <Pagination
+              variant="outlined" color="primary"
+              shape='rounded'
               count={totalNumberOfPages}
-              page={page}
+              defaultPage={page}
               onChange={handlePaginationChange}
             />
           </Grid>
