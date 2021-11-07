@@ -97,9 +97,6 @@ const Index = ({
     }
   }
 
-
-  console.log(problem)
-
   const clearFile = () => {
     setFile({ file: '', value: '' });
   }

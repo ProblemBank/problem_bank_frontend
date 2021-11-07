@@ -8,6 +8,8 @@ export const errorHandler = (
   showHttpError
 ) => {
 
+  console.log(error.response)
+
   if (!error.response) {
     return rejectWithValue({
       message: 'ارتباط با سرور دچار مشکل شده است. دوباره تلاش کنید.',
@@ -17,6 +19,12 @@ export const errorHandler = (
   if (persianMessages?.[error.response.data?.code]) {
     return rejectWithValue({
       message: persianMessages[error.response.data.code],
+    });
+  }
+
+  if (error.response.data?.message) {
+    return rejectWithValue({
+      message: error.response.data?.message,
     });
   }
 

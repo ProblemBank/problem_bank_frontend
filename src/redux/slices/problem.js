@@ -122,6 +122,7 @@ export const submitAnswerAction = createAsyncThunkApi(
   submitAnswerUrl,
   {
     defaultNotification: {
+      success: 'شما پاسخ مسئله را با موفقیت ثبت کردید!',
       error: 'مشکلی در ارسال پاسخِ مسئله وجود داشت. دوباره تلاش کنید.',
     },
   }
@@ -204,6 +205,13 @@ const eventSlice = createSlice({
       state.isFetching = false;
     },
     [getAllSourcesAction.rejected.toString()]: isNotFetching,
+
+    [submitAnswerAction.pending.toString()]: isFetching,
+    [submitAnswerAction.fulfilled.toString()]: (state, { payload: { response } }) => {
+      history.back();
+      state.isFetching = false;
+    },
+    [submitAnswerAction.rejected.toString()]: isNotFetching,
   },
 });
 
