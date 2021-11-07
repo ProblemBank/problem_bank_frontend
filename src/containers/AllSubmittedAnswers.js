@@ -73,6 +73,7 @@ const Index = ({
                     <Button
                       variant='outlined'
                       component={Link}
+                      disabled={problem.status == 'Judged'}
                       to={`/submitted_answer/${problem.id}/`}>
                       {toPersianNumber(problem.id)}
                     </Button>
