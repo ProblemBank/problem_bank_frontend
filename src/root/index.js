@@ -16,8 +16,8 @@ const Root = () => {
     <Switch>
       <PrivateRoute path="/events/" component={Events} />
       <PrivateRoute path="/event/:eventId/" component={Event} />
-      <PrivateRoute path="/answer/:submitId/" component={CorrectSubmittedProblem} />
-      <PrivateRoute path="/submitted_answers/" component={AllSubmittedProblems} />
+      <PrivateRoute path="/submitted_answer/:submitId/" component={CorrectSubmittedProblem} />
+      <PrivateRoute path="/submitted_answer/" component={AllSubmittedProblems} />
       <PrivateRoute path="/problem_set/:page/" component={ProblemSet} />
       <PrivateRoute path="/problem/:mode/:problemId?/:problemGroupId?/" component={Problem} />
       <Route path="/create_account" component={CreateAccount} />
