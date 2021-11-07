@@ -74,6 +74,8 @@ const Index = ({
   }, [answer])
 
 
+  console.log(answer);
+
   return (
     <Layout>
       <Paper className={classes.paper}>
@@ -130,7 +132,7 @@ const Index = ({
             <Box mt={2}>
               <Button variant='outlined' fullWidth
                 disabled={!answer?.upload_file_answer}
-                href={'https://bankbackend.esfoly.ir/' + answer?.upload_file_answer}
+                href={answer?.upload_file_answer?.answer_file}
                 component="a" target="_blank">
                 {'دانلود فایل پاسخ'}
               </Button>

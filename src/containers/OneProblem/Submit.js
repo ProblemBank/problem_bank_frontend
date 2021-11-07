@@ -81,7 +81,7 @@ const Index = ({
       return;
     }
 
-    if (problem?.problem?.problem_type == 'DescriptiveProblem') {
+    if (problem?.problem_type == 'DescriptiveProblem') {
       submitAnswer({
         problemGroupId,
         problemId,

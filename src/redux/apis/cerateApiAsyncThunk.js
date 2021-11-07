@@ -7,7 +7,7 @@ export const createAsyncThunkApi = (typePrefix, api, url, options) =>
     try {
       const body = options?.bodyCreator?.(arg) || arg;
 
-      // console.log(body)
+      console.log(body)
 
       const stringUrl = typeof url === 'function' ? url(arg) : url;
       const response = await api(stringUrl, body);
