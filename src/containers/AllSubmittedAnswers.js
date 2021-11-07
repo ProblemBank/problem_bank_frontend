@@ -27,27 +27,9 @@ import {
   addNotificationAction,
 } from '../redux/slices/notifications';
 import Layout from './Layout';
+import { toPersianNumber } from '../utils/translateNumber'
 
 const useStyles = makeStyles((theme) => ({
-  centerItems: {
-    paddingTop: theme.spacing(2),
-    paddingRight: theme.spacing(2),
-    minHeight: '100vh',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  paper: {
-    padding: theme.spacing(2),
-    width: '100%',
-  },
-  textArea: {
-    width: '100%',
-    resize: 'vertical',
-    borderRadius: '10px',
-    minHeight: '100px',
-    padding: theme.spacing(1),
-  }
 }))
 
 const Index = ({
@@ -65,34 +47,41 @@ const Index = ({
 
   const filteredData = allSubmittedProblems?.slice()?.sort((a, b) => a.id - b.id);
 
+  console.log(filteredData)
+
   return (
     <Layout>
-      <Grid container spacing={2} justify='center'>
-        <TableContainer>
+      <Grid container spacing={4} justify='center' alignItems='flex-start'>
+        <Grid item xs={12}>
+          <Typography variant="h1" align="center" gutterBottom>
+            {'«پاسخ‌های ارسال‌شده»'}
+          </Typography>
+        </Grid>
+        <TableContainer component={Paper}>
           <Table>
             <TableHead>
               <TableRow>
                 <TableCell align='center'>شناسه</TableCell>
                 <TableCell align='center'>گروه‌مسئله</TableCell>
-                <TableCell align='center'>وضعیت</TableCell>
+                <TableCell align='center'>نمره</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {filteredData?.map((data) =>
-                <TableRow key={data.index}>
+              {filteredData?.map((problem) =>
+                <TableRow key={problem.index}>
                   <TableCell align='center'>
                     <Button
                       variant='outlined'
                       component={Link}
-                      to={`/submitted_answer/${data.id}/`}>
-                      {data.id}
+                      to={`/submitted_answer/${problem.id}/`}>
+                      {toPersianNumber(problem.id)}
                     </Button>
                   </TableCell>
                   <TableCell align='center'>
-                    {data.problem_group}
+                    {toPersianNumber(problem.problem_group)}
                   </TableCell>
                   <TableCell align='center'>
-                    {data.status}
+                    {problem.status == 'Judged' ? toPersianNumber(problem.mark) : 'نامعین'}
                   </TableCell>
                 </TableRow>
               )}

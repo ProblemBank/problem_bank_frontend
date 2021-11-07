@@ -37,9 +37,9 @@ const Index = ({
 }) => {
   const history = useHistory();
   const classes = useStyles();
-  const { page } = useParams();
+  const { page: currentPage } = useParams();
+  const [page, setPage] = useState(parseInt(currentPage));
   const [properties, setProperties] = useState({
-    page,
     difficulties: [],
     grades: [],
     sources: [],
@@ -52,14 +52,15 @@ const Index = ({
   }, [])
 
   const handlePaginationChange = (event, value) => {
-    const newProperties = {
+    setPage(value);
+    getProblemsByFilter({
       ...properties,
-      page: value,
-    };
-    setProperties(newProperties);
-    getProblemsByFilter(newProperties);
+      page,
+    });
     history.push(`/problem_set/${value}/`)
   }
+
+  console.log(page)
 
   return (
     <Layout>
@@ -73,10 +74,11 @@ const Index = ({
           <ProblemTables problems={filteredProblems} />
           <Grid item>
             <Pagination
-              variant="outlined" color="primary"
+              variant="outlined"
+              color="primary"
               shape='rounded'
               count={totalNumberOfPages}
-              defaultPage={page}
+              page={page}
               onChange={handlePaginationChange}
             />
           </Grid>

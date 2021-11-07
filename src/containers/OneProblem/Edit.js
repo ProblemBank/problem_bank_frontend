@@ -219,7 +219,7 @@ const Index = ({
                       }} />
                   }
                 </Grid>
-                <Grid item>
+                <Grid item xs={12}>
                   <Button fullWidth variant='contained' color='primary' onClick={() => setDialogStatus(true)}>ذخیره</Button>
                 </Grid>
               </Grid>
