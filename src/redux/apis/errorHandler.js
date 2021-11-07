@@ -8,8 +8,6 @@ export const errorHandler = (
   showHttpError
 ) => {
 
-  console.log(error.response)
-
   if (!error.response) {
     return rejectWithValue({
       message: 'ارتباط با سرور دچار مشکل شده است. دوباره تلاش کنید.',
