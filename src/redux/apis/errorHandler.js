@@ -10,19 +10,13 @@ export const errorHandler = (
 
   if (!error.response) {
     return rejectWithValue({
-      message: 'ارتباط با سرور دچار مشکل شده است. دوباره تلاش کنید.',
+      message: 'ارتباط با سرور دچار مشکل شده است.',
     });
   }
 
   if (persianMessages?.[error.response.data?.code]) {
     return rejectWithValue({
       message: persianMessages[error.response.data.code],
-    });
-  }
-
-  if (error.response.data?.message) {
-    return rejectWithValue({
-      message: error.response.data?.message,
     });
   }
 
@@ -37,14 +31,20 @@ export const errorHandler = (
       if (error.config.url === 'auth/token/obtain/') {
         break;
       }
-      dispatch({ type: 'account/logout' });
-      return rejectWithValue({
-        message: 'نشست شما به پایان رسیده. لطفاً دوباره وارد سامانه شوید.',
-      });
-    case 404:
-      return rejectWithValue({
-        message: 'موردی یافت نشد.',
-      });
+      if (error.response.config.url.includes('refresh')) {
+        dispatch({ type: 'account/logout' });
+        return rejectWithValue({
+          message: 'نشست شما به پایان رسیده. لطفاً دوباره وارد سامانه شوید.',
+        });
+      } else {
+        dispatch({ type: 'account/refreshTokenAction' });
+      }
+      break;
+
+    // case 404:
+    //   return rejectWithValue({
+    //     message: 'موردی یافت نشد.',
+    //   });
     case 500:
       return rejectWithValue({
         message: 'ایراد سروری پیش آمده! لطفاً ما را در جریان بگذارید.',
