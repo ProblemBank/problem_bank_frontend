@@ -3,9 +3,11 @@ import {
   Card,
   CardActions,
   CardContent,
+  CardMedia,
   CardHeader,
   Chip,
   Grid,
+  CardActionArea,
   Typography,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -17,10 +19,17 @@ import { Link } from 'react-router-dom';
 import { toPersianNumber } from '../../utils/translateNumber';
 
 const useStyles = makeStyles(() => ({
-  notificationTitle: {
+  title: {
     color: '#4d4a70',
   },
+
   paper: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'column',
+    height: '100%',
+
+    width: '100%',
     padding: '0px !important',
     maxWidth: '400px',
     backgroundColor: 'rgb(255, 255, 255, 0.94)',
@@ -34,17 +43,8 @@ const useStyles = makeStyles(() => ({
       boxShadow: '0 0.5em 1rem -1rem rgba(0, 0, 0, 0.5)',
     },
   },
-  content: {
-    padding: '10px !important',
-  },
-  noPadding: {
-    padding: '0px !important',
-  },
-  eventImage: {
-    height: '100%',
-    maxHeight: '300px',
-    width: '100%',
-    objectFit: 'cover',
+  media: {
+    height: 200,
   },
 }));
 
@@ -57,15 +57,22 @@ const Event = ({
 
   return (
     <Card className={classes.paper}>
-      <CardContent>
-        <Typography variant="h3" className={classes.notificationTitle} align='center'>
-          {title}
-        </Typography>
-      </CardContent>
+      <CardActionArea disabled>
+        <CardMedia
+          className={classes.media}
+          image="/logo.png"
+          title="Contemplative Reptile"
+        />
+        <CardContent>
+          <Typography variant="h3" className={classes.title} align='center'>
+            {title}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
       <CardActions>
         <Button
           size="small"
-          variant="outlined"
+          variant="contained"
           fullWidth
           component={Link}
           to={`/event/${id}/`}

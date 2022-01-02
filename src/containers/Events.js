@@ -49,9 +49,9 @@ const Events = ({
             {'«رویدادها»'}
           </Typography>
         </Grid>
-        <Grid container item xs={12} spacing={2}>
+        <Grid container item xs={12} spacing={2} justifyContent='center'>
           {allEvents?.map((event, index) => (
-            <Grid key={index} item>
+            <Grid key={index} item xs={12} sm={4}>
               <EventCard {...event} />
             </Grid>
           ))}
