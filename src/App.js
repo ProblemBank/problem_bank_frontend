@@ -1,6 +1,6 @@
 import './Theme/Styles/App.css';
 
-import { CssBaseline, LinearProgress, Button } from '@material-ui/core';
+import { Button, CssBaseline, LinearProgress } from '@material-ui/core';
 import { StylesProvider } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { SnackbarProvider } from 'notistack';
@@ -75,13 +75,13 @@ const App = ({ dir, redirectTo, forceRedirect, initRedirect, isFetching }) => {
           </ThemeProvider>
         </>
       ) : (
-          <>
-            <ThemeProvider theme={MuiTheme}>
-              <Loading />
-              <Mentor />
-            </ThemeProvider>
-          </>
-        )}
+        <>
+          <ThemeProvider theme={MuiTheme}>
+            <Loading />
+            <Mentor />
+          </ThemeProvider>
+        </>
+      )}
     </IntlProvider>
   );
 };
