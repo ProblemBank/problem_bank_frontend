@@ -79,8 +79,8 @@ const isNotFetching = (state) => {
   state.isFetching = false;
 };
 
-const eventSlice = createSlice({
-  name: 'events',
+const slice = createSlice({
+  name: 'problemGroup',
   initialState,
   extraReducers: {
 
@@ -110,6 +110,7 @@ const eventSlice = createSlice({
 
     [removeProblemGroupAction.pending.toString()]: isFetching,
     [removeProblemGroupAction.fulfilled.toString()]: (state, { payload: { response } }) => {
+      // todo:
       setTimeout(() => {
         window.location.reload();
       }, 1000)
@@ -120,4 +121,4 @@ const eventSlice = createSlice({
   },
 });
 
-export const { reducer: problemGroupReducer } = eventSlice;
+export const { reducer: problemGroupReducer } = slice;
