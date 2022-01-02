@@ -6,7 +6,6 @@ import {
   addProblemToGroupUrl,
   getProblemsByFilter,
   problemCRUDUrl,
-  removeProblemFromGroupUrl,
   sourceCRUDUrl,
   submitAnswerUrl,
   subtopicCRUDUrl,
@@ -66,18 +65,6 @@ export const addProblemToGroupAction = createAsyncThunkApi(
   {
     defaultNotification: {
       success: 'مسئله با موفقیت به گروه مسئله اضافه شد!',
-      error: 'مشکلی وجود داشت. دوباره تلاش کنید.',
-    },
-  }
-);
-
-export const removeProblemFromGroupAction = createAsyncThunkApi(
-  'problem/removeProblemFromGroupAction',
-  Apis.POST,
-  removeProblemFromGroupUrl,
-  {
-    defaultNotification: {
-      success: 'مسئله با موفقیت از گروه مسئله حذف شد!',
       error: 'مشکلی وجود داشت. دوباره تلاش کنید.',
     },
   }
@@ -172,10 +159,6 @@ const eventSlice = createSlice({
     [addProblemToGroupAction.pending.toString()]: isFetching,
     [addProblemToGroupAction.fulfilled.toString()]: isNotFetching,
     [addProblemToGroupAction.rejected.toString()]: isNotFetching,
-
-    [removeProblemFromGroupAction.pending.toString()]: isFetching,
-    [removeProblemFromGroupAction.fulfilled.toString()]: isNotFetching,
-    [removeProblemFromGroupAction.rejected.toString()]: isNotFetching,
 
     [getProblemsByFilterAction.pending.toString()]: isFetching,
     [getProblemsByFilterAction.fulfilled.toString()]: (state, { payload: { response } }) => {

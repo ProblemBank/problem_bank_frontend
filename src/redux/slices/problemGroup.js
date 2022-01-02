@@ -4,6 +4,7 @@ import { Apis } from '../apis';
 import { createAsyncThunkApi } from '../apis/cerateApiAsyncThunk';
 import {
   problemGroupCRUDUrl,
+  removeProblemFromGroupUrl,
 } from '../constants/urls';
 
 export const getProblemGroupAction = createAsyncThunkApi(
@@ -41,7 +42,6 @@ export const removeProblemGroupAction = createAsyncThunkApi(
   }
 );
 
-
 export const editProblemGroupAction = createAsyncThunkApi(
   'events/editProblemGroupAction',
   Apis.PATCH,
@@ -49,6 +49,18 @@ export const editProblemGroupAction = createAsyncThunkApi(
   {
     defaultNotification: {
       success: 'گروه‌مسئله با موفقیت ویرایش شد!',
+      error: 'مشکلی وجود داشت. دوباره تلاش کنید.',
+    },
+  }
+);
+
+export const removeProblemFromGroupAction = createAsyncThunkApi(
+  'problem/removeProblemFromGroupAction',
+  Apis.DELETE,
+  removeProblemFromGroupUrl,
+  {
+    defaultNotification: {
+      success: 'مسئله با موفقیت از گروه مسئله حذف شد!',
       error: 'مشکلی وجود داشت. دوباره تلاش کنید.',
     },
   }
@@ -91,6 +103,10 @@ const eventSlice = createSlice({
       state.isFetching = false;
     },
     [addProblemGroupAction.rejected.toString()]: isNotFetching,
+
+    [removeProblemFromGroupAction.pending.toString()]: isFetching,
+    [removeProblemFromGroupAction.fulfilled.toString()]: isNotFetching,
+    [removeProblemFromGroupAction.rejected.toString()]: isNotFetching,
 
     [removeProblemGroupAction.pending.toString()]: isFetching,
     [removeProblemGroupAction.fulfilled.toString()]: (state, { payload: { response } }) => {

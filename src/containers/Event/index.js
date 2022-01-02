@@ -27,12 +27,10 @@ import {
   getOneEventAction,
 } from '../../redux/slices/event';
 import {
-  removeProblemFromGroupAction
-} from '../../redux/slices/problem';
-import {
   addProblemGroupAction,
   editProblemGroupAction,
   getProblemGroupAction,
+  removeProblemFromGroupAction,
   removeProblemGroupAction,
 } from '../../redux/slices/problemGroup';
 import { toPersianNumber } from '../../utils/translateNumber';
