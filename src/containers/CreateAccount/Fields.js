@@ -161,9 +161,9 @@ const InputFields = ({
 
       <Grid item>
         <Typography align="center">
-          {' از قبل حساب داشتی؟ به '}
+          {' اگه از قبل حساب داشتی، می‌تونی از '}
           <Link to="/login">{'این‌جا'}</Link>
-          {' برو.'}
+          {' وارد بشی.'}
         </Typography>
       </Grid>
     </>

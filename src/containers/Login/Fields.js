@@ -90,9 +90,9 @@ const InputFields = ({ isFetching, login, addNotification, token }) => {
 
       <Grid item>
         <Typography align="center">
-          {'حساب کاربری نداری؟ به '}
+          {'حساب کاربری نداری؟ از '}
           <Link to="/create_account">{'این‌جا'}</Link>
-          {' برو.'}
+          {' یکی برای خودت بساز!'}
         </Typography>
       </Grid>
     </>
