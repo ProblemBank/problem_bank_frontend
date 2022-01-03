@@ -1,4 +1,3 @@
-/* eslint-disable no-prototype-builtins */
 import {
   Button,
   Divider,
@@ -17,6 +16,7 @@ import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import AreYouSure from '../../components/Dialog/AreYouSure';
+import PropertiesBox from '../../components/problem/PropertiesBox';
 import TinyEditor from '../../components/tiny_editor/react_tiny/TinyEditorComponent';
 import {
   addNotificationAction,
@@ -28,7 +28,6 @@ import {
   getOneProblemAction,
 } from '../../redux/slices/problem';
 import Layout from '../Layout';
-import PropertiesBox from '../../components/problem/PropertiesBox';
 
 const useStyles = makeStyles((theme) => ({
   centerItems: {

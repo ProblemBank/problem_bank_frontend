@@ -73,6 +73,7 @@ export const joinEventAction = createAsyncThunkApi(
   joinEventUrl,
   {
     defaultNotification: {
+      success: 'شما با موفقیت به رویداد اضافه شدید!',
       error: 'رمز وارد شده اشتباه است.',
     },
   }

@@ -53,8 +53,6 @@ const Event = ({
   const t = useTranslate();
   const history = useHistory();
 
-  console.log(role);
-
   return (
     <Card className={classes.paper}>
       <CardActionArea disabled>
