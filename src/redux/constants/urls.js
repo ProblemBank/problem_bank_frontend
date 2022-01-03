@@ -1,6 +1,7 @@
 // account:
 export const loginUrl = 'account/login/';
 export const createAccountUrl = 'account/create/';
+export const refreshTokenUrl = 'auth/accounts/refresh/';
 
 // mentor:
 export const getAllSubmittedProblemsUrl = 'problembank/getsubmits/';

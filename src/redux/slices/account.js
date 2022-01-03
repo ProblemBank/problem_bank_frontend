@@ -5,6 +5,7 @@ import { createAsyncThunkApi } from '../apis/cerateApiAsyncThunk';
 import {
   createAccountUrl,
   loginUrl,
+  refreshTokenUrl,
 } from '../constants/urls';
 
 const initialState = {
@@ -12,6 +13,16 @@ const initialState = {
   user: {},
   discountCodes: [],
 };
+export const refreshTokenAction = createAsyncThunkApi(
+  'account/refreshTokenAction',
+  Apis.POST,
+  refreshTokenUrl,
+  {
+    defaultNotification: {
+      error: 'ایرادی در تازه‌سازی توکن وجود داشت.',
+    },
+  }
+);
 
 export const loginAction = createAsyncThunkApi(
   'account/loginAction',
@@ -56,6 +67,7 @@ const accountSlice = createSlice({
     [loginAction.pending.toString()]: isFetching,
     [loginAction.fulfilled.toString()]: (state, { payload: { response } }) => {
       state.token = response.access;
+      state.refresh = response.refresh;
       state.isFetching = false;
     },
     [loginAction.rejected.toString()]: isNotFetching,
@@ -63,6 +75,15 @@ const accountSlice = createSlice({
     [createAccountAction.pending.toString()]: isFetching,
     [createAccountAction.fulfilled.toString()]: isNotFetching,
     [createAccountAction.rejected.toString()]: isNotFetching,
+
+    [refreshTokenAction.pending.toString()]: isFetching,
+    [refreshTokenAction.fulfilled.toString()]: (state, { payload: { response } }) => {
+      state.token = response.access;
+      state.refresh = response.refresh;
+      state.isFetching = false;
+    },
+    [refreshTokenAction.rejected.toString()]: isNotFetching,
+
   },
 });
 
