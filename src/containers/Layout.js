@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(4),
     display: 'flex',
     justifyContent: 'center',
+    //todo: fix hard number
     maxWidth: '1280px !important',
     marginRight: 'auto !important',
     marginLeft: 'auto !important',

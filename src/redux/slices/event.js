@@ -5,11 +5,13 @@ import { createAsyncThunkApi } from '../apis/cerateApiAsyncThunk';
 import {
   eventCRUDUrl,
   getAllEventUrl,
+  getAllMyEventUrl,
   getOneEventUrl,
+  joinEventUrl,
 } from '../constants/urls';
 
 export const getAllEventsAction = createAsyncThunkApi(
-  'events/getAllEventsAction',
+  'event/getAllEventsAction',
   Apis.GET,
   getAllEventUrl,
   {
@@ -19,8 +21,19 @@ export const getAllEventsAction = createAsyncThunkApi(
   }
 );
 
+export const getAllMyEventsAction = createAsyncThunkApi(
+  'event/getAllMyEventsAction',
+  Apis.GET,
+  getAllMyEventUrl,
+  {
+    defaultNotification: {
+      error: 'مشکلی  در دریافت همه‌ی رویدادهای من وجود داشت. دوباره تلاش کنید.',
+    },
+  }
+);
+
 export const getOneEventAction = createAsyncThunkApi(
-  'events/getOneEventAction',
+  'event/getOneEventAction',
   Apis.GET,
   getOneEventUrl,
   {
@@ -31,7 +44,7 @@ export const getOneEventAction = createAsyncThunkApi(
 );
 
 export const addEventAction = createAsyncThunkApi(
-  'events/addEventAction',
+  'event/addEventAction',
   Apis.POST,
   eventCRUDUrl,
   {
@@ -43,13 +56,24 @@ export const addEventAction = createAsyncThunkApi(
 );
 
 export const editEventAction = createAsyncThunkApi(
-  'events/editEventAction',
+  'event/editEventAction',
   Apis.PATCH,
   eventCRUDUrl,
   {
     defaultNotification: {
       success: 'رویداد با موفقیت ویرایش شد!',
       error: 'مشکلی وجود داشت. دوباره تلاش کنید.',
+    },
+  }
+);
+
+export const joinEventAction = createAsyncThunkApi(
+  'event/joinEventAction',
+  Apis.POST,
+  joinEventUrl,
+  {
+    defaultNotification: {
+      error: 'رمز وارد شده اشتباه است.',
     },
   }
 );
@@ -70,7 +94,7 @@ const isNotFetching = (state) => {
 };
 
 const eventSlice = createSlice({
-  name: 'events',
+  name: 'event',
   initialState,
   extraReducers: {
 

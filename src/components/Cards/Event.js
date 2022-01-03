@@ -1,22 +1,18 @@
 import {
   Button,
   Card,
+  CardActionArea,
   CardActions,
   CardContent,
   CardMedia,
-  CardHeader,
-  Chip,
-  Grid,
-  CardActionArea,
   Typography,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import React from 'react';
 import { useTranslate } from 'react-redux-multilingual/lib/context';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-import { toPersianNumber } from '../../utils/translateNumber';
 
 const useStyles = makeStyles(() => ({
   title: {
@@ -49,11 +45,15 @@ const useStyles = makeStyles(() => ({
 }));
 
 const Event = ({
-  id,
+  id: eventId,
   title,
+  role,
 }) => {
   const classes = useStyles();
   const t = useTranslate();
+  const history = useHistory();
+
+  console.log(role);
 
   return (
     <Card className={classes.paper}>
@@ -70,15 +70,26 @@ const Event = ({
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button
-          size="small"
-          variant="contained"
-          fullWidth
-          component={Link}
-          to={`/event/${id}/`}
-          color="secondary">
-          {'ورود'}
-        </Button>
+        {(role == 'participant' || role == 'mentor' || role == 'owner') ?
+          <Button
+            size="small"
+            variant="contained"
+            fullWidth
+            component={Link}
+            to={`/event/${eventId}/`}
+            color="secondary">
+            {'ورود'}
+          </Button> :
+          <Button
+            size="small"
+            variant='outlined'
+            fullWidth
+            component={Link}
+            to={`/events/join_event/${eventId}/`}
+            color="secondary">
+            {'عضویت'}
+          </Button>
+        }
       </CardActions>
     </Card>
   );

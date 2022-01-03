@@ -1,8 +1,10 @@
 import { Grid, makeStyles, Typography } from '@material-ui/core';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import EventCard from '../components/Cards/Event';
+import JoinEvent from '../components/Dialog/JoinEvent';
 import {
   getAllEventsAction,
 } from '../redux/slices/event';
@@ -35,7 +37,17 @@ const Events = ({
   getAllEvents,
   allEvents,
 }) => {
+  const { eventId } = useParams();
   const classes = useStyles();
+  const [showJoinEventDialog, setShowEventDialog] = useState(false);
+
+  useEffect(() => {
+    if (eventId) {
+      setShowEventDialog(true);
+    } else {
+      setShowEventDialog(false);
+    }
+  }, [eventId])
 
   useEffect(() => {
     getAllEvents({});
@@ -57,6 +69,7 @@ const Events = ({
           ))}
         </Grid>
       </Grid >
+      <JoinEvent eventId={eventId} open={showJoinEventDialog} />
     </Layout>
   );
 };

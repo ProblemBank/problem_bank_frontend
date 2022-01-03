@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import AddToEvent from '../containers/AddToEvent';
 import AllSubmittedProblems from '../containers/AllSubmittedAnswers';
 import CreateAccount from '../containers/CreateAccount';
 import Event from '../containers/Event';
@@ -15,7 +14,7 @@ import PrivateRoute from './PrivateRoute';
 const Root = () => {
   return (
     <Switch>
-      <PrivateRoute path="/events/add_to_event/:eventId/" component={AddToEvent} />
+      <PrivateRoute path="/events/join_event/:eventId/" component={Events} />
       <PrivateRoute path="/events/" component={Events} />
 
       <PrivateRoute path="/event/:eventId/" component={Event} />

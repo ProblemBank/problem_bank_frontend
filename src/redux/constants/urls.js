@@ -16,11 +16,14 @@ export const problemGroupCRUDUrl = ({ problemGroupId }) => problemGroupId ? `pro
 export const addProblemToGroupUrl = ({ problemId, problemGroupId }) => `problembank/addproblemtogroup/${problemId}/${problemGroupId}/`;
 export const removeProblemFromGroupUrl = ({ problemId, problemGroupId }) => `problembank/removeproblemfromgroup/${problemId}/${problemGroupId}/`;
 export const getProblemsByFilter = 'problembank/getproblembyfilter/ '
-export const getAllEventUrl = 'problembank/getevents/';
-
 export const submitAnswerUrl = ({ problemId, problemGroupId }) => `problembank/submit/${problemId}/${problemGroupId}/`;
 
 // properties:
 export const topicCRUDUrl = ({ topicId }) => topicId ? `problembank/topic/${topicId}/` : 'problembank/topic/';
 export const subtopicCRUDUrl = ({ subtopicId }) => subtopicId ? `problembank/subtopic/${subtopicId}/` : 'problembank/subtopic/';
 export const sourceCRUDUrl = ({ sourceId }) => sourceId ? `problembank/source/${sourceId}/` : 'problembank/source/';
+
+// event:
+export const getAllEventUrl = 'problembank/get_all_events/';
+export const getAllMyEventUrl = 'problembank/getevents/';
+export const joinEventUrl = ({ eventId }) => `problembank/add_to_event/${eventId}/`;
