@@ -20,8 +20,8 @@ const useStyles = makeStyles((theme) => ({
     left: '0',
     background: `url(${process.env.PUBLIC_URL + '/background.jpg'})`,
     opacity: '0.10',
-    filter: 'grayscale(100%)',
-    zIndex: '-1',
+    filter: 'blur(1px)',
+    zIndex: '-100',
     animation: 'show-back 0.8s 0.3s both',
   },
 }));

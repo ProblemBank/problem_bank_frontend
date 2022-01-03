@@ -52,11 +52,11 @@ const Event = ({
   event,
   problemGroup,
 }) => {
+  const classes = useStyles();
   const { eventId } = useParams();
   const [problemGroupName, setProblemGroupName] = useState();
 
   const [tabIndex, setTabIndex] = useState(0);
-
   useEffect(() => {
     getEvent({ eventId });
   }, []);
@@ -174,7 +174,7 @@ const Event = ({
                       </TableCell>
                       <TableCell align='center'>
                         {(event?.role == 'mentor' || event?.role == 'owner') &&
-                          <Button component={Link} to={`/problem/edit/${problem.id}/`}>
+                          <Button component={Link} to={`/problem/mentor_view/${problem.id}/`}>
                             {problem.title}
                           </Button>
                         }

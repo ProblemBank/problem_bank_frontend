@@ -27,7 +27,7 @@ const Index = ({
   if (mode == 'edit' || mode == 'add') {
     return <EditMode />
   }
-  if (mode == 'view') {
+  if (mode.includes('view')) {
     return <ViewMode />
   }
   if (mode == 'submit') {

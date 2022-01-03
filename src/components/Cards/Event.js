@@ -70,7 +70,6 @@ const Event = ({
       <CardActions>
         {(role == 'participant' || role == 'mentor' || role == 'owner') ?
           <Button
-            size="small"
             variant="contained"
             fullWidth
             component={Link}
@@ -79,7 +78,6 @@ const Event = ({
             {'ورود'}
           </Button> :
           <Button
-            size="small"
             variant='outlined'
             fullWidth
             component={Link}

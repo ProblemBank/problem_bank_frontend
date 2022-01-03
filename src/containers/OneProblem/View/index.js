@@ -1,4 +1,3 @@
-/* eslint-disable no-prototype-builtins */
 import {
   Button,
   Divider,
@@ -16,18 +15,19 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import AreYouSure from '../../components/Dialog/AreYouSure';
-import TinyPreview from '../../components/tiny_editor/react_tiny/Preview';
+import AreYouSure from '../../../components/Dialog/AreYouSure';
+import TinyPreview from '../../../components/tiny_editor/react_tiny/Preview';
 import {
   addNotificationAction,
-} from '../../redux/slices/notifications';
+} from '../../../redux/slices/notifications';
 import {
   addProblemAction,
   addProblemToGroupAction,
   editProblemAction,
   getOneProblemAction,
-} from '../../redux/slices/problem';
-import Layout from '../Layout';
+} from '../../../redux/slices/problem';
+import Layout from '../../Layout';
+import SideBar from './Sidebar';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -89,12 +89,8 @@ const Index = ({
               </Grid>
             </Grid>
           </Grid>
-          <Grid item container xs={12} md={4}>
-            <Grid container spacing={2} justify='center' component={Paper}>
-              <Grid item>
-                <Typography gutterBottom variant='h3' align='center'>مشخصات</Typography>
-              </Grid>
-            </Grid>
+          <Grid item xs={12} md={4}>
+            <SideBar />
           </Grid>
         </Grid>
       </Grid >
