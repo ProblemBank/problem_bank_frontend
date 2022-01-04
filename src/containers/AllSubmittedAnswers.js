@@ -47,8 +47,6 @@ const Index = ({
 
   const filteredData = allSubmittedProblems?.slice()?.sort((a, b) => a.id - b.id);
 
-  console.log(filteredData)
-
   return (
     <Layout>
       <Grid container spacing={4} justify='center' alignItems='flex-start'>
