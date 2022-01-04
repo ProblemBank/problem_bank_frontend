@@ -39,10 +39,10 @@ const Event = ({
   }, []);
 
   useEffect(() => {
-    if (event?.problem_groups.length > 0) {
-      getProblemGroup({ problemGroupId: event.problem_groups[tabIndex].id });
+    if (event?.problem_groups?.length > 0) {
+      getProblemGroup({ problemGroupId: event.problem_groups?.[tabIndex]?.id });
     }
-  }, [tabIndex])
+  }, [tabIndex, event])
 
   return (
     <Layout>
