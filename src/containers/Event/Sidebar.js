@@ -98,7 +98,7 @@ const Event = ({
                       onClick={() => setTabIndex(index)}
                       variant={tabIndex == index && 'contained'}>
                       {problemGroup.title}
-                      {(event?.role == 'mentor' || event?.role == 'owner') &&
+                      {/* {(event?.role == 'mentor' || event?.role == 'owner') &&
                         <IconButton
                           onClick={(e) => {
                             e.preventDefault();
@@ -107,7 +107,7 @@ const Event = ({
                           size='small'>
                           <ClearIcon style={{ fontSize: 15, color: 'red' }} />
                         </IconButton>
-                      }
+                      } */}
                     </Button>
                   ))}
                 </ButtonGroup>
