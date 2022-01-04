@@ -15,6 +15,7 @@ export const getOneEventUrl = ({ eventId }) => `problembank/getevent/${eventId}/
 export const problemGroupCRUDUrl = ({ problemGroupId }) => problemGroupId ? `problembank/problemgroup/${problemGroupId}/` : 'problembank/problemgroup/';
 
 export const addProblemToGroupUrl = ({ problemId, problemGroupId }) => `problembank/addproblemtogroup/${problemId}/${problemGroupId}/`;
+export const copyProblemToGroup = ({ problemId, problemGroupId }) => `problembank/copyproblemtogroup/${problemId}/${problemGroupId}/`;
 export const removeProblemFromGroupUrl = ({ problemId, problemGroupId }) => `problembank/removeproblemfromgroup/${problemId}/${problemGroupId}/`;
 export const getProblemsByFilter = 'problembank/getproblembyfilter/ '
 export const submitAnswerUrl = ({ problemId, problemGroupId }) => `problembank/submit/${problemId}/${problemGroupId}/`;

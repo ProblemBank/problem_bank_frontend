@@ -4,6 +4,7 @@ import { Apis } from '../apis';
 import { createAsyncThunkApi } from '../apis/cerateApiAsyncThunk';
 import {
   addProblemToGroupUrl,
+  copyProblemToGroup,
   getProblemsByFilter,
   problemCRUDUrl,
   sourceCRUDUrl,
@@ -65,7 +66,19 @@ export const addProblemToGroupAction = createAsyncThunkApi(
   {
     defaultNotification: {
       success: 'مسئله با موفقیت به گروه مسئله اضافه شد!',
-      error: 'مشکلی وجود داشت. دوباره تلاش کنید.',
+      error: 'مشکلی در اضافه‌کردن مسئله به گروه‌مسسله وجود داشت.',
+    },
+  }
+);
+
+export const copyProblemToGroupAction = createAsyncThunkApi(
+  'problem/copyProblemToGroupAction',
+  Apis.GET,
+  copyProblemToGroup,
+  {
+    defaultNotification: {
+      success: 'مسئله با موفقیت در گروه‌مسئله کپی شد!',
+      error: 'مشکلی در کپی‌کردن مسئله در گروه‌مسئله وجود داشت.',
     },
   }
 );
