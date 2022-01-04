@@ -45,7 +45,9 @@ const Index = ({
   const [isDialogOpen, setDialogStatus] = useState(false);
 
   useEffect(() => {
-    getProblem({ problemId });
+    if (problemId) {
+      getProblem({ problemId });
+    }
   }, [])
 
   return (
