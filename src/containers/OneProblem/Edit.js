@@ -26,6 +26,7 @@ import {
   addProblemToGroupAction,
   editProblemAction,
   getOneProblemAction,
+  removeProblemAction,
 } from '../../redux/slices/problem';
 import Layout from '../Layout';
 
@@ -57,6 +58,7 @@ const Index = ({
   getAllSubtopics,
   getProblem,
   addProblemToGroup,
+  removeProblem,
 
   addProblem,
   editProblem,
@@ -68,6 +70,7 @@ const Index = ({
 }) => {
   const classes = useStyles();
   const { mode, problemId, problemGroupId, eventId } = useParams();
+  const [showAreYouSureDialog, setAreYouSureDialog] = useState(false);
 
   const [properties, setProperties] = useState({
     answer: {
@@ -85,6 +88,8 @@ const Index = ({
     author: 1,
   });
   const [isDialogOpen, setDialogStatus] = useState(false);
+
+  console.log(eventId)
 
   useEffect(() => {
     // getAllSubjects({ gameId });
@@ -124,15 +129,6 @@ const Index = ({
       })
     }
   }
-
-  const isJustDigits = (number) => {
-    var regex = new RegExp(`\\d{${number.length}}`);
-    if (regex.test(number)) {
-      return true;
-    } else {
-      return false;
-    }
-  };
 
   const handleAddProblem = () => {
     const { text, title, difficulty, problem_type, grade } = properties;
@@ -266,21 +262,6 @@ const Index = ({
                     </Select>
                   </FormControl >
                 </Grid>
-                {/* <Grid item>
-                  <FormControl variant="outlined" fullWidth>
-                    <InputLabel>مبحث</InputLabel>
-                    <Select
-                      value={properties.subject}
-                      onChange={putData}
-                      name='subject'
-                      label='مبحث'
-                    >
-                      {allGameSubjects.map((subject, index) => (
-                        <MenuItem key={index} value={subject.id}>{subject.title}</MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl >
-                </Grid> */}
                 <Grid item>
                   <FormControl variant="outlined" fullWidth>
                     <InputLabel>سختی</InputLabel>
@@ -301,6 +282,15 @@ const Index = ({
                 <Grid item>
                   <PropertiesBox properties={properties} setProperties={setProperties} />
                 </Grid>
+                {mode == 'edit' &&
+                  <Grid item>
+                    <Button
+                      onClick={() => setAreYouSureDialog(true)}
+                      fullWidth variant='outlined' style={{ color: 'red' }}>
+                      {'حذف مسئله'}
+                    </Button>
+                  </Grid>
+                }
               </Grid>
             </Paper>
           </Grid>
@@ -310,6 +300,11 @@ const Index = ({
         open={isDialogOpen}
         handleClose={() => { setDialogStatus(!isDialogOpen) }}
         callBackFunction={handleAddProblem}
+      />
+      <AreYouSure
+        open={showAreYouSureDialog}
+        handleClose={() => { setAreYouSureDialog(false) }}
+        callBackFunction={() => removeProblem({ problemId, eventId })}
       />
     </Layout >
   )
@@ -325,6 +320,7 @@ const mapStateToProps = (state) => ({
 export default connect(
   mapStateToProps,
   {
+    removeProblem: removeProblemAction,
     addProblemToGroup: addProblemToGroupAction,
     getProblem: getOneProblemAction,
     addProblem: addProblemAction,

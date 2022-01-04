@@ -47,6 +47,18 @@ export const addProblemAction = createAsyncThunkApi(
   }
 );
 
+export const removeProblemAction = createAsyncThunkApi(
+  'problem/removeProblemAction',
+  Apis.DELETE,
+  problemCRUDUrl,
+  {
+    defaultNotification: {
+      success: 'مسئله با موفقیت حذف شد!',
+      error: 'مشکلی در حذف‌کردن مسئله وجود داشت.',
+    },
+  }
+);
+
 export const editProblemAction = createAsyncThunkApi(
   'problem/editProblemAction',
   Apis.PATCH,
@@ -73,7 +85,7 @@ export const addProblemToGroupAction = createAsyncThunkApi(
 
 export const copyProblemToGroupAction = createAsyncThunkApi(
   'problem/copyProblemToGroupAction',
-  Apis.GET,
+  Apis.POST,
   copyProblemToGroup,
   {
     defaultNotification: {
@@ -168,6 +180,13 @@ const eventSlice = createSlice({
       state.isFetching = false;
     },
     [addProblemAction.rejected.toString()]: isNotFetching,
+
+    [removeProblemAction.pending.toString()]: isFetching,
+    [removeProblemAction.fulfilled.toString()]: (state, { payload: { response } }) => {
+      history.back();
+      state.isFetching = false;
+    },
+    [removeProblemAction.rejected.toString()]: isNotFetching,
 
     [addProblemToGroupAction.pending.toString()]: isFetching,
     [addProblemToGroupAction.fulfilled.toString()]: isNotFetching,

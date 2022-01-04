@@ -49,8 +49,14 @@ const Index = ({
     getAllSubtopics({});
   }, [])
 
+
+  console.log(properties);
+
   // todo: make cleaner
   const handleClick = (id, listName) => {
+
+
+
     const temporaryList = [...properties[listName]];
     const temporarySubtopicsList = [...properties['subtopics']];
     if (temporaryList.includes(id)) {
