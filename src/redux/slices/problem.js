@@ -183,8 +183,7 @@ const eventSlice = createSlice({
 
     [removeProblemAction.pending.toString()]: isFetching,
     [removeProblemAction.fulfilled.toString()]: (state, { payload: { response } }) => {
-      history.back();
-      history.back();
+      history.go(-2);
       state.isFetching = false;
     },
     [removeProblemAction.rejected.toString()]: isNotFetching,
