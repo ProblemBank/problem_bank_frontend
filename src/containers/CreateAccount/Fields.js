@@ -132,7 +132,6 @@ const InputFields = ({
           value={data.first_name}
           name="first_name"
           label="نام"
-          type="tel"
         />
       </Grid>
 
@@ -144,7 +143,6 @@ const InputFields = ({
           value={data.last_name}
           name="last_name"
           label="نام خانوادگی"
-          type="tel"
         />
       </Grid>
 
