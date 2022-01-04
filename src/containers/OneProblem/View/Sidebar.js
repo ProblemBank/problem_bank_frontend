@@ -55,7 +55,6 @@ const Index = ({
     getAllEvents({});
   }, []);
 
-  console.log(allEvents)
   const accessibleEvents = allEvents.filter((event) => event.role == 'mentor' || event.role == 'owner')
 
   const doCopyProblemToGroup = () => {

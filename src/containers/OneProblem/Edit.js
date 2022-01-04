@@ -89,8 +89,6 @@ const Index = ({
   });
   const [isDialogOpen, setDialogStatus] = useState(false);
 
-  console.log(eventId)
-
   useEffect(() => {
     // getAllSubjects({ gameId });
     if (mode == 'edit') {
