@@ -12,6 +12,7 @@ import {
   getOneEventAction,
 } from '../../redux/slices/event';
 import {
+  clearProblemGroupAction,
   getProblemGroupAction,
 } from '../../redux/slices/problemGroup';
 import Layout from '../Layout';
@@ -27,7 +28,9 @@ const useStyles = makeStyles((theme) => ({
 const Event = ({
   getEvent,
   getProblemGroup,
+  clearProblemGroup,
 
+  problemGroup,
   event,
 }) => {
   const classes = useStyles();
@@ -41,6 +44,9 @@ const Event = ({
   useEffect(() => {
     if (event?.problem_groups?.length > 0) {
       getProblemGroup({ problemGroupId: event.problem_groups?.[tabIndex]?.id });
+    } else {
+      // todo:
+      clearProblemGroup({});
     }
   }, [tabIndex, event])
 
@@ -74,5 +80,6 @@ export default connect(
     getEvent: getOneEventAction,
     editEvent: editEventAction,
     getProblemGroup: getProblemGroupAction,
+    clearProblemGroup: clearProblemGroupAction,
   }
 )(Event);

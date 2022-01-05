@@ -156,7 +156,7 @@ const isNotFetching = (state) => {
 };
 
 const eventSlice = createSlice({
-  name: 'events',
+  name: 'problem',
   initialState,
   extraReducers: {
 

@@ -28,7 +28,7 @@ export const errorHandler = (
 
   switch (error.response.status) {
     case 401:
-      if (error.config.url === 'auth/token/obtain/') {
+      if (error.response.config.url === 'account/login/') {
         break;
       }
       if (error.response.config.url.includes('refresh')) {
@@ -40,7 +40,6 @@ export const errorHandler = (
         dispatch({ type: 'account/refreshTokenAction' });
         return;
       }
-
     // case 404:
     //   return rejectWithValue({
     //     message: 'موردی یافت نشد.',

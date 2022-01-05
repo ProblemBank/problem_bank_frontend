@@ -10,9 +10,10 @@ import {
 
 const initialState = {
   token: null,
+  refresh: null,
   user: {},
-  discountCodes: [],
 };
+
 export const refreshTokenAction = createAsyncThunkApi(
   'account/refreshTokenAction',
   Apis.POST,
@@ -70,7 +71,11 @@ const accountSlice = createSlice({
       state.refresh = response.refresh;
       state.isFetching = false;
     },
-    [loginAction.rejected.toString()]: isNotFetching,
+    [loginAction.rejected.toString()]: (state, { payload: { response } }) => {
+      console.log(loginAction.rejected.toString())
+
+      state.isFetching = false;
+    },
 
     [createAccountAction.pending.toString()]: isFetching,
     [createAccountAction.fulfilled.toString()]: isNotFetching,
