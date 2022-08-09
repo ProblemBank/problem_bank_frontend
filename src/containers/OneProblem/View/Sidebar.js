@@ -18,13 +18,6 @@ import {
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    padding: theme.spacing(3),
-  },
-}))
-
 import {
   getAllEventsAction,
 } from '../../../redux/slices/event';
@@ -35,6 +28,12 @@ import {
 import {
   addNotificationAction,
 } from '../../../redux/slices/notifications';
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    padding: theme.spacing(3),
+  },
+}))
 
 const Index = ({
   getAllEvents,

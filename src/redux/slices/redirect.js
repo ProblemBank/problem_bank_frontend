@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { removeProblemAction } from './problem';
 
 const initialState = { redirectTo: null, force: false };
-import { removeProblemAction } from './problem';
 
 const redirectSlice = createSlice({
   name: 'redirect',

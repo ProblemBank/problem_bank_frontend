@@ -169,21 +169,21 @@ const eventSlice = createSlice({
 
     [editProblemAction.pending.toString()]: isFetching,
     [editProblemAction.fulfilled.toString()]: (state, { payload: { response } }) => {
-      history.back();
+      window.history.back();
       state.isFetching = false;
     },
     [editProblemAction.rejected.toString()]: isNotFetching,
 
     [addProblemAction.pending.toString()]: isFetching,
     [addProblemAction.fulfilled.toString()]: (state, { payload: { response } }) => {
-      history.back();
+      window.history.back();
       state.isFetching = false;
     },
     [addProblemAction.rejected.toString()]: isNotFetching,
 
     [removeProblemAction.pending.toString()]: isFetching,
     [removeProblemAction.fulfilled.toString()]: (state, { payload: { response } }) => {
-      history.go(-2);
+      window.history.go(-2);
       state.isFetching = false;
     },
     [removeProblemAction.rejected.toString()]: isNotFetching,
@@ -223,7 +223,7 @@ const eventSlice = createSlice({
 
     [submitAnswerAction.pending.toString()]: isFetching,
     [submitAnswerAction.fulfilled.toString()]: (state, { payload: { response } }) => {
-      history.back();
+      window.history.back();
       state.isFetching = false;
     },
     [submitAnswerAction.rejected.toString()]: isNotFetching,
