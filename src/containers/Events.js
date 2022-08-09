@@ -1,4 +1,5 @@
-import { Grid, makeStyles, Typography } from '@material-ui/core';
+import { Grid, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -55,7 +56,7 @@ const Events = ({
 
   return (
     <Layout>
-      <Grid container spacing={4} justify='center' alignItems='flex-start'>
+      <Grid container spacing={4} justifyContent='center' alignItems='flex-start'>
         <Grid item xs={12}>
           <Typography variant="h1" align="center" gutterBottom>
             {'«رویدادها»'}

@@ -1,14 +1,10 @@
-import {
-  Grid,
-  makeStyles,
-  Paper,
-  Typography,
-} from '@material-ui/core';
-import Pagination from '@material-ui/lab/Pagination';
+import { Grid, Paper, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import Pagination from '@mui/material/Pagination';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import {
   getProblemsByFilterAction,
@@ -35,7 +31,7 @@ const Index = ({
   filteredProblems,
   totalNumberOfPages,
 }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const classes = useStyles();
   const { page: currentPage } = useParams();
   const [page, setPage] = useState(parseInt(currentPage));
@@ -57,12 +53,12 @@ const Index = ({
       ...properties,
       page: value,
     });
-    history.push(`/problem_set/${value}/`)
+    navigate(`/problem_set/${value}/`)
   }
 
   return (
     <Layout>
-      <Grid container spacing={4} justify='center' alignItems='flex-start'>
+      <Grid container spacing={4} justifyContent='center' alignItems='flex-start'>
         <Grid item xs={12}>
           <Typography variant="h1" align="center" gutterBottom>
             {'«مجموعه مسائل»'}

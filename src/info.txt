@@ -1,5 +1,0 @@
-roles in the bank:
-1- owner
-2- mentor
-3- participant
-4- anonymouse

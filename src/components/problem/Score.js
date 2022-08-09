@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { ButtonGroup, Button, Typography, makeStyles } from '@material-ui/core';
+import { ButtonGroup, Button, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { connect } from 'react-redux';
 import { toPersianNumber } from '../../utils/translateNumber';
 import {

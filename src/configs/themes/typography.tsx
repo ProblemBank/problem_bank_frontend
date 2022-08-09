@@ -1,12 +1,15 @@
-const typography = {
+import { TypographyOptions } from '@mui/material/styles/createTypography';
+
+const typography: TypographyOptions = {
+  fontFamily: "iranyekan",
   h1: {
     fontWeight: 900,
-    fontSize: '33px',
-    lineHeight: '40px',
+    fontSize: '32px',
+    lineHeight: '36px',
   },
   h2: {
     fontWeight: 800,
-    fontSize: '26px',
+    fontSize: '28px',
     lineHeight: '32px',
   },
   h3: {

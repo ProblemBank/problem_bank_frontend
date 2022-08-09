@@ -4,17 +4,17 @@ import {
   FormControl,
   Grid,
   InputLabel,
-  makeStyles, FormLabel,
+  FormLabel,
   MenuItem,
   Paper,
   RadioGroup,
-
   Select,
   TextField,
   FormControlLabel,
   Radio,
   Typography,
-} from '@material-ui/core';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
@@ -79,7 +79,7 @@ const Index = ({
 
   return (
     <Paper className={classes.paper}>
-      <Grid container spacing={3} justify='center'>
+      <Grid container spacing={3} justifyContent='center'>
         {mode == 'mentor_view' &&
           <Grid item xs={12}>
             <Button component={Link} to={`/problem/edit/${problemId}/`}
@@ -142,7 +142,7 @@ const Index = ({
         </Grid>
       </Grid>
     </Paper>
-  )
+  );
 }
 
 const mapStateToProps = (state) => ({

@@ -6,12 +6,11 @@ import {
   CardContent,
   CardMedia,
   Typography,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 import { useTranslate } from 'react-redux-multilingual/lib/context';
 import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
 
 
 const useStyles = makeStyles(() => ({
@@ -51,7 +50,6 @@ const Event = ({
 }) => {
   const classes = useStyles();
   const t = useTranslate();
-  const history = useHistory();
 
   return (
     <Card className={classes.paper}>

@@ -6,7 +6,6 @@ import {
   Grid,
   IconButton,
   InputLabel,
-  makeStyles,
   MenuItem,
   Select,
   Table,
@@ -16,8 +15,9 @@ import {
   TableHead,
   TableRow,
   TextField,
-} from '@material-ui/core';
-import ClearIcon from '@material-ui/icons/Clear';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import ClearIcon from '@mui/icons-material/Clear';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -70,119 +70,117 @@ function Index({
 
   }
 
-  return (
-    <>
-      <Grid container spacing={1} alignItems="center" justify="center">
-        <TableContainer>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell align='center'>شروع</TableCell>
-                <TableCell align='center'>پایان</TableCell>
-                <TableCell align='center'>قابل مشاهده</TableCell>
-                <TableCell align='center'>عملیات</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              <TableRow>
+  return <>
+    <Grid container spacing={1} alignItems="center" justifyContent="center">
+      <TableContainer>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell align='center'>شروع</TableCell>
+              <TableCell align='center'>پایان</TableCell>
+              <TableCell align='center'>قابل مشاهده</TableCell>
+              <TableCell align='center'>عملیات</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell align='center'>
+                <FormControl fullWidth size='small' variant="outlined">
+                  <InputLabel>شروع</InputLabel>
+                  <Select
+                    value={newEdge.tail}
+                    onChange={(e) => {
+                      setNewEdge({
+                        ...newEdge,
+                        tail: e.target.value,
+                      })
+                    }}
+                    label='شروع'
+                  >
+                    {allStates?.map((state) => (
+                      <MenuItem key={state.id} value={state.id}>{state.name}</MenuItem>
+                    ))}
+                  </Select>
+                </FormControl >
+              </TableCell>
+              <TableCell align='center'>
+                <FormControl fullWidth size='small' variant="outlined">
+                  <InputLabel>پایان</InputLabel>
+                  <Select
+                    value={newEdge.head}
+                    onChange={(e) => {
+                      setNewEdge({
+                        ...newEdge,
+                        head: e.target.value,
+                      })
+                    }}
+                    label='پایان'
+                  >
+                    {allStates?.map((state) => (
+                      <MenuItem key={state.id} value={state.id}>{state.name}</MenuItem>
+                    ))}
+                  </Select>
+                </FormControl >
+              </TableCell>
+              <TableCell align='center'>
+                <Checkbox
+                  checked={newEdge.is_visible}
+                  onChange={() => {
+                    setNewEdge({
+                      ...newEdge,
+                      is_visible: !newEdge.is_visible,
+                    })
+                  }}
+                  color="primary"
+                />
+              </TableCell>
+              <TableCell align='center'>
+                <Button
+                  onClick={() => {
+                    addEdge(newEdge)
+                  }}
+                  variant='contained' color='primary'>
+                  {'ایجاد'}
+                </Button>
+              </TableCell>
+            </TableRow>
+            {allWorkshopEdges?.map((edge, index) =>
+              <TableRow key={index}>
                 <TableCell align='center'>
-                  <FormControl fullWidth size='small' variant="outlined">
-                    <InputLabel>شروع</InputLabel>
-                    <Select
-                      value={newEdge.tail}
-                      onChange={(e) => {
-                        setNewEdge({
-                          ...newEdge,
-                          tail: e.target.value,
-                        })
-                      }}
-                      label='شروع'
-                    >
-                      {allStates?.map((state) => (
-                        <MenuItem key={state.id} value={state.id}>{state.name}</MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl >
+                  {edge.tail?.name}
                 </TableCell>
                 <TableCell align='center'>
-                  <FormControl fullWidth size='small' variant="outlined">
-                    <InputLabel>پایان</InputLabel>
-                    <Select
-                      value={newEdge.head}
-                      onChange={(e) => {
-                        setNewEdge({
-                          ...newEdge,
-                          head: e.target.value,
-                        })
-                      }}
-                      label='پایان'
-                    >
-                      {allStates?.map((state) => (
-                        <MenuItem key={state.id} value={state.id}>{state.name}</MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl >
+                  {edge.head?.name}
                 </TableCell>
                 <TableCell align='center'>
                   <Checkbox
-                    checked={newEdge.is_visible}
+                    checked={edge.is_visible}
                     onChange={() => {
-                      setNewEdge({
-                        ...newEdge,
-                        is_visible: !newEdge.is_visible,
-                      })
+                      updateEdge({
+                        edgeId: edge.id,
+                        is_visible: !edge.is_visible,
+                        head: edge.head?.id,
+                        tail: edge.tail?.id,
+                      }) // todo: fix 
                     }}
                     color="primary"
                   />
                 </TableCell>
                 <TableCell align='center'>
-                  <Button
+                  <IconButton size='small'
                     onClick={() => {
-                      addEdge(newEdge)
-                    }}
-                    variant='contained' color='primary'>
-                    {'ایجاد'}
-                  </Button>
+                      removeEdge({ edgeId: edge.id })
+                    }}>
+                    <ClearIcon />
+                  </IconButton>
                 </TableCell>
               </TableRow>
-              {allWorkshopEdges?.map((edge, index) =>
-                <TableRow key={index}>
-                  <TableCell align='center'>
-                    {edge.tail?.name}
-                  </TableCell>
-                  <TableCell align='center'>
-                    {edge.head?.name}
-                  </TableCell>
-                  <TableCell align='center'>
-                    <Checkbox
-                      checked={edge.is_visible}
-                      onChange={() => {
-                        updateEdge({
-                          edgeId: edge.id,
-                          is_visible: !edge.is_visible,
-                          head: edge.head?.id,
-                          tail: edge.tail?.id,
-                        }) // todo: fix 
-                      }}
-                      color="primary"
-                    />
-                  </TableCell>
-                  <TableCell align='center'>
-                    <IconButton size='small'
-                      onClick={() => {
-                        removeEdge({ edgeId: edge.id })
-                      }}>
-                      <ClearIcon />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Grid>
-    </>
-  );
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Grid>
+  </>;
 }
 
 const mapStateToProps = (state) => ({

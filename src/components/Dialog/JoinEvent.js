@@ -1,14 +1,8 @@
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  makeStyles,
-  TextField,
-} from '@material-ui/core';
+import { Button, Dialog, DialogActions, DialogContent, TextField } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import {
   joinEventAction,
@@ -24,7 +18,7 @@ function Index({
   eventId,
 }) {
   const classes = useStyles();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [password, setPassword] = useState();
   const [showEnterButton, setShowEnterButton] = useState(false);
 
@@ -37,7 +31,7 @@ function Index({
   }
 
   return (
-    <Dialog maxWidth="md" open={open} onClose={() => history.push('/events/')}  >
+    <Dialog maxWidth="md" open={open} onClose={() => navigate('/events/')}  >
       <DialogContent>
         <TextField onChange={(e) => { setPassword(e.target.value) }} fullWidth placeholder='رمز ورود' />
       </DialogContent>

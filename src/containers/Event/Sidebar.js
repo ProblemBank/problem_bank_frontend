@@ -4,12 +4,12 @@ import {
   Divider,
   Grid,
   IconButton,
-  makeStyles,
   Paper,
   TextField,
   Typography,
-} from '@material-ui/core';
-import ClearIcon from '@material-ui/icons/Clear';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import ClearIcon from '@mui/icons-material/Clear';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';

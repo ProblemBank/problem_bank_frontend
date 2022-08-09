@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import AllSubmittedProblems from '../containers/AllSubmittedAnswers';
 import CreateAccount from '../containers/CreateAccount';
@@ -13,18 +13,20 @@ import PrivateRoute from './PrivateRoute';
 
 const Root = () => {
   return (
-    <Switch>
-      <PrivateRoute path="/events/join_event/:eventId/" component={Events} />
-      <PrivateRoute path="/events/" component={Events} />
-
-      <PrivateRoute path="/event/:eventId/" component={Event} />
-      <PrivateRoute path="/submitted_answer/:submitId/" component={CorrectSubmittedProblem} />
-      <PrivateRoute path="/submitted_answer/" component={AllSubmittedProblems} />
-      <PrivateRoute path="/problem_set/:page/" component={ProblemSet} />
-      <PrivateRoute path="/problem/:mode/:problemId?/:problemGroupId?/" component={Problem} />
-      <Route path="/create_account" component={CreateAccount} />
-      <Route path="/" component={Login} />
-    </Switch>
+    <Routes>
+      <Route path="/create_account" element={<CreateAccount />} />
+      <Route path="/" element={<Login />} />
+      <Route path="/" element={<PrivateRoute />}>
+        <Route path="/events/join_event/:eventId/" element={<Events />} />
+        <Route path="/events/" element={<Events />} />
+        <Route path="/event/:eventId/" element={<Event />} />
+        <Route path="/submitted_answer/:submitId/" element={<CorrectSubmittedProblem />} />
+        <Route path="/submitted_answer/" element={<AllSubmittedProblems />} />
+        <Route path="/problem_set/:page/" element={<ProblemSet />} />
+        <Route path="/problem/:mode/:problemId?/:problemGroupId?/" element={<Problem />} />
+      </Route>
+    </Routes>
   );
 };
+
 export default Root;

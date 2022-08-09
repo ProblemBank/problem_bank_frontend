@@ -6,7 +6,6 @@ import {
   FormControl,
   Grid,
   InputLabel,
-  makeStyles,
   MenuItem,
   Paper,
   Select,
@@ -17,10 +16,11 @@ import {
   TableHead,
   TableRow,
   Typography,
-} from '@material-ui/core';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import TinyPreview from '../components/tiny_editor/react_tiny/Preview';
 import {
@@ -59,7 +59,7 @@ const Index = ({
   answer,
   isFetching,
 }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const classes = useStyles();
   const { submitId } = useParams();
 
@@ -77,7 +77,7 @@ const Index = ({
     <Layout>
       <Paper className={classes.paper}>
 
-        <Grid container spacing={2} justify='center'>
+        <Grid container spacing={2} justifyContent='center'>
 
           <Grid item xs={12}>
             <Typography gutterBottom variant='h2'>
@@ -140,7 +140,7 @@ const Index = ({
               <Button
                 onClick={() => {
                   judgeOneSubmittedProblem({ submitId, mark: 0 }).then(() => {
-                    history.push('/submitted_answer/');
+                    navigate('/submitted_answer/');
                   })
                 }}>
                 {'غلط'}
@@ -148,7 +148,7 @@ const Index = ({
               <Button
                 onClick={() => {
                   judgeOneSubmittedProblem({ submitId, mark: 1 }).then(() => {
-                    history.push('/submitted_answer/')
+                    navigate('/submitted_answer/')
                   })
                 }}>
                 {'درست'}
@@ -158,7 +158,7 @@ const Index = ({
         </Grid >
       </Paper>
     </Layout >
-  )
+  );
 }
 
 const mapStateToProps = (state) => ({

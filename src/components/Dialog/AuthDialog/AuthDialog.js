@@ -5,17 +5,16 @@ import {
   Grid,
   Hidden,
   IconButton,
-  makeStyles,
   TextField,
   Typography,
-} from '@material-ui/core';
-import { green } from '@material-ui/core/colors';
-import { Close as CloseIcon } from '@material-ui/icons';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import { green } from '@mui/material/colors';
+import { Close as CloseIcon } from '@mui/icons-material';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useTranslate } from 'react-redux-multilingual/lib/context';
-import { useHistory } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { loginAction } from '../../../redux/slices/account';
 import { addNotificationAction } from '../../../redux/slices/notifications';
@@ -56,13 +55,13 @@ function AuthDialog({
   const classes = useStyles();
   const t = useTranslate();
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (open && isLoggedIn) {
-      history.push('/mentor');
+      navigate('/mentor');
     }
-  }, [isLoggedIn, user, open, history]);
+  }, [isLoggedIn, user, open, navigate]);
 
   const doLogin = () => {
     if (!username || !password) {
@@ -77,18 +76,18 @@ function AuthDialog({
 
   return (
     <Dialog maxWidth="sm" fullWidth open={open} onClose={handleClose}>
-      <Grid container direction="row" justify="center">
+      <Grid container direction="row" justifyContent="center">
         <Grid
           item
           xs={12}
           sm={7}
           container
           direction="column"
-          justify="space-between"
+          justifyContent="space-between"
           alignItems="stretch"
           className={classes.leftContainer}>
           <Grid container item direction="row">
-            <Grid item container justify="center" alignItems="center">
+            <Grid item container justifyContent="center" alignItems="center">
               <Typography component="h3" variant="h2" align="center">
                 {t('login')}
               </Typography>
@@ -134,7 +133,7 @@ function AuthDialog({
             </Button>
           </Grid>
         </Grid>
-        <Hidden xsDown>
+        <Hidden smDown>
           <Grid item sm={5} className={classes.image}></Grid>
         </Hidden>
       </Grid>

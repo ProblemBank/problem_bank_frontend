@@ -1,19 +1,11 @@
-import {
-  Button,
-  ButtonGroup,
-  Container,
-  Grid,
-  Hidden,
-  makeStyles,
-  Paper,
-} from '@material-ui/core';
-import ClassIcon from '@material-ui/icons/Class';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import GroupIcon from '@material-ui/icons/Group';
+import { Button, ButtonGroup, Container, Grid, Hidden, Paper } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import ClassIcon from '@mui/icons-material/Class';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import GroupIcon from '@mui/icons-material/Group';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useTranslate } from 'react-redux-multilingual/lib/context';
-import { useHistory } from 'react-router-dom';
 import { Link, useParams } from 'react-router-dom';
 
 import {
@@ -70,8 +62,8 @@ const Event = ({
 
   return (
     <Layout>
-      <Grid container spacing={2} direction="row" justify="center">
-        <Grid container item sm={3} xs={12} direction="column" justify="space-between">
+      <Grid container spacing={2} direction="row" justifyContent="center">
+        <Grid container item sm={3} xs={12} direction="column" justifyContent="space-between">
           <Grid item>
             <ButtonGroup orientation="vertical" color="primary" fullWidth>
               {tabs.map((tab, index) => (
@@ -85,7 +77,7 @@ const Event = ({
               ))}
             </ButtonGroup>
           </Grid>
-          <Hidden xsDown>
+          <Hidden smDown>
             <Grid item>
               <Button
                 fullWidth

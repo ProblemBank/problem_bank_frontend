@@ -1,20 +1,21 @@
-import { Button, Grid, TextField, Typography } from '@material-ui/core';
+import { Button, Grid, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { loginAction } from '../../redux/slices/account';
 import { addNotificationAction } from '../../redux/slices/notifications';
 import { toEnglishNumber } from '../../utils/translateNumber';
 
 const InputFields = ({ isFetching, login, addNotification, token }) => {
+  const navigate = useNavigate();
   const [data, setData] = useState({
     password: '',
     username: '',
   });
 
   if (token) {
-    return <Redirect to="/events/" />;
+    return navigate("/events/");
   }
 
   const isJustDigits = (number) => {
@@ -46,57 +47,55 @@ const InputFields = ({ isFetching, login, addNotification, token }) => {
     login(data);
   };
 
-  return (
-    <>
-      <Grid item>
-        <TextField
-          variant="outlined"
-          fullWidth
-          onChange={(e) => {
-            if (isJustDigits(e.target.value)) {
-              putData(e);
-            }
-          }}
-          value={data.username}
-          name="username"
-          label="شماره تلفن همراه"
-          inputProps={{ className: 'ltr-input' }}
-          type="tel"
-        />
-      </Grid>
+  return <>
+    <Grid item>
+      <TextField
+        variant="outlined"
+        fullWidth
+        onChange={(e) => {
+          if (isJustDigits(e.target.value)) {
+            putData(e);
+          }
+        }}
+        value={data.username}
+        name="username"
+        label="شماره تلفن همراه"
+        inputProps={{ className: 'ltr-input' }}
+        type="tel"
+      />
+    </Grid>
 
-      <Grid item>
-        <TextField
-          variant="outlined"
-          fullWidth
-          onChange={putData}
-          label="گذرواژه"
-          name="password"
-          inputProps={{ className: 'ltr-input' }}
-          type="password"
-        />
-      </Grid>
+    <Grid item>
+      <TextField
+        variant="outlined"
+        fullWidth
+        onChange={putData}
+        label="گذرواژه"
+        name="password"
+        inputProps={{ className: 'ltr-input' }}
+        type="password"
+      />
+    </Grid>
 
-      <Grid container item direction="row" justify="center">
-        <Button
-          onClick={doLogin}
-          variant="contained"
-          color="primary"
-          disabled={isFetching}
-          fullWidth>
-          بزن بریم
-        </Button>
-      </Grid>
+    <Grid container item direction="row" justifyContent="center">
+      <Button
+        onClick={doLogin}
+        variant="contained"
+        color="primary"
+        disabled={isFetching}
+        fullWidth>
+        بزن بریم
+      </Button>
+    </Grid>
 
-      <Grid item>
-        <Typography align="center">
-          {'حساب کاربری نداری؟ از '}
-          <Link to="/create_account">{'این‌جا'}</Link>
-          {' یکی برای خودت بساز!'}
-        </Typography>
-      </Grid>
-    </>
-  );
+    <Grid item>
+      <Typography align="center">
+        {'حساب کاربری نداری؟ از '}
+        <Link to="/create_account">{'این‌جا'}</Link>
+        {' یکی برای خودت بساز!'}
+      </Typography>
+    </Grid>
+  </>;
 };
 
 const mapStateToProps = (state) => ({

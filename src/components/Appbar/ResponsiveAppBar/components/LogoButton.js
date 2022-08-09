@@ -1,4 +1,5 @@
-import { IconButton, makeStyles, Tooltip } from '@material-ui/core';
+import { IconButton, Tooltip } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 
 const useStyles = makeStyles(() => ({
@@ -14,7 +15,7 @@ export default function LogoButton({ size }) {
   const classes = useStyles({ size });
   return (
     <Tooltip title="رستا" arrow>
-      <IconButton className={classes.logoButton}>
+      <IconButton className={classes.logoButton} size="large">
         <img
           src={process.env.PUBLIC_URL + '/logo.png'}
           alt="logo"

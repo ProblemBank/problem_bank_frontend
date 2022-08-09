@@ -1,32 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Redirect, Route } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 
-const PrivateRoute = ({
-  component: Component,
-  onlyMentor = false,
-  isMentor = false,
-  isLoggedIn,
-  ...rest
-}) => {
-  const hasAccess = isLoggedIn && (isMentor || !onlyMentor);
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        hasAccess ? (
-          <Component {...props} />
-        ) : (
-          <Redirect to={{ pathname: '/', state: { from: props.location } }} />
-        )
-      }
-    />
+const PrivateRoute = ({ onlyMentor = false, isMentor = false, token }) => {
+  const hasAccess = token && (isMentor || !onlyMentor);
+  return hasAccess ? (
+    <Outlet />
+  ) : (
+    <Navigate to={eventId ? `/?private_event_enter=${eventId}` : '/'} />
   );
 };
 
 const mapStateToProps = (state) => ({
-  isLoggedIn: !!state.account.token,
-  isMentor: state.account.user?.is_mentor,
+  token: state.account.token,
+  isMentor: state.account.userAccount
+    ? state.account.userAccount.is_mentor
+    : false,
 });
 
 export default connect(mapStateToProps)(PrivateRoute);

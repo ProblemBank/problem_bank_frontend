@@ -4,7 +4,6 @@ import {
   FormControl,
   Grid,
   InputLabel,
-  makeStyles,
   MenuItem,
   Paper,
   Select,
@@ -15,7 +14,8 @@ import {
   TableHead,
   TableRow,
   Typography,
-} from '@material-ui/core';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
@@ -49,7 +49,7 @@ const Index = ({
 
   return (
     <Layout>
-      <Grid container spacing={4} justify='center' alignItems='flex-start'>
+      <Grid container spacing={4} justifyContent='center' alignItems='flex-start'>
         <Grid item xs={12}>
           <Typography variant="h1" align="center" gutterBottom>
             {'«پاسخ‌های ارسال‌شده»'}
@@ -89,7 +89,7 @@ const Index = ({
         </TableContainer>
       </Grid >
     </Layout>
-  )
+  );
 }
 
 const mapStateToProps = (state) => ({

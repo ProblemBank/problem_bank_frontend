@@ -1,45 +1,35 @@
 import './Theme/Styles/App.css';
 
-import { Button, CssBaseline, LinearProgress } from '@material-ui/core';
-import { StylesProvider } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
+import { CssBaseline, LinearProgress } from '@mui/material';
+import { ThemeProvider } from '@mui/material';
+import { CacheProvider } from "@emotion/react";
+import createEmotionCache from './configs/createEmotionCache'
+import selectTheme from './configs/themes';
 import { SnackbarProvider } from 'notistack';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { IntlProvider } from 'react-redux-multilingual';
-import { useHistory } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 import Notifier from './components/Notifications/Notifications';
 import { initRedirectAction } from './redux/slices/redirect';
 import Root from './root';
-import MuiTheme from './Theme/MuiThemes/MuiTheme';
-import RTLMuiTheme from './Theme/MuiThemes/RTLMuiTheme';
 import translations from './translations';
-import jss from './utils/jssRTL';
-
-const Mentor = () => (
-  <SnackbarProvider>
-    <Notifier />
-    <CssBaseline />
-    <Root />
-  </SnackbarProvider>
-);
 
 const App = ({ dir, redirectTo, forceRedirect, initRedirect, isFetching }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   useEffect(() => {
     if (redirectTo !== null) {
-      history.push(redirectTo);
+      navigate(redirectTo);
       if (forceRedirect) {
-        history.push(redirectTo);
-        history.push('/loading/');
-        history.goBack();
+        navigate(redirectTo);
+        navigate('/loading/');
+        navigate(-1);
       } else {
-        history.push(redirectTo);
+        navigate(redirectTo);
       }
       initRedirect();
     }
-  }, [redirectTo, forceRedirect, initRedirect, history]);
+  }, [redirectTo, forceRedirect, initRedirect, navigate]);
 
   useEffect(() => {
     document.body.dir = dir;
@@ -65,23 +55,16 @@ const App = ({ dir, redirectTo, forceRedirect, initRedirect, isFetching }) => {
 
   return (
     <IntlProvider translations={translations}>
-      {dir === 'rtl' ? (
-        <>
-          <ThemeProvider theme={RTLMuiTheme}>
-            <StylesProvider jss={jss}>
-              <Loading />
-              <Mentor />
-            </StylesProvider>
-          </ThemeProvider>
-        </>
-      ) : (
-        <>
-          <ThemeProvider theme={MuiTheme}>
+      <CacheProvider value={createEmotionCache(dir)}>
+        <ThemeProvider theme={selectTheme(dir)}>
+          <SnackbarProvider>
             <Loading />
-            <Mentor />
-          </ThemeProvider>
-        </>
-      )}
+            <Notifier />
+            <CssBaseline />
+            <Root />
+          </SnackbarProvider>
+        </ThemeProvider>
+      </CacheProvider>
     </IntlProvider>
   );
 };

@@ -1,10 +1,5 @@
-import {
-  Grid,
-  IconButton,
-  makeStyles,
-  Tooltip,
-  Typography,
-} from '@material-ui/core';
+import { Grid, IconButton, Tooltip, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 import { connect } from 'react-redux';
 import { useTranslate } from 'react-redux-multilingual/lib/context';
@@ -23,23 +18,21 @@ function Index({
   const classes = useStyles();
   const t = useTranslate();
 
-  return (
-    <>
-      <Grid
-        container item
-        spacing={2}
-        alignItems="center"
-        justify="center"
-        direction="row">
-        <Grid item xs={12}>
-          <Typography variant='h1' align='center'>{workshop?.name}</Typography>
-        </Grid>
-        <Grid item xs={12} >
-          <Typography align='center'>{workshop?.description}</Typography>
-        </Grid>
+  return <>
+    <Grid
+      container item
+      spacing={2}
+      alignItems="center"
+      justifyContent="center"
+      direction="row">
+      <Grid item xs={12}>
+        <Typography variant='h1' align='center'>{workshop?.name}</Typography>
       </Grid>
-    </>
-  );
+      <Grid item xs={12} >
+        <Typography align='center'>{workshop?.description}</Typography>
+      </Grid>
+    </Grid>
+  </>;
 }
 
 const mapStateToProps = (state) => ({

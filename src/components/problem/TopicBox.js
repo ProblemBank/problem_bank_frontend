@@ -3,13 +3,13 @@ import {
   FormControl,
   Grid,
   InputLabel,
-  makeStyles,
   MenuItem,
   Paper,
   Select,
   TextField,
   Typography,
-} from '@material-ui/core';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
@@ -81,7 +81,7 @@ const Index = ({
   }
 
   return (
-    <Grid container item direction='column' justify='center' alignItems='center' spacing={2}>
+    <Grid container item direction='column' justifyContent='center' alignItems='center' spacing={2}>
       <Grid item container>
         <Typography gutterBottom variant='h3'>موضوعات کلی</Typography>
         <Paper className={classes.paper}>

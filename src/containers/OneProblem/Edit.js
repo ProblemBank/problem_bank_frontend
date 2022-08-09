@@ -4,13 +4,13 @@ import {
   FormControl,
   Grid,
   InputLabel,
-  makeStyles,
   MenuItem,
   Paper,
   Select,
   TextField,
   Typography,
-} from '@material-ui/core';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -154,7 +154,7 @@ const Index = ({
 
   return (
     <Layout>
-      <Grid container spacing={2} justify='center'>
+      <Grid container spacing={2} justifyContent='center'>
         <Grid item>
           {mode == 'add' &&
             <Typography variant="h1" align="center">{'«افزودن مسئله»'}</Typography>
@@ -166,7 +166,7 @@ const Index = ({
         <Grid item container spacing={2} alignItems='flex-start'>
           <Grid item xs={12} md={8}>
             <Paper className={classes.paper}>
-              <Grid container spacing={2} justify='center'>
+              <Grid container spacing={2} justifyContent='center'>
                 <Grid item >
                   <Typography gutterBottom variant='h3' align='center'>صورت</Typography>
                 </Grid>
@@ -305,7 +305,7 @@ const Index = ({
         callBackFunction={() => removeProblem({ problemId, eventId })}
       />
     </Layout >
-  )
+  );
 }
 
 const mapStateToProps = (state) => ({

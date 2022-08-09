@@ -1,10 +1,5 @@
-import {
-  Container,
-  Grid,
-  makeStyles,
-  Paper,
-  Typography,
-} from '@material-ui/core';
+import { Container, Grid, Paper, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react'
 
 import InputFields from './Fields'
@@ -24,41 +19,37 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-
-
 const Index = () => {
   const classes = useStyles();
 
   return (
-    <>
-      <Container className={classes.container}>
-        <Grid
-          container item
-          justify='center'
-          alignItems='center'
-          xs={12} sm={8} md={4}>
-          <Grid item xs={12}>
-            <Paper className={classes.paper}>
-              <Grid item container>
-                <Grid
-                  container
-                  item
-                  direction='column'
-                  justify='center'
-                  spacing={2}>
-                  <Grid item>
-                    <Typography gutterBottom component='h1' variant='h2' align='center'>
-                      {'ورود'}
-                    </Typography>
-                  </Grid>
-                  <InputFields />
+    <Container Container className={classes.container} >
+      <Grid
+        container item
+        justifyContent='center'
+        alignItems='center'
+        xs={12} sm={8} md={4}>
+        <Grid item xs={12}>
+          <Paper className={classes.paper}>
+            <Grid item container>
+              <Grid
+                container
+                item
+                direction='column'
+                justifyContent='center'
+                spacing={2}>
+                <Grid item>
+                  <Typography gutterBottom component='h1' variant='h2' align='center'>
+                    {'ورود'}
+                  </Typography>
                 </Grid>
+                <InputFields />
               </Grid>
-            </Paper>
-          </Grid>
+            </Grid>
+          </Paper>
         </Grid>
-      </Container>
-    </>
+      </Grid>
+    </Container>
   )
 }
 

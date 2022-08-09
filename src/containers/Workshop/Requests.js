@@ -1,4 +1,4 @@
-import { Grid, Tab, Tabs } from '@material-ui/core';
+import { Grid, Tab, Tabs } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -50,33 +50,31 @@ function Teams({
     (team) => !requestTeams[team.id + '.' + fsmId]
   );
 
-  return (
-    <>
-      <Grid container spacing={2} alignItems="center" justify="center">
-        {reqTeams?.map((team) => (
-          <Grid item xs={12} sm={6} md={4} key={team.id}>
-            <TeamWorkshopInfoCard
-              {...team}
-              teamId={team.id}
-              fsmId={fsmId}
-              playerId={
-                requestTeams[team.id + '.' + fsmId]
-              }
-            />
-          </Grid>
-        ))}
-        {nonReqTeams?.map((team) => (
-          <Grid item xs={12} sm={6} md={4} key={team.id}>
-            <TeamWorkshopInfoCard
-              {...team}
-              teamId={team.id}
-              fsmId={fsmId}
-            />
-          </Grid>
-        ))}
-      </Grid>
-    </>
-  );
+  return <>
+    <Grid container spacing={2} alignItems="center" justifyContent="center">
+      {reqTeams?.map((team) => (
+        <Grid item xs={12} sm={6} md={4} key={team.id}>
+          <TeamWorkshopInfoCard
+            {...team}
+            teamId={team.id}
+            fsmId={fsmId}
+            playerId={
+              requestTeams[team.id + '.' + fsmId]
+            }
+          />
+        </Grid>
+      ))}
+      {nonReqTeams?.map((team) => (
+        <Grid item xs={12} sm={6} md={4} key={team.id}>
+          <TeamWorkshopInfoCard
+            {...team}
+            teamId={team.id}
+            fsmId={fsmId}
+          />
+        </Grid>
+      ))}
+    </Grid>
+  </>;
 }
 
 const mapStateToProps = (state) => ({

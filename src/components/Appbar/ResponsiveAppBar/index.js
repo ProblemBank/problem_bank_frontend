@@ -7,17 +7,19 @@ import {
   IconButton,
   List,
   ListItem,
-  makeStyles,
   Toolbar,
   useScrollTrigger,
-  withWidth,
-} from '@material-ui/core';
-import { Menu as MenuIcon } from '@material-ui/icons';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import { Menu as MenuIcon } from '@mui/icons-material';
 import clsx from 'clsx';
 import React, { useState } from 'react';
 
 import HideOnScroll from './components/HideOnScroll';
 import modes from './modes';
+
+// FIXME checkout https://mui.com/components/use-media-query/#migrating-from-withwidth
+const withWidth = () => (WrappedComponent) => (props) => <WrappedComponent {...props} width="xs" />;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 5,
     color: theme.palette.primary.main,
     display: 'none',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       display: 'flex',
     },
   },
@@ -74,79 +76,78 @@ function ResponsiveAppBar({
   const rightItems = width === 'xs' ? mobileRightItems : desktopRightItems;
   const leftItems = width === 'xs' ? mobileLeftItems : desktopLeftItems;
 
-  return (
-    <>
-      <HideOnScroll disable={!hideOnScroll}>
-        <AppBar
-          position={position}
-          id="appBar"
-          className={clsx(
-            classes.appBar,
-            showBackOnScroll && !trigger && classes.hideBack
-          )}
-          color="inherit">
-          <Container>
-            <Toolbar className={classes.toolbar} disableGutters>
-              {mobileMenuListItems.length > 0 && (
-                <IconButton
-                  edge="start"
-                  color="inherit"
-                  aria-label="open drawer"
-                  className={classes.menuButton}
-                  onClick={() => setDrawerOpen(true)}>
-                  <MenuIcon />
-                </IconButton>
-              )}
-              <Grid container justify="space-between">
-                <Grid
-                  xs={6}
-                  item
-                  spacing={1}
-                  container
-                  justify="flex-start"
-                  alignItems="center">
-                  {rightItems.map((item, index) => (
-                    <Grid key={index} item>
-                      {item}
-                    </Grid>
-                  ))}
-                </Grid>
-                <Grid
-                  xs={6}
-                  item
-                  spacing={1}
-                  container
-                  justify="flex-end"
-                  alignItems="center">
-                  {leftItems.map((item, index) => (
-                    <Grid key={index} item>
-                      {item}
-                    </Grid>
-                  ))}
-                </Grid>
-              </Grid>
-            </Toolbar>
-          </Container>
-        </AppBar>
-      </HideOnScroll>
-      {mobileMenuListItems.length > 0 && (
-        <Hidden smUp>
-          <Drawer
-            anchor="left"
-            open={drawerOpen}
-            onClose={() => setDrawerOpen(false)}>
-            <div className={classes.list}>
-              <List>
-                {mobileMenuListItems.map((item, index) => (
-                  <ListItem key={index}>{item}</ListItem>
+  return <>
+    <HideOnScroll disable={!hideOnScroll}>
+      <AppBar
+        position={position}
+        id="appBar"
+        className={clsx(
+          classes.appBar,
+          showBackOnScroll && !trigger && classes.hideBack
+        )}
+        color="inherit">
+        <Container>
+          <Toolbar className={classes.toolbar} disableGutters>
+            {mobileMenuListItems.length > 0 && (
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="open drawer"
+                className={classes.menuButton}
+                onClick={() => setDrawerOpen(true)}
+                size="large">
+                <MenuIcon />
+              </IconButton>
+            )}
+            <Grid container justifyContent="space-between">
+              <Grid
+                xs={6}
+                item
+                spacing={1}
+                container
+                justifyContent="flex-start"
+                alignItems="center">
+                {rightItems.map((item, index) => (
+                  <Grid key={index} item>
+                    {item}
+                  </Grid>
                 ))}
-              </List>
-            </div>
-          </Drawer>
-        </Hidden>
-      )}
-    </>
-  );
+              </Grid>
+              <Grid
+                xs={6}
+                item
+                spacing={1}
+                container
+                justifyContent="flex-end"
+                alignItems="center">
+                {leftItems.map((item, index) => (
+                  <Grid key={index} item>
+                    {item}
+                  </Grid>
+                ))}
+              </Grid>
+            </Grid>
+          </Toolbar>
+        </Container>
+      </AppBar>
+    </HideOnScroll>
+    {mobileMenuListItems.length > 0 && (
+      <Hidden smUp>
+        <Drawer
+          anchor="left"
+          open={drawerOpen}
+          onClose={() => setDrawerOpen(false)}>
+          <div className={classes.list}>
+            <List>
+              {mobileMenuListItems.map((item, index) => (
+                <ListItem key={index}>{item}</ListItem>
+              ))}
+            </List>
+          </div>
+        </Drawer>
+      </Hidden>
+    )}
+  </>;
 }
 
 export default withWidth()(ResponsiveAppBar);

@@ -4,13 +4,13 @@ import {
   FormControl,
   Grid,
   InputLabel,
-  makeStyles,
   MenuItem,
   Paper,
   Select,
   TextField,
   Typography,
-} from '@material-ui/core';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -50,7 +50,7 @@ const Index = ({
 
   return (
     <Layout>
-      <Grid container spacing={4} justify="center" alignItems='flex-start'>
+      <Grid container spacing={4} justifyContent="center" alignItems='flex-start'>
         <Grid item>
           <Typography variant="h1" align="center">
             {problem?.title && `«${problem?.title}»`}
@@ -58,7 +58,7 @@ const Index = ({
         </Grid>
         <Grid item container spacing={4} alignItems='flex-start'>
           <Grid item xs={12} md={8}>
-            <Grid container spacing={2} justify='center' component={Paper}>
+            <Grid container spacing={2} justifyContent='center' component={Paper}>
               <Grid item xs={12}>
                 <Typography gutterBottom variant='h3' align='center'>صورت</Typography>
                 <Divider />
@@ -100,7 +100,7 @@ const Index = ({
         callBackFunction={() => { }}
       />
     </Layout>
-  )
+  );
 }
 
 const mapStateToProps = (state) => ({

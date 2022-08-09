@@ -1,7 +1,7 @@
-import { Button, Grid, TextField, Typography } from '@material-ui/core';
+import { Button, Grid, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import {
   createAccountAction,
@@ -15,6 +15,7 @@ const InputFields = ({
   addNotification,
   token,
 }) => {
+  const navigate = useNavigate();
   const [data, setData] = useState({
     phone_number: '',
     password: '',
@@ -24,7 +25,7 @@ const InputFields = ({
   });
 
   if (token) {
-    return <Redirect to="/events/" />;
+    return navigate("/events/");
   }
 
   const putData = (event) => {

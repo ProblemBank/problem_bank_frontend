@@ -1,6 +1,7 @@
-import { Button, IconButton, makeStyles, Tooltip } from '@material-ui/core';
+import { Button, IconButton, Tooltip } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const useStyles = makeStyles(() => ({
   logo: ({ size }) => ({
@@ -13,11 +14,11 @@ const useStyles = makeStyles(() => ({
 
 export default function LogoButton({ size }) {
   const classes = useStyles({ size });
-  const history = useHistory()
+  const navigate = useNavigate()
 
   return (
     <Button
-      onClick={() => history.goBack()}
+      onClick={() => navigate(-1)}
       variant="contained"
       color="primary">
       {'بازگشت'}
