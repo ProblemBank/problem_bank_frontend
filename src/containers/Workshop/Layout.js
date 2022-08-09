@@ -1,7 +1,7 @@
 import { Button, Container, Grid, makeStyles, Paper } from '@material-ui/core';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 
 import AppBar from '../../components/Appbar/ResponsiveAppBar';
 import {

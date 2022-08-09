@@ -13,7 +13,7 @@ import GroupIcon from '@material-ui/icons/Group';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useTranslate } from 'react-redux-multilingual/lib/context';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { Link, useParams } from 'react-router-dom';
 
 import {

@@ -2,7 +2,7 @@
 
 ## Installation
 
-- `git clone https://github.com/Rastaiha/problem_bank_frontend.git`
+- `git clone https://github.com/ProblemBank/problem_bank_frontend.git`
 - `cd problem_bank_frontend`
 - `yarn`
 - `yarn start`

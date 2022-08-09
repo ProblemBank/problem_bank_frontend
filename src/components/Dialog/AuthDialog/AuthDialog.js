@@ -14,7 +14,7 @@ import { Close as CloseIcon } from '@material-ui/icons';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useTranslate } from 'react-redux-multilingual/lib/context';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import { loginAction } from '../../../redux/slices/account';

@@ -7,7 +7,7 @@ import {
 import Pagination from '@material-ui/lab/Pagination';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 
 import {

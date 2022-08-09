@@ -5,7 +5,7 @@ import {
 } from '@material-ui/core';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 
 import EditState from '../../components/SpecialComponents/EditWorkshopPage/EditState';
 import StatesTabbar from '../../components/SpecialComponents/EditWorkshopPage/StatesTabbar';

@@ -1,7 +1,7 @@
 import { Grid, Tab, Tabs } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 
 import TeamWorkshopInfoCard from '../../components/Cards/TeamWorkshopInfo';
 import { getRequestSubscription } from '../../parse/mentor';

@@ -7,7 +7,7 @@ import { SnackbarProvider } from 'notistack';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { IntlProvider } from 'react-redux-multilingual';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 import Notifier from './components/Notifications/Notifications';
 import { initRedirectAction } from './redux/slices/redirect';
