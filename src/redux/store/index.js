@@ -1,4 +1,4 @@
-import { updateToken } from '../../axios';
+import { updateToken } from '../../configs/axios';
 import createStore from './createStore';
 
 const removeOldJsonData = (delta, data = {}) => {

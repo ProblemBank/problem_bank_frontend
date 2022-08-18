@@ -1,4 +1,4 @@
-import './Theme/Styles/App.css';
+import './configs/styles/App.css';
 
 import { CssBaseline, LinearProgress } from '@mui/material';
 import { ThemeProvider } from '@mui/material';
