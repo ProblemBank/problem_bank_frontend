@@ -14,12 +14,9 @@ import makeStyles from '@mui/styles/makeStyles';
 import { Menu as MenuIcon } from '@mui/icons-material';
 import clsx from 'clsx';
 import React, { useState } from 'react';
-
+import useWidth from '../../../utils/UseWidth';
 import HideOnScroll from './components/HideOnScroll';
 import modes from './modes';
-
-// FIXME checkout https://mui.com/components/use-media-query/#migrating-from-withwidth
-const withWidth = () => (WrappedComponent) => (props) => <WrappedComponent {...props} width="xs" />;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,11 +56,11 @@ function ResponsiveAppBar({
   showBackOnScroll = false,
   hideOnScroll = false,
   position = 'fixed',
-  width,
 }) {
   const classes = useStyles();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 30 });
+  const width = useWidth();
 
   const {
     desktopLeftItems,
@@ -150,4 +147,4 @@ function ResponsiveAppBar({
   </>;
 }
 
-export default withWidth()(ResponsiveAppBar);
+export default ResponsiveAppBar;
