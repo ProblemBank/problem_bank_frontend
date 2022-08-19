@@ -1,4 +1,5 @@
 import './configs/styles/App.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { CssBaseline, LinearProgress } from '@mui/material';
 import { ThemeProvider } from '@mui/material';
@@ -14,6 +15,8 @@ import Notifier from './components/Notifications/Notifications';
 import { initRedirectAction } from './redux/slices/redirect';
 import Root from './root';
 import translations from './translations';
+import { Slide, ToastContainer } from 'react-toastify';
+
 
 const App = ({ dir, redirectTo, forceRedirect, initRedirect, isFetching }) => {
   const navigate = useNavigate();
@@ -58,6 +61,19 @@ const App = ({ dir, redirectTo, forceRedirect, initRedirect, isFetching }) => {
       <CacheProvider value={createEmotionCache(dir)}>
         <ThemeProvider theme={selectTheme(dir)}>
           <SnackbarProvider>
+            <ToastContainer
+              rtl
+              position="top-left"
+              autoClose={3000}
+              transition={Slide}
+              newestOnTop
+              hideProgressBar={false}
+              pauseOnHover={false}
+              pauseOnFocusLoss={false}
+              closeOnClick
+              limit={3}
+              draggable={false}
+            />
             <Loading />
             <Notifier />
             <CssBaseline />

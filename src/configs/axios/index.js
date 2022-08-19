@@ -3,7 +3,7 @@ import Axios from 'axios';
 export const baseURL =
   process.env.NODE_ENV === 'production'
     ? 'http://backend.problembank.ir'
-    : 'http://backend.problembank.ir'
+    : 'http://localhost:8000'
 
 const baseAxios = Axios.create({
   baseURL: baseURL + '/api/',

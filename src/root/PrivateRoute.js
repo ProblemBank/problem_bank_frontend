@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
 
@@ -7,7 +7,7 @@ const PrivateRoute = ({ onlyMentor = false, isMentor = false, token }) => {
   return hasAccess ? (
     <Outlet />
   ) : (
-    <Navigate to={eventId ? `/?private_event_enter=${eventId}` : '/'} />
+    <Navigate to={'/'} />
   );
 };
 
