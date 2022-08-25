@@ -40,6 +40,8 @@ const Event = ({
   const [showAreYouSureDialog, setAreYouSureDialog] = useState(false);
   const [selectedProblemId, setSelectedProblemId] = useState(false);
 
+  const problemGroupId = event?.problem_groups[tabIndex].id;
+
   return <>
     <Paper className={classes.paper}>
       <Grid container item direction="column" spacing={3}>
@@ -55,19 +57,19 @@ const Event = ({
               </TableRow>
             </TableHead>
             <TableBody>
-              {problemGroup?.problems?.map((problem, index) =>
+              {problemGroup?.problems?.map((problem, index) => (
                 <TableRow key={index}>
                   <TableCell align='center'>
                     {toPersianNumber(problem.id)}
                   </TableCell>
                   <TableCell align='center'>
                     {(event?.role == 'mentor' || event?.role == 'owner') &&
-                      <Button component={Link} to={`/problem/mentor_view/${problem.id}/`}>
+                      <Button component={Link} to={`/event/${eventId}/problem-group/${problemGroupId}/problem/${problem.id}/mentor_view/`}>
                         {problem.title}
                       </Button>
                     }
                     {(event?.role == 'participant') &&
-                      <Button component={Link} to={`/problem/submit/${problem.id}/${event.problem_groups[tabIndex].id}/`}>
+                      <Button component={Link} to={`/event/${eventId}/problem-group/${problemGroupId}/problem/${problem.id}/submit/`}>
                         {problem.title}
                       </Button>
                     }
@@ -85,7 +87,7 @@ const Event = ({
                       </IconButton>
                     </TableCell>
                   }
-                </TableRow>
+                </TableRow>)
               )}
             </TableBody>
           </Table>
@@ -97,7 +99,7 @@ const Event = ({
                 variant='contained'
                 color='primary'
                 component={Link}
-                to={`/problem/add/problem_group/${event?.problem_groups[tabIndex].id}/`}>
+                to={`/event/${eventId}/problem-group/${problemGroupId}/add/`}>
                 {'افزودن مسئله‌ی جدید'}
               </Button>
             </Box>

@@ -25,8 +25,12 @@ const Root = () => {
         <Route path="/submitted_answer/:submitId/" element={<CorrectSubmittedProblem />} />
         <Route path="/submitted_answer/" element={<AllSubmittedProblems />} />
         <Route path="/problem_set/:page/" element={<ProblemSet />} />
-        <Route path="/problem/:mode/:problemId?/:problemGroupId?/" element={<Problem />} />
+        
+        <Route path="/problem/:problemId/:mode/" element={<Problem />} />
+        <Route path="/event/:eventId/problem-group/:problemGroupId/:mode/" element={<Problem />} />
+        <Route path="/event/:eventId/problem-group/:problemGroupId/problem/:problemId/:mode/" element={<Problem />} />
       </Route>
+      <Route path="*" element={<Login />} />
     </Routes>
   );
 };

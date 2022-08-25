@@ -52,7 +52,7 @@ const Index = ({
                   {toPersianNumber(problem.id)}
                 </TableCell>
                 <TableCell align='center'>
-                  <Button component={Link} to={`/problem/view/${problem.id}/`}>
+                  <Button component={Link} to={`/problem/${problem.id}/view/`}>
                     {problem.title}
                   </Button>
                 </TableCell>
