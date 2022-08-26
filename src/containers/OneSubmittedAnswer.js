@@ -3,22 +3,12 @@ import {
   Button,
   ButtonGroup,
   Divider,
-  FormControl,
   Grid,
-  InputLabel,
-  MenuItem,
   Paper,
-  Select,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
   Typography,
 } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import React, { useEffect, useState } from 'react';
+import React, {  } from 'react';
 import { connect } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -27,9 +17,6 @@ import {
   getOneSubmittedProblemAction,
   judgeOneSubmittedProblemAction,
 } from '../redux/slices/mentor';
-import {
-  addNotificationAction,
-} from '../redux/slices/notifications';
 import {
   getOneProblemAction,
 } from '../redux/slices/problem';
