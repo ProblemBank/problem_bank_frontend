@@ -2,8 +2,8 @@ import Axios from 'axios';
 
 export const baseURL =
   process.env.NODE_ENV === 'production'
-    ? 'https://backend.problembank.ir'
-    : 'https://backend.problembank.ir'
+    ? 'https://game2.rastaiha.ir'
+    : 'http://localhost:8000'
 
 const baseAxios = Axios.create({
   baseURL: baseURL + '/api/',
