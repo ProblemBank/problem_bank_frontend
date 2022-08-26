@@ -1,5 +1,5 @@
 import { Container, Grid, Paper, Typography, Button, TextField } from '@mui/material';
-import React, { useState, FC } from 'react'
+import React, { useState, FC, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
@@ -30,9 +30,11 @@ const CreateAccount: FC<createAccountPropsType> = ({
     last_name: '',
   });
 
-  if (token) {
-    navigate("/dashboard/");
-  }
+  useEffect(() => {
+    if (token) {
+      navigate('/dashboard/');
+    }
+  }, [token])
 
   const putData = (event) => {
     setData({

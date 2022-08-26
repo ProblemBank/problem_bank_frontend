@@ -40,7 +40,7 @@ const Event = ({
   const [showAreYouSureDialog, setAreYouSureDialog] = useState(false);
   const [selectedProblemId, setSelectedProblemId] = useState(false);
 
-  const problemGroupId = event?.problem_groups[tabIndex].id;
+  const problemGroupId = event?.problem_groups[tabIndex]?.id;
 
   return <>
     <Paper className={classes.paper}>
