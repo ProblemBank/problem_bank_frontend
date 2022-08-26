@@ -9,7 +9,13 @@ import {
   Select,
   TextField,
   Typography,
+  IconButton,
+  Stack,
 } from '@mui/material';
+import {
+  CloudUpload as CloudUploadIcon,
+} from '@mui/icons-material';
+import ClearIcon from '@mui/icons-material/Clear';
 import makeStyles from '@mui/styles/makeStyles';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
@@ -86,6 +92,7 @@ const Index = ({
     topics: [],
     subtopics: [],
     author: 1,
+    file: null,
   });
   const [isDialogOpen, setDialogStatus] = useState(false);
 
@@ -95,6 +102,8 @@ const Index = ({
       getProblem({ problemId });
     }
   }, [])
+
+  console.log(properties)
 
   useEffect(() => {
     if (problem && mode == 'edit') {
@@ -152,6 +161,25 @@ const Index = ({
     }
   }
 
+  const changeFile = (e) => {
+    e.preventDefault();
+    const file = e.target.files[0];
+    if (file && file.size <= 2e7 && file.name.length < 100) {
+      setProperties({
+        ...properties,
+        file,
+      })
+    }
+  };
+
+  const clearFile = (e) => {
+    e.preventDefault();
+    setProperties({
+      ...properties,
+      file: null,
+    })
+  }
+
   return (
     <Layout>
       <Grid container spacing={2} justifyContent='center'>
@@ -166,8 +194,8 @@ const Index = ({
         <Grid item container spacing={2} alignItems='flex-start'>
           <Grid item xs={12} md={8}>
             <Paper className={classes.paper}>
-              <Grid container spacing={2} justifyContent='center'>
-                <Grid item >
+              <Grid container spacing={2} justifyContent='flex-start'>
+                <Grid item xs={12}>
                   <Typography gutterBottom variant='h3' align='center'>صورت</Typography>
                 </Grid>
                 <Grid item xs={12}>
@@ -179,6 +207,44 @@ const Index = ({
                         text,
                       })
                     }} />
+                </Grid>
+                <Grid item>
+                  <Stack direction='row' spacing={1}>
+                    <Button
+                      disabled
+                      component="label"
+                      htmlFor={'upload-file-button'}
+                      variant="contained"
+                      color="primary"
+                      size="small"
+                      startIcon={<CloudUploadIcon />}
+                      sx={{ whiteSpace: 'nowrap' }}>
+                      {'بارگذاری فایل'}
+                    </Button>
+                    <input
+                      accept="application/pdf,image/*"
+                      style={{ display: 'none' }}
+                      id={'upload-file-button'}
+                      type="file"
+                      onChange={changeFile}
+                    />
+                    {properties?.file &&
+                      <Button
+                        size="small"
+                        variant='outlined'
+                        sx={{
+                          whiteSpace: 'nowrap',
+                        }}
+                        endIcon={
+                          <IconButton size='small' onClick={clearFile}>
+                            <ClearIcon sx={{ fontSize: 14 }} />
+                          </IconButton>
+                        }>
+                        {properties.file.name ? properties.file.name.substring(0, 30) : 'آخرین فایل ارسالی'}
+                      </Button>
+                    }
+                  </Stack>
+
                 </Grid>
                 <Grid item xs={12}>
                   <Typography gutterBottom variant='h3' align='center'>پاسخ</Typography>

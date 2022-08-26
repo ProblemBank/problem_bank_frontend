@@ -1,5 +1,6 @@
 import baseAxios from '../../configs/axios';
-import jsonToFormData from '../../utils/jsonToFromDate';
+// import createFormData from '../../utils/jsonToFromDate';
+import { serialize } from 'object-to-formdata';
 
 const putApi = async (url, body) => (await baseAxios.put(url, body)).data;
 
@@ -9,7 +10,7 @@ const patchApi = async (url, body) => (await baseAxios.patch(url, body)).data;
 
 const patchFormDataApi = async (url, body) =>
   (
-    await baseAxios.patch(url, jsonToFormData(body), {
+    await baseAxios.patch(url, serialize(body), {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -18,7 +19,7 @@ const patchFormDataApi = async (url, body) =>
 
 const postFormDataApi = async (url, body) =>
   (
-    await baseAxios.post(url, jsonToFormData(body), {
+    await baseAxios.post(url, serialize(body), {
       headers: {
         'Content-Type': 'multipart/form-data',
       },

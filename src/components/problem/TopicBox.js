@@ -115,8 +115,9 @@ const Index = ({
 }
 
 const mapStateToProps = (state) => ({
-  allTopics: state.problem.allTopics,
-  allSubtopics: state.problem.allSubtopics,
+  // todo; FIX TOF
+  allTopics: [],
+  allSubtopics: [],
 })
 
 export default connect(
