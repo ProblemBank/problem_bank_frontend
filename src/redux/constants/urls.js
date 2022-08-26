@@ -6,7 +6,9 @@ export const refreshTokenUrl = 'accounts/login/refresh/';
 // mentor:
 export const getAllSubmittedProblemsUrl = 'problembank/getsubmits/';
 export const getOneSubmittedProblemUrl = ({ submitId }) => `problembank/jugeablesubmit/${submitId}/`;
-export const judgeOneSubmittedProblemUrl = ({ submitId, mark }) => `problembank/judge/${submitId}/${mark}/`;
+
+// TODO: از وضعیتی که فقط مال اپ گیم۲ عه، خارجش کنم
+export const judgeOneSubmittedProblemUrl = ({ submitId, mark }) => `game2/judge/${submitId}/${mark}/`;
 
 // problem:
 export const problemCRUDUrl = ({ problemId }) => problemId ? `problembank/problem/${problemId}/` : 'problembank/problem/';

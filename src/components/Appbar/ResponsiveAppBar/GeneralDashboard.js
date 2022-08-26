@@ -18,10 +18,10 @@ const DashboardItems = () => {
 
   return {
     desktopLeftItems: [logoutButton, Avatar],
-    desktopRightItems: [events, allProblems],
+    desktopRightItems: [events, allProblems, judgeAnswers],
     mobileLeftItems: [Avatar],
     mobileRightItems: [],
-    mobileMenuListItems: [events, allProblems, logoutButton],
+    mobileMenuListItems: [events, allProblems, judgeAnswers, logoutButton],
   };
 };
 
