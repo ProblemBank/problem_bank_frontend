@@ -49,6 +49,7 @@ const Index = ({
   const [selectedProblemGroupId, setSelectedProblemGroupId] = useState();
   const [selectedCopyType, setSelectCopyType] = useState('add');
   const [problemGroups, setProblemGroups] = useState([]);
+  const { eventId, problemGroupId } = useParams();
 
   useEffect(() => {
     getAllEvents({});
@@ -82,7 +83,7 @@ const Index = ({
       <Grid container spacing={3} justifyContent='center'>
         {mode == 'mentor_view' &&
           <Grid item xs={12}>
-            <Button component={Link} to={`/problem/edit/${problemId}/`}
+            <Button component={Link} to={`/event/${eventId}/problem-group/${problemGroupId}/problem/${problemId}/edit/`}
               size='large' variant='contained' fullWidth color='primary'>
               {'ویرایش'}
             </Button>
