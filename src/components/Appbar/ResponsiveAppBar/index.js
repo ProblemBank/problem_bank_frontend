@@ -1,5 +1,6 @@
 import {
   AppBar,
+  Box,
   Container,
   Drawer,
   Grid,
@@ -19,16 +20,7 @@ import HideOnScroll from './components/HideOnScroll';
 import modes from './modes';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  toolbarIcon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
-  },
+
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
     transition: '0.2s',
@@ -41,9 +33,7 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
     },
   },
-  list: {
-    width: 250,
-  },
+
   hideBack: {
     background: 'transparent',
     boxShadow: 'none',
@@ -134,13 +124,13 @@ function ResponsiveAppBar({
           anchor="left"
           open={drawerOpen}
           onClose={() => setDrawerOpen(false)}>
-          <div className={classes.list}>
+          <Box sx={{ width: 250 }}>
             <List>
               {mobileMenuListItems.map((item, index) => (
                 <ListItem key={index}>{item}</ListItem>
               ))}
             </List>
-          </div>
+          </Box>
         </Drawer>
       </Hidden>
     )}

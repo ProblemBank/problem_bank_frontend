@@ -23,7 +23,7 @@ import {
 import {
   submitAnswerAction,
 } from '../../redux/slices/problem'
-import Layout from '../Layout';
+import Layout from '../../components/templates/Layout';
 
 const useStyles = makeStyles((theme) => ({
   paper: {

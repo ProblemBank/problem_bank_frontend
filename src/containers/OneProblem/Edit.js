@@ -34,7 +34,7 @@ import {
   getOneProblemAction,
   removeProblemAction,
 } from '../../redux/slices/problem';
-import Layout from '../Layout';
+import Layout from '../../components/templates/Layout';
 
 const useStyles = makeStyles((theme) => ({
   centerItems: {

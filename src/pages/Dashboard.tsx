@@ -9,37 +9,13 @@ import JoinEvent from '../components/Dialog/JoinEvent';
 import {
   getAllEventsAction,
 } from '../redux/slices/event';
-import Layout from '../components/templates/Layout';
-
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    width: '100%',
-    height: '100%',
-    padding: theme.spacing(2),
-  },
-  title: {
-    fontSize: 40,
-    fontWeight: 600,
-    textShadow: '1px 1px #dbd9d9',
-  },
-  subtitle: {
-    fontSize: 25,
-    fontWeight: 400,
-    textShadow: '1px 1px #dbd9d9',
-  },
-  listItem: {
-    fontSize: 20,
-    fontWeight: 300,
-    textShadow: '1px 1px #dbd9d9',
-  },
-}));
+import Layout from '../components/templates/Layout'
 
 const Events = ({
   getAllEvents,
   allEvents,
 }) => {
   const { eventId } = useParams();
-  const classes = useStyles();
   const [showJoinEventDialog, setShowEventDialog] = useState(false);
 
   useEffect(() => {
@@ -55,11 +31,11 @@ const Events = ({
   }, []);
 
   return (
-    <Layout>
+    <Layout backgroundImage=''>
       <Grid container spacing={4} justifyContent='center' alignItems='flex-start'>
         <Grid item xs={12}>
           <Typography variant="h1" align="center" gutterBottom>
-            {'«رویدادها»'}
+            {'داشبورد من'}
           </Typography>
         </Grid>
         <Grid container item xs={12} spacing={2}>

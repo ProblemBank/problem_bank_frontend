@@ -12,7 +12,7 @@ import {
   clearProblemGroupAction,
   getProblemGroupAction,
 } from '../../redux/slices/problemGroup';
-import Layout from '../Layout';
+import Layout from '../../components/templates/Layout';
 import ProblemsList from './ProblemsList';
 import Sidebar from './Sidebar';
 

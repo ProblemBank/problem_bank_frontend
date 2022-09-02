@@ -10,7 +10,7 @@ import {
   getProblemsByFilterAction,
 } from '../../redux/slices/problem';
 // import { getAllTags } from '../redux/actions/properties'
-import Layout from '../Layout';
+import Layout from '../../components/templates/Layout';
 import ProblemTables from './ProblemsTable';
 
 

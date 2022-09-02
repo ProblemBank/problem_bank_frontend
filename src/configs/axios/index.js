@@ -1,9 +1,5 @@
 import Axios from 'axios';
-
-export const baseURL =
-  process.env.NODE_ENV === 'production'
-    ? 'https://game2.rastaiha.ir'
-    : 'http://localhost:8000'
+import { baseURL } from '../network'
 
 const baseAxios = Axios.create({
   baseURL: baseURL + '/api/',

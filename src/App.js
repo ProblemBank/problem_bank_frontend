@@ -17,7 +17,6 @@ import Root from './root';
 import translations from './translations';
 import { Slide, ToastContainer } from 'react-toastify';
 
-
 const App = ({ dir, redirectTo, forceRedirect, initRedirect, isFetching }) => {
   const navigate = useNavigate();
   useEffect(() => {

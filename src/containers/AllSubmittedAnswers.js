@@ -26,7 +26,7 @@ import {
 import {
   addNotificationAction,
 } from '../redux/slices/notifications';
-import Layout from './Layout';
+import Layout from '../components/templates/Layout';
 import { toPersianNumber } from '../utils/translateNumber'
 
 const useStyles = makeStyles((theme) => ({
@@ -46,6 +46,7 @@ const Index = ({
   }, [])
 
   const filteredData = allSubmittedProblems?.slice()?.sort((a, b) => a.id - b.id);
+  console.log(allSubmittedProblems)
 
   return (
     <Layout>

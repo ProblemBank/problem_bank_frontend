@@ -26,7 +26,7 @@ import {
   editProblemAction,
   getOneProblemAction,
 } from '../../../redux/slices/problem';
-import Layout from '../../Layout';
+import Layout from '../../../components/templates/Layout';
 import SideBar from './Sidebar';
 
 const useStyles = makeStyles((theme) => ({
