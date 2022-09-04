@@ -59,7 +59,7 @@ const Events = ({
       <Grid container spacing={4} justifyContent='center' alignItems='flex-start'>
         <Grid item xs={12}>
           <Typography variant="h1" align="center" gutterBottom>
-            {'«رویدادها»'}
+            {'«کلاس‌ها»'}
           </Typography>
         </Grid>
         <Grid container item xs={12} spacing={2}>

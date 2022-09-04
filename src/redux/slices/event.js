@@ -16,7 +16,7 @@ export const getAllEventsAction = createAsyncThunkApi(
   getAllEventUrl,
   {
     defaultNotification: {
-      error: 'مشکلی  در دریافت رویدادها وجود داشت. دوباره تلاش کنید.',
+      error: 'مشکلی  در دریافت کلاس‌ها وجود داشت. دوباره تلاش کنید.',
     },
   }
 );
@@ -27,7 +27,7 @@ export const getAllMyEventsAction = createAsyncThunkApi(
   getAllMyEventUrl,
   {
     defaultNotification: {
-      error: 'مشکلی  در دریافت همه‌ی رویدادهای من وجود داشت. دوباره تلاش کنید.',
+      error: 'مشکلی  در دریافت همه‌ی کلاس‌های من وجود داشت. دوباره تلاش کنید.',
     },
   }
 );

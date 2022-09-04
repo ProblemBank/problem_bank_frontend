@@ -9,7 +9,7 @@ import LogoutButton from './components/LogoutButton';
 const DashboardItems = () => {
   const logoButton = <LogoButton />;
   // todo: fix hard code
-  const events = <DashboardButton name={'رویدادها'} to={'/events/'} />;
+  const events = <DashboardButton name={'کلاس‌ها'} to={'/events/'} />;
   const judgeAnswers = <DashboardButton name={'تصحیح'} to={'/submitted_answer/'} />;
   const allProblems = <DashboardButton name={'مجموعه مسائل'} to={'/problem_set/1/'} />;
   const logoutButton = <LogoutButton />;
