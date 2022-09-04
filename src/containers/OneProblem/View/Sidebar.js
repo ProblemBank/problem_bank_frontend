@@ -97,10 +97,10 @@ const Index = ({
               </Grid>
               <Grid item xs={12}>
                 <FormControl variant="outlined" fullWidth>
-                  <InputLabel>رویداد</InputLabel>
+                  <InputLabel>کلاس</InputLabel>
                   <Select
                     onChange={(e) => setProblemGroups(allEvents.filter((event) => event.id == e.target.value)?.[0]?.problem_groups)}
-                    label='رویداد'>
+                    label='کلاس'>
                     {accessibleEvents.map((event) => (
                       <MenuItem key={event.id} value={event.id}>
                         {event.title}

@@ -38,7 +38,7 @@ export const getOneEventAction = createAsyncThunkApi(
   getOneEventUrl,
   {
     defaultNotification: {
-      error: 'مشکلی در دریافت یک رویداد وجود داشت. دوباره تلاش کنید.',
+      error: 'مشکلی در دریافت یک کلاس وجود داشت. دوباره تلاش کنید.',
     },
   }
 );
@@ -49,7 +49,7 @@ export const addEventAction = createAsyncThunkApi(
   eventCRUDUrl,
   {
     defaultNotification: {
-      success: 'رویداد با موفقیت اضافه شد!',
+      success: 'کلاس با موفقیت اضافه شد!',
       error: 'مشکلی وجود داشت. دوباره تلاش کنید.',
     },
   }
@@ -61,7 +61,7 @@ export const editEventAction = createAsyncThunkApi(
   eventCRUDUrl,
   {
     defaultNotification: {
-      success: 'رویداد با موفقیت ویرایش شد!',
+      success: 'کلاس با موفقیت ویرایش شد!',
       error: 'مشکلی وجود داشت. دوباره تلاش کنید.',
     },
   }
@@ -73,7 +73,7 @@ export const joinEventAction = createAsyncThunkApi(
   joinEventUrl,
   {
     defaultNotification: {
-      success: 'شما با موفقیت به رویداد اضافه شدید!',
+      success: 'شما با موفقیت به کلاس اضافه شدید!',
       error: 'رمز وارد شده اشتباه است.',
     },
   }

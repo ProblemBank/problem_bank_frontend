@@ -32,7 +32,7 @@ export const persianMessages = { //todo: handle english
   '4029': 'به همه‌ی سوالات اجباری پاسخ ندادی!',
   '4030': 'selected choices should be from corresponding problems',
   '4031': 'only institutes\'s admins can create events',
-  '4032': 'پایه‌ی تحصیلی شما برای ثبت‌نام در این رویداد مجاز نیست.',
+  '4032': 'پایه‌ی تحصیلی شما برای ثبت‌نام در این کلاس مجاز نیست.',
   '4033': 'لطفاً پایه‌ی تحصیلی‌ات را در پروفایل مشخص کن.',
   '4034': 'you must have an active school studentship to register',
   '4035': 'event is full',
