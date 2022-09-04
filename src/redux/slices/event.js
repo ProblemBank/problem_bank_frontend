@@ -16,21 +16,11 @@ export const getEventsAction = createAsyncThunkApi(
   getEventsUrl,
   {
     defaultNotification: {
-      error: 'مشکلی  در دریافت کلاس‌ها وجود داشت. دوباره تلاش کنید.',
+      error: 'مشکلی  در دریافت کلاس‌ها وجود داشت.',
     },
   }
 );
 
-export const getAllMyEventsAction = createAsyncThunkApi(
-  'event/getAllMyEventsAction',
-  Apis.GET,
-  getAllMyEventUrl,
-  {
-    defaultNotification: {
-      error: 'مشکلی  در دریافت همه‌ی کلاس‌های من وجود داشت. دوباره تلاش کنید.',
-    },
-  }
-);
 
 export const getOneEventAction = createAsyncThunkApi(
   'event/getOneEventAction',
@@ -38,7 +28,7 @@ export const getOneEventAction = createAsyncThunkApi(
   getOneEventUrl,
   {
     defaultNotification: {
-      error: 'مشکلی در دریافت یک کلاس وجود داشت. دوباره تلاش کنید.',
+      error: 'مشکلی در دریافت کلاس وجود داشت.',
     },
   }
 );
@@ -50,7 +40,7 @@ export const addEventAction = createAsyncThunkApi(
   {
     defaultNotification: {
       success: 'کلاس با موفقیت اضافه شد!',
-      error: 'مشکلی وجود داشت. دوباره تلاش کنید.',
+      error: 'مشکلی در ایجاد کلاس وجود داشت.',
     },
   }
 );
@@ -62,7 +52,7 @@ export const editEventAction = createAsyncThunkApi(
   {
     defaultNotification: {
       success: 'کلاس با موفقیت ویرایش شد!',
-      error: 'مشکلی وجود داشت. دوباره تلاش کنید.',
+      error: 'مشکلی در ویرایش کلاس وجود داشت.',
     },
   }
 );

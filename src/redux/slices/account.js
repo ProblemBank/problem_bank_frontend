@@ -45,7 +45,7 @@ export const createAccountAction = createAsyncThunkApi(
   {
     defaultNotification: {
       success: 'حساب کاربری با موفقیت ساخته شد.',
-      error: 'مشکلی وجود دارد. دوباره تلاش کن!',
+      error: 'مشکلی در ایجاد حساب کاربری وجود دارد.',
     },
   }
 );

@@ -32,7 +32,7 @@ export const judgeOneSubmittedProblemAction = createAsyncThunkApi(
   {
     defaultNotification: {
       success: 'پاسخ بنده‌خدا با موفقیت ثبت شد!',
-      error: 'مشکلی وجود داشت. دوباره تلاش کنید.',
+      error: 'مشکلی در ثبت نمره وجود داشت.',
     },
   }
 );

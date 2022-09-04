@@ -19,7 +19,7 @@ export const getProblemsByFilterAction = createAsyncThunkApi(
   getProblemsByFilter,
   {
     defaultNotification: {
-      error: 'مشکلی در دریافت فیلترشده‌ی مسئله‌ها وجود داشت. دوباره تلاش کنید.',
+      error: 'مشکلی در دریافت فیلترشده‌ی مسئله‌ها وجود داشت.',
     },
   }
 );
