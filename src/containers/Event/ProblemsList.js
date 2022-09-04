@@ -52,7 +52,7 @@ const Event = ({
                 <TableCell align='center'>شناسه</TableCell>
                 <TableCell align='center'>عنوان</TableCell>
                 {(event?.role == 'mentor' || event?.role == 'owner') &&
-                  <TableCell align='center'>حذف از گروه‌مسئله</TableCell>
+                  <TableCell align='center'>حذف از صندوقچه</TableCell>
                 }
               </TableRow>
             </TableHead>

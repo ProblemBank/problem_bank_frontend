@@ -61,7 +61,7 @@ const Index = ({
             <TableHead>
               <TableRow>
                 <TableCell align='center'>شناسه</TableCell>
-                <TableCell align='center'>گروه‌مسئله</TableCell>
+                <TableCell align='center'>صندوقچه</TableCell>
                 <TableCell align='center'>نمره</TableCell>
               </TableRow>
             </TableHead>

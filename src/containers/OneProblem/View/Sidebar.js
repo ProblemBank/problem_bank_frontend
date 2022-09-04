@@ -93,7 +93,7 @@ const Index = ({
           <Paper elevation={4} className={classes.paper}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                <Typography gutterBottom variant='h5' align='center'>{'افزودن مسئله به گروه‌مسئله'}</Typography>
+                <Typography gutterBottom variant='h5' align='center'>{'افزودن مسئله به صندوقچه'}</Typography>
               </Grid>
               <Grid item xs={12}>
                 <FormControl variant="outlined" fullWidth>
@@ -111,10 +111,10 @@ const Index = ({
               </Grid>
               <Grid item xs={12}>
                 <FormControl disabled={problemGroups?.length == 0 ? true : false} variant="outlined" fullWidth>
-                  <InputLabel>گروه‌مسئله</InputLabel>
+                  <InputLabel>صندوقچه</InputLabel>
                   <Select
                     onChange={(e) => setSelectedProblemGroupId(e.target.value)}
-                    label='گروه‌مسئله'>
+                    label='صندوقچه'>
                     {problemGroups?.map((problemGroup) => (
                       <MenuItem key={problemGroup.id} value={problemGroup.id}>
                         {problemGroup.title}

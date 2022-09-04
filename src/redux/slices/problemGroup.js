@@ -24,7 +24,7 @@ export const addProblemGroupAction = createAsyncThunkApi(
   problemGroupCRUDUrl,
   {
     defaultNotification: {
-      success: 'گروه‌مسئله با موفقیت اضافه شد!',
+      success: 'صندوقچه با موفقیت اضافه شد!',
       error: 'مشکلی وجود داشت. دوباره تلاش کنید.',
     },
   }
@@ -36,7 +36,7 @@ export const removeProblemGroupAction = createAsyncThunkApi(
   problemGroupCRUDUrl,
   {
     defaultNotification: {
-      success: 'گروه‌مسئله با موفقیت حذف شد!',
+      success: 'صندوقچه با موفقیت حذف شد!',
       error: 'مشکلی وجود داشت. دوباره تلاش کنید.',
     },
   }
@@ -48,7 +48,7 @@ export const editProblemGroupAction = createAsyncThunkApi(
   problemGroupCRUDUrl,
   {
     defaultNotification: {
-      success: 'گروه‌مسئله با موفقیت ویرایش شد!',
+      success: 'صندوقچه با موفقیت ویرایش شد!',
       error: 'مشکلی وجود داشت. دوباره تلاش کنید.',
     },
   }

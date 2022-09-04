@@ -89,8 +89,8 @@ export const copyProblemToGroupAction = createAsyncThunkApi(
   copyProblemToGroup,
   {
     defaultNotification: {
-      success: 'مسئله با موفقیت در گروه‌مسئله کپی شد!',
-      error: 'مشکلی در کپی‌کردن مسئله در گروه‌مسئله وجود داشت.',
+      success: 'مسئله با موفقیت در صندوقچه کپی شد!',
+      error: 'مشکلی در کپی‌کردن مسئله در صندوقچه وجود داشت.',
     },
   }
 );
