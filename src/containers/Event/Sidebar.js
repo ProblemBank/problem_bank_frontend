@@ -103,14 +103,12 @@ const Event = ({
                       padding: 0,
                     },
                     endAdornment:
-                      <Tooltip title='ایجاد' arrow>
-                        <IconButton
-                          size='large'
-                          onClick={submit}
-                          color='primary'>
-                          <AddCircleIcon />
-                        </IconButton>
-                      </Tooltip>
+                      <Button
+                        size='small'
+                        onClick={submit}
+                        color='primary'>
+                        {'ایجاد'}
+                      </Button>
                   }}
                   fullWidth
                   value={problemGroupName}

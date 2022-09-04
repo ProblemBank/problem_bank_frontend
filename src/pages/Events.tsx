@@ -7,39 +7,15 @@ import { useParams } from 'react-router-dom';
 import EventCard from '../components/Cards/Event';
 import JoinEvent from '../components/Dialog/JoinEvent';
 import {
-  getAllEventsAction,
+  getEventsAction,
 } from '../redux/slices/event';
 import Layout from '../components/templates/Layout';
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    width: '100%',
-    height: '100%',
-    padding: theme.spacing(2),
-  },
-  title: {
-    fontSize: 40,
-    fontWeight: 600,
-    textShadow: '1px 1px #dbd9d9',
-  },
-  subtitle: {
-    fontSize: 25,
-    fontWeight: 400,
-    textShadow: '1px 1px #dbd9d9',
-  },
-  listItem: {
-    fontSize: 20,
-    fontWeight: 300,
-    textShadow: '1px 1px #dbd9d9',
-  },
-}));
-
 const Events = ({
   getAllEvents,
-  allEvents,
+  events,
 }) => {
   const { eventId } = useParams();
-  const classes = useStyles();
   const [showJoinEventDialog, setShowEventDialog] = useState(false);
 
   useEffect(() => {
@@ -55,7 +31,7 @@ const Events = ({
   }, []);
 
   return (
-    <Layout>
+    <Layout backgroundImage=''>
       <Grid container spacing={4} justifyContent='center' alignItems='flex-start'>
         <Grid item xs={12}>
           <Typography variant="h1" align="center" gutterBottom>
@@ -63,7 +39,7 @@ const Events = ({
           </Typography>
         </Grid>
         <Grid container item xs={12} spacing={2}>
-          {allEvents?.map((event, index) => (
+          {events?.map((event, index) => (
             <Grid key={index} item xs={12} sm={4} md={3}>
               <EventCard {...event} />
             </Grid>
@@ -76,12 +52,12 @@ const Events = ({
 };
 
 const mapStateToProps = (state) => ({
-  allEvents: state.event.allEvents,
+  events: state.event.events,
 });
 
 export default connect(
   mapStateToProps,
   {
-    getAllEvents: getAllEventsAction,
+    getAllEvents: getEventsAction,
   }
 )(Events);

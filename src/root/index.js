@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import AllSubmittedProblems from '../containers/AllSubmittedAnswers';
 import CreateAccount from '../pages/CreateAccount';
 import Event from '../containers/Event';
-import Events from '../containers/Events';
+import Events from '../pages/Events';
 import Dashboard from '../pages/Dashboard';
 import Login from '../pages/Login';
 import Problem from '../containers/OneProblem';

@@ -19,7 +19,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import {
-  getAllEventsAction,
+  getEventsAction,
 } from '../../../redux/slices/event';
 import {
   addProblemToGroupAction,
@@ -151,7 +151,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  getAllEvents: getAllEventsAction,
+  getAllEvents: getEventsAction,
   copyProblemToGroup: copyProblemToGroupAction,
   addProblemToGroup: addProblemToGroupAction,
   addNotification: addNotificationAction,

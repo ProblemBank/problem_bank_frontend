@@ -9,7 +9,7 @@ import LogoutButton from './components/LogoutButton';
 const DashboardItems = () => {
   const logoButton = <LogoButton />;
   // todo: fix hard code
-  const events = <DashboardButton name={'کلاس‌ها'} to={'/events/'} />;
+  const events = <DashboardButton name={'همه کلاس‌ها'} to={'/events/'} />;
   const judgeAnswers = <DashboardButton disabled name={'تصحیح'} to={'/submitted_answer/'} />;
   const allProblems = <DashboardButton name={'مجموعه مسائل'} to={'/problem_set/1/'} />;
   const logoutButton = <LogoutButton />;
@@ -18,10 +18,10 @@ const DashboardItems = () => {
 
   return {
     desktopLeftItems: [logoutButton, Avatar],
-    desktopRightItems: [events, allProblems, judgeAnswers],
+    desktopRightItems: [events, allProblems],
     mobileLeftItems: [Avatar],
     mobileRightItems: [],
-    mobileMenuListItems: [events, allProblems, judgeAnswers, logoutButton],
+    mobileMenuListItems: [events, allProblems, logoutButton],
   };
 };
 

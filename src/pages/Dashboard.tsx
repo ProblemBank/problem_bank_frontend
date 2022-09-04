@@ -7,13 +7,13 @@ import { useParams } from 'react-router-dom';
 import EventCard from '../components/Cards/Event';
 import JoinEvent from '../components/Dialog/JoinEvent';
 import {
-  getAllEventsAction,
+  getEventsAction,
 } from '../redux/slices/event';
 import Layout from '../components/templates/Layout'
 
 const Events = ({
-  getAllEvents,
-  allEvents,
+  getEvents,
+  events,
 }) => {
   const { eventId } = useParams();
   const [showJoinEventDialog, setShowEventDialog] = useState(false);
@@ -27,7 +27,7 @@ const Events = ({
   }, [eventId])
 
   useEffect(() => {
-    getAllEvents({});
+    getEvents({ my_events: true });
   }, []);
 
   return (
@@ -35,11 +35,11 @@ const Events = ({
       <Grid container spacing={4} justifyContent='center' alignItems='flex-start'>
         <Grid item xs={12}>
           <Typography variant="h1" align="center" gutterBottom>
-            {'داشبورد من'}
+            {'«کلاس‌های من»'}
           </Typography>
         </Grid>
         <Grid container item xs={12} spacing={2}>
-          {allEvents?.map((event, index) => (
+          {events?.map((event, index) => (
             <Grid key={index} item xs={12} sm={4} md={3}>
               <EventCard {...event} />
             </Grid>
@@ -52,12 +52,12 @@ const Events = ({
 };
 
 const mapStateToProps = (state) => ({
-  allEvents: state.event.allEvents,
+  events: state.event.events,
 });
 
 export default connect(
   mapStateToProps,
   {
-    getAllEvents: getAllEventsAction,
+    getEvents: getEventsAction,
   }
 )(Events);

@@ -28,6 +28,6 @@ export const subtopicCRUDUrl = ({ subtopicId }) => subtopicId ? `problembank/sub
 export const sourceCRUDUrl = ({ sourceId }) => sourceId ? `problembank/source/${sourceId}/` : 'problembank/source/';
 
 // event:
-export const getAllEventUrl = 'problembank/get_all_events/';
+export const getEventsUrl = 'problembank/get_events/';
 export const getAllMyEventUrl = 'problembank/getevents/';
 export const joinEventUrl = ({ eventId }) => `problembank/add_to_event/${eventId}/`;

@@ -4,16 +4,16 @@ import { Apis } from '../apis';
 import { createAsyncThunkApi } from '../apis/cerateApiAsyncThunk';
 import {
   eventCRUDUrl,
-  getAllEventUrl,
+  getEventsUrl,
   getAllMyEventUrl,
   getOneEventUrl,
   joinEventUrl,
 } from '../constants/urls';
 
-export const getAllEventsAction = createAsyncThunkApi(
-  'event/getAllEventsAction',
-  Apis.GET,
-  getAllEventUrl,
+export const getEventsAction = createAsyncThunkApi(
+  'event/getEventsAction',
+  Apis.POST,
+  getEventsUrl,
   {
     defaultNotification: {
       error: 'مشکلی  در دریافت کلاس‌ها وجود داشت. دوباره تلاش کنید.',
@@ -83,7 +83,7 @@ export const joinEventAction = createAsyncThunkApi(
 
 const initialState = {
   isFetching: false,
-  allEvents: [],
+  events: [],
 };
 
 const isFetching = (state) => {
@@ -114,12 +114,12 @@ const eventSlice = createSlice({
     [addEventAction.fulfilled.toString()]: isNotFetching,
     [addEventAction.rejected.toString()]: isNotFetching,
 
-    [getAllEventsAction.pending.toString()]: isFetching,
-    [getAllEventsAction.fulfilled.toString()]: (state, { payload: { response } }) => {
-      state.allEvents = response.events;
+    [getEventsAction.pending.toString()]: isFetching,
+    [getEventsAction.fulfilled.toString()]: (state, { payload: { response } }) => {
+      state.events = response;
       state.isFetching = false;
     },
-    [getAllEventsAction.rejected.toString()]: isNotFetching,
+    [getEventsAction.rejected.toString()]: isNotFetching,
 
   },
 });
