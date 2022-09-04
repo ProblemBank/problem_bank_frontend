@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   ButtonGroup,
   Divider,
@@ -6,10 +7,11 @@ import {
   IconButton,
   Paper,
   TextField,
+  Tooltip,
   Typography,
 } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import ClearIcon from '@mui/icons-material/Clear';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -37,10 +39,11 @@ const Event = ({
 }) => {
   const classes = useStyles();
   const { eventId } = useParams();
-  const [problemGroupName, setProblemGroupName] = useState();
+  const [problemGroupName, setProblemGroupName] = useState(null);
   const [showAreYouSureDialog, setAreYouSureDialog] = useState(false);
 
-  const doAddProblemGroup = () => {
+  const submit = () => {
+    if (!problemGroupName) return;
     addProblemGroup({
       title: problemGroupName,
       event: eventId,
@@ -52,42 +55,11 @@ const Event = ({
     <>
       <Paper className={classes.paper}>
         <Grid container item direction="column" spacing={2}>
-          {event?.role != 'participant' &&
-            <>
-              <Grid item>
-                <Typography variant='h4'>
-                  {'گروه‌مسئله‌ی جدید'}
-                </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  onChange={(e) => {
-                    setProblemGroupName(e.target.value);
-                  }}
-                  fullWidth
-                  value={problemGroupName}
-                  label='عنوان'
-                  variant="outlined" />
-              </Grid>
-              <Grid item xs={12}>
-                <Button
-                  fullWidth
-                  onClick={doAddProblemGroup}
-                  color='primary'
-                  variant='outlined'>
-                  {'ایجاد'}
-                </Button>
-              </Grid>
-              <Grid item>
-                <Divider />
-              </Grid>
-            </>
-          }
           {event?.problem_groups.length > 0 &&
             <>
               <Grid item>
                 <Typography variant='h4'>
-                  {'همه‌ی گروه‌مسئله‌ها'}
+                  {'صندوقچه‌ها'}
                 </Typography>
               </Grid>
               <Grid item>
@@ -96,7 +68,7 @@ const Event = ({
                     <Button
                       key={index}
                       onClick={() => setTabIndex(index)}
-                      variant={tabIndex == index && 'contained'}>
+                      variant={tabIndex == index ? 'contained' : 'outlined'}>
                       {problemGroup.title}
                       {/* {(event?.role == 'mentor' || event?.role == 'owner') &&
                         <IconButton
@@ -114,6 +86,49 @@ const Event = ({
               </Grid>
             </>
           }
+          {event?.role != 'participant' &&
+            <>
+              <Grid item>
+                <Typography variant='h4'>
+                  {'ایجاد صندوقچه جدید'}
+                </Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  onChange={(e) => {
+                    setProblemGroupName(e.target.value);
+                  }}
+                  InputProps={{
+                    sx: {
+                      padding: 0,
+                    },
+                    endAdornment:
+                      <Tooltip title='ایجاد' arrow>
+                        <IconButton
+                          size='large'
+                          onClick={submit}
+                          color='primary'>
+                          <AddCircleIcon />
+                        </IconButton>
+                      </Tooltip>
+                  }}
+                  fullWidth
+                  value={problemGroupName}
+                  label='عنوان'
+                  variant="outlined" />
+              </Grid>
+              <Grid item>
+                <Divider />
+              </Grid>
+            </>
+          }
+          <>
+            <Grid item>
+              <Button variant='contained' fullWidth>
+                {'تنظیمات'}
+              </Button>
+            </Grid>
+          </>
         </Grid>
       </Paper>
       <AreYouSure
