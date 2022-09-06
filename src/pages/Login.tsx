@@ -123,7 +123,7 @@ const LoginPage: FC<LoginPagePropsType> = ({
                 <Grid item>
                   <Typography align="center">
                     {'حساب کاربری نداری؟ از '}
-                    <Link to="/create-account/">{'این‌جا'}</Link>
+                    <Link to="/create-account/">{'این جا'}</Link>
                     {' یک حساب برای خودت بساز.'}
                   </Typography>
                 </Grid>

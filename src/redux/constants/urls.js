@@ -7,13 +7,12 @@ export const refreshTokenUrl = 'accounts/login/refresh/';
 export const getAllSubmittedProblemsUrl = 'problembank/getsubmits/';
 export const getOneSubmittedProblemUrl = ({ submitId }) => `problembank/jugeablesubmit/${submitId}/`;
 
-// TODO: از وضعیتی که فقط مال اپ گیم۲ عه، خارجش کنم
-export const judgeOneSubmittedProblemUrl = ({ submitId, mark }) => `game2/judge/${submitId}/${mark}/`;
+export const judgeOneSubmittedProblemUrl = ({ submitId, mark }) => `problembank/judge/${submitId}/${mark}/`;
 
 // problem:
 export const problemCRUDUrl = ({ problemId }) => problemId ? `problembank/problem/${problemId}/` : 'problembank/problem/';
 export const eventCRUDUrl = ({ eventId }) => eventId ? `problembank/event/${eventId}/` : 'problembank/event/';
-export const getOneEventUrl = ({ eventId }) => `problembank/getevent/${eventId}/`;
+export const getOneEventUrl = ({ eventId }) => `problembank/event/${eventId}/`;
 export const problemGroupCRUDUrl = ({ problemGroupId }) => problemGroupId ? `problembank/problemgroup/${problemGroupId}/` : 'problembank/problemgroup/';
 
 export const addProblemToGroupUrl = ({ problemId, problemGroupId }) => `problembank/addproblemtogroup/${problemId}/${problemGroupId}/`;
@@ -28,6 +27,7 @@ export const subtopicCRUDUrl = ({ subtopicId }) => subtopicId ? `problembank/sub
 export const sourceCRUDUrl = ({ sourceId }) => sourceId ? `problembank/source/${sourceId}/` : 'problembank/source/';
 
 // event:
+export const eventUrl = 'problembank/event/';
 export const getEventsUrl = 'problembank/get_events/';
 export const getAllMyEventUrl = 'problembank/getevents/';
 export const joinEventUrl = ({ eventId }) => `problembank/add_to_event/${eventId}/`;

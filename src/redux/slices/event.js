@@ -8,7 +8,20 @@ import {
   getAllMyEventUrl,
   getOneEventUrl,
   joinEventUrl,
+  eventUrl,
 } from '../constants/urls';
+
+export const createEventAction = createAsyncThunkApi(
+  'event/createEventAction',
+  Apis.POST,
+  eventUrl,
+  {
+    defaultNotification: {
+      success: 'کلاس با موفقیت ساخته شد.',
+      error: 'مشکلی  در ایجاد کلاس وجود داشت.',
+    },
+  }
+);
 
 export const getEventsAction = createAsyncThunkApi(
   'event/getEventsAction',
@@ -88,6 +101,12 @@ const eventSlice = createSlice({
   name: 'event',
   initialState,
   extraReducers: {
+    [createEventAction.pending.toString()]: isFetching,
+    [createEventAction.fulfilled.toString()]: (state, { payload: { response } }) => {
+      state.events = [...state.events, response];
+      state.isFetching = false;
+    },
+    [createEventAction.rejected.toString()]: isNotFetching,
 
     [getOneEventAction.pending.toString()]: isFetching,
     [getOneEventAction.fulfilled.toString()]: (state, { payload: { response } }) => {

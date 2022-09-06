@@ -162,7 +162,7 @@ const CreateAccount: FC<createAccountPropsType> = ({
                 <Grid item>
                   <Typography align="center">
                     {' اگه از قبل حساب داشتی، می‌تونی از '}
-                    <Link to="/login">{'این‌جا'}</Link>
+                    <Link to="/login">{'این جا'}</Link>
                     {' وارد بشی.'}
                   </Typography>
                 </Grid>
