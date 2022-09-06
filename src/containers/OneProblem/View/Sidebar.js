@@ -36,13 +36,13 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Index = ({
-  getAllEvents,
+  getEvents,
   problem,
   copyProblemToGroup,
   addProblemToGroup,
   addNotification,
 
-  allEvents,
+  events,
 }) => {
   const classes = useStyles();
   const { problemId, mode } = useParams();
@@ -52,10 +52,10 @@ const Index = ({
   const { eventId, problemGroupId } = useParams();
 
   useEffect(() => {
-    getAllEvents({});
+    getEvents();
   }, []);
 
-  const accessibleEvents = allEvents.filter((event) => event.role == 'mentor' || event.role == 'owner')
+  const accessibleEvents = events.filter((event) => event.role == 'mentor' || event.role == 'owner')
 
   const doCopyProblemToGroup = () => {
     if (!selectedCopyType || !selectedProblemGroupId) {
@@ -99,7 +99,7 @@ const Index = ({
                 <FormControl variant="outlined" fullWidth>
                   <InputLabel>کلاس</InputLabel>
                   <Select
-                    onChange={(e) => setProblemGroups(allEvents.filter((event) => event.id == e.target.value)?.[0]?.problem_groups)}
+                    onChange={(e) => setProblemGroups(events.filter((event) => event.id == e.target.value)?.[0]?.problem_groups)}
                     label='کلاس'>
                     {accessibleEvents.map((event) => (
                       <MenuItem key={event.id} value={event.id}>
@@ -147,11 +147,11 @@ const Index = ({
 }
 
 const mapStateToProps = (state) => ({
-  allEvents: state.event.allEvents,
+  events: state.event.events,
 });
 
 export default connect(mapStateToProps, {
-  getAllEvents: getEventsAction,
+  getEvents: getEventsAction,
   copyProblemToGroup: copyProblemToGroupAction,
   addProblemToGroup: addProblemToGroupAction,
   addNotification: addNotificationAction,

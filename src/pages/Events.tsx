@@ -12,7 +12,7 @@ import {
 import Layout from '../components/templates/Layout';
 
 const Events = ({
-  getAllEvents,
+  getEvents,
   events,
 }) => {
   const { eventId } = useParams();
@@ -27,7 +27,7 @@ const Events = ({
   }, [eventId])
 
   useEffect(() => {
-    getAllEvents({});
+    getEvents();
   }, []);
 
   return (
@@ -58,6 +58,6 @@ const mapStateToProps = (state) => ({
 export default connect(
   mapStateToProps,
   {
-    getAllEvents: getEventsAction,
+    getEvents: getEventsAction,
   }
 )(Events);
