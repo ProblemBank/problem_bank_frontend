@@ -25,7 +25,7 @@ const Root = () => {
         <Route path="/event/:eventId/" element={<Event />} />
         <Route path="/submitted_answer/:submitId/" element={<CorrectSubmittedProblem />} />
         <Route path="/submitted_answer/" element={<AllSubmittedProblems />} />
-        <Route path="/problem_set/:page/" element={<ProblemSet />} />
+        <Route path="/problem-set/:page/" element={<ProblemSet />} />
 
         <Route path="/problem/:problemId/:mode/" element={<Problem />} />
         <Route path="/event/:eventId/problem-group/:problemGroupId/:mode/" element={<Problem />} />

@@ -53,7 +53,7 @@ const Index = ({
       ...properties,
       page: value,
     });
-    navigate(`/problem_set/${value}/`)
+    navigate(`/problem-set/${value}/`)
   }
 
   return (
