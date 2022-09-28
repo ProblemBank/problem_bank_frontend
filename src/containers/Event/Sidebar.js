@@ -1,45 +1,32 @@
 import {
-  Box,
   Button,
   ButtonGroup,
   Divider,
   Stack,
-  IconButton,
   Paper,
   TextField,
-  Tooltip,
   Typography,
+  IconButton,
 } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
-
+import ClearIcon from '@mui/icons-material/Clear';
 import AreYouSure from '../../components/Dialog/AreYouSure';
 import {
   addProblemGroupAction,
   editProblemGroupAction,
-  getProblemGroupAction,
   removeProblemGroupAction,
 } from '../../redux/slices/problemGroup';
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    padding: theme.spacing(3),
-  },
-}));
-
-const Event = ({
-  getProblemGroup,
+const Sidebar = ({
   addProblemGroup,
   removeProblemGroup,
 
   event, tabIndex, setTabIndex,
 }) => {
-  const classes = useStyles();
   const { eventId } = useParams();
-  const [problemGroupName, setProblemGroupName] = useState(null);
+  const [problemGroupName, setProblemGroupName] = useState('');
   const [showAreYouSureDialog, setAreYouSureDialog] = useState(false);
 
   const submit = () => {
@@ -66,16 +53,16 @@ const Event = ({
                   onClick={() => setTabIndex(index)}
                   variant={tabIndex == index ? 'contained' : 'outlined'}>
                   {problemGroup.title}
-                  {/* {(event?.role == 'mentor' || event?.role == 'owner') &&
-                        <IconButton
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setAreYouSureDialog(true);
-                          }}
-                          size='small'>
-                          <ClearIcon style={{ fontSize: 15, color: 'red' }} />
-                        </IconButton>
-                      } */}
+                  {event?.role == 'owner' &&
+                    <IconButton
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setAreYouSureDialog(true);
+                      }}
+                      size='small'>
+                      <ClearIcon style={{ fontSize: 15, color: 'red' }} />
+                    </IconButton>
+                  }
                 </Button>
               ))}
             </ButtonGroup>
@@ -127,12 +114,8 @@ const mapStateToProps = (state) => ({
   problemGroup: state.problemGroup.problemGroup,
 })
 
-export default connect(
-  mapStateToProps,
-  {
-    removeProblemGroup: removeProblemGroupAction,
-    editProblemGroup: editProblemGroupAction,
-    getProblemGroup: getProblemGroupAction,
-    addProblemGroup: addProblemGroupAction,
-  }
-)(Event);
+export default connect(mapStateToProps, {
+  removeProblemGroup: removeProblemGroupAction,
+  editProblemGroup: editProblemGroupAction,
+  addProblemGroup: addProblemGroupAction,
+})(Sidebar);
