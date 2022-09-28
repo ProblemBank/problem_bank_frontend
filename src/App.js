@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { CssBaseline, LinearProgress } from '@mui/material';
 import { ThemeProvider } from '@mui/material';
 import { CacheProvider } from "@emotion/react";
-import createEmotionCache from './configs/createEmotionCache'
+import createEmotionCache from './configs/CreateEmotionCache'
 import selectTheme from './configs/themes';
 import { SnackbarProvider } from 'notistack';
 import React, { useEffect } from 'react';
@@ -91,9 +91,6 @@ const mapStateToProps = (state) => ({
   isFetching: state.account.isFetching || state.problem.isFetching || state.event.isFetching || state.problemGroup.isFetching,
 });
 
-export default connect(
-  mapStateToProps,
-  {
-    initRedirect: initRedirectAction,
-  }
-)(App);
+export default connect(mapStateToProps, {
+  initRedirect: initRedirectAction,
+})(App);
