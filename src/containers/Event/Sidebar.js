@@ -3,7 +3,7 @@ import {
   Button,
   ButtonGroup,
   Divider,
-  Grid,
+  Stack,
   IconButton,
   Paper,
   TextField,
@@ -53,24 +53,20 @@ const Event = ({
 
   return (
     <>
-      <Paper className={classes.paper}>
-        <Grid container item direction="column" spacing={2}>
-          {event?.problem_groups.length > 0 &&
-            <>
-              <Grid item>
-                <Typography variant='h4'>
-                  {'صندوقچه‌ها'}
-                </Typography>
-              </Grid>
-              <Grid item>
-                <ButtonGroup disableFocusRipple orientation="vertical" color="primary" fullWidth>
-                  {event?.problem_groups?.map((problemGroup, index) => (
-                    <Button
-                      key={index}
-                      onClick={() => setTabIndex(index)}
-                      variant={tabIndex == index ? 'contained' : 'outlined'}>
-                      {problemGroup.title}
-                      {/* {(event?.role == 'mentor' || event?.role == 'owner') &&
+      <Stack spacing={2} component={Paper} sx={{ padding: 2 }}>
+        {event?.problem_groups.length > 0 &&
+          <>
+            <Typography variant='h4'>
+              {'صندوقچه‌ها'}
+            </Typography>
+            <ButtonGroup disableFocusRipple orientation="vertical" color="primary" fullWidth>
+              {event?.problem_groups?.map((problemGroup, index) => (
+                <Button
+                  key={index}
+                  onClick={() => setTabIndex(index)}
+                  variant={tabIndex == index ? 'contained' : 'outlined'}>
+                  {problemGroup.title}
+                  {/* {(event?.role == 'mentor' || event?.role == 'owner') &&
                         <IconButton
                           onClick={(e) => {
                             e.preventDefault();
@@ -80,55 +76,44 @@ const Event = ({
                           <ClearIcon style={{ fontSize: 15, color: 'red' }} />
                         </IconButton>
                       } */}
-                    </Button>
-                  ))}
-                </ButtonGroup>
-              </Grid>
-            </>
-          }
-          {event?.role != 'participant' &&
-            <>
-              <Grid item>
-                <Typography variant='h4'>
-                  {'ایجاد صندوقچه جدید'}
-                </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  onChange={(e) => {
-                    setProblemGroupName(e.target.value);
-                  }}
-                  InputProps={{
-                    sx: {
-                      padding: 0,
-                    },
-                    endAdornment:
-                      <Button
-                        size='small'
-                        onClick={submit}
-                        color='primary'>
-                        {'ایجاد'}
-                      </Button>
-                  }}
-                  fullWidth
-                  value={problemGroupName}
-                  label='عنوان'
-                  variant="outlined" />
-              </Grid>
-              <Grid item>
-                <Divider />
-              </Grid>
-            </>
-          }
-          <>
-            <Grid item>
-              <Button variant='contained' fullWidth>
-                {'تنظیمات'}
-              </Button>
-            </Grid>
+                </Button>
+              ))}
+            </ButtonGroup>
+            <Divider />
           </>
-        </Grid>
-      </Paper>
+        }
+        {event?.role != 'participant' &&
+          <>
+            <Typography variant='h4'>
+              {'صندوقچه جدید'}
+            </Typography>
+            <TextField
+              onChange={(e) => {
+                setProblemGroupName(e.target.value);
+              }}
+              InputProps={{
+                sx: {
+                  padding: 0,
+                },
+                endAdornment:
+                  <Button
+                    size='small'
+                    onClick={submit}
+                    color='primary'>
+                    {'ایجاد'}
+                  </Button>
+              }}
+              fullWidth
+              value={problemGroupName}
+              label='عنوان'
+              variant="outlined" />
+            <Divider />
+          </>
+        }
+        <Button variant='contained' fullWidth>
+          {'تنظیمات'}
+        </Button>
+      </Stack>
       <AreYouSure
         open={showAreYouSureDialog}
         handleClose={() => setAreYouSureDialog(!showAreYouSureDialog)}
