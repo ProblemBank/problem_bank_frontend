@@ -64,7 +64,7 @@ const Event = ({
                   </TableCell>
                   <TableCell align='center'>
                     {(event?.role == 'mentor' || event?.role == 'owner') &&
-                      <Button component={Link} to={`/event/${eventId}/problem-group/${problemGroupId}/problem/${problem.id}/mentor_view/`}>
+                      <Button component={Link} to={`/event/${eventId}/problem-group/${problemGroupId}/problem/${problem.id}/mentor-view/`}>
                         {problem.title}
                       </Button>
                     }

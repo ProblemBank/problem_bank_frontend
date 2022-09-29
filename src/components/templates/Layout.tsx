@@ -1,10 +1,14 @@
 import { Box, Container } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import React from 'react';
+import React, { FC } from 'react';
 
 import Appbar from '../Appbar/ResponsiveAppBar';
 
-const Layout = ({ backgroundImage, ...props }) => {
+type LayoutPropsType = {
+  backgroundImage?: string;
+  children: any;
+}
+
+const Layout: FC<LayoutPropsType> = ({ backgroundImage, children }) => {
   return (
     <>
       <Box
@@ -30,7 +34,7 @@ const Layout = ({ backgroundImage, ...props }) => {
           justifyContent: 'center',
         }}
         maxWidth='lg'>
-        {props.children}
+        {children}
       </Container>
     </>
   );

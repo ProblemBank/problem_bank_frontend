@@ -8,3 +8,13 @@ export type SubtopicType = {
   title: string;
   topic: number;
 }
+
+export type EventType = {
+  id: number;
+  image_link: string;
+  problem_groups: ProblemGroupType[];
+  role: 'owner' | 'mentor' | 'student';
+  title: string;
+}
+
+export type ProblemGroupType = any;
