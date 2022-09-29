@@ -24,7 +24,7 @@ import Layout from '../../components/templates/Layout';
 import AddProblemToProblemGroup from '../../components/molecules/AddProblemToProblemGroup';
 import ViewProperties from '../../components/molecules/ViewProperties';
 
-const Index = ({
+const ViewProblem = ({
   getProblem,
   problem,
 }) => {
@@ -34,6 +34,10 @@ const Index = ({
   useEffect(() => {
     getProblem({ problemId });
   }, [])
+
+  if (!problem) {
+    return <></>
+  }
 
   return (
     <Layout>
@@ -101,13 +105,10 @@ const mapStateToProps = (state) => ({
   isFetching: state.problem.isFetching,
 })
 
-export default connect(
-  mapStateToProps,
-  {
-    addProblemToGroup: addProblemToGroupAction,
-    getProblem: getOneProblemAction,
-    addProblem: addProblemAction,
-    editProblem: editProblemAction,
-    addNotification: addNotificationAction,
-  }
-)(Index)
+export default connect(mapStateToProps, {
+  addProblemToGroup: addProblemToGroupAction,
+  getProblem: getOneProblemAction,
+  addProblem: addProblemAction,
+  editProblem: editProblemAction,
+  addNotification: addNotificationAction,
+})(ViewProblem)
