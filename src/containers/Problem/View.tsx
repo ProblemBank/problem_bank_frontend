@@ -22,6 +22,7 @@ import {
 } from '../../redux/slices/problem';
 import Layout from '../../components/templates/Layout';
 import AddProblemToProblemGroup from '../../components/molecules/AddProblemToProblemGroup';
+import ViewProperties from '../../components/molecules/ViewProperties';
 
 const Index = ({
   getProblem,
@@ -45,7 +46,7 @@ const Index = ({
         <Grid item container spacing={4} alignItems='flex-start'>
           <Grid item xs={12} md={8}>
             <Stack spacing={2} component={Paper} sx={{ padding: 2 }}>
-              <Typography gutterBottom variant='h3' align='center'>صورت</Typography>
+              <Typography gutterBottom variant='h2' align='center'>صورت</Typography>
               <Divider />
               <TinyPreview
                 content={problem?.text}
@@ -55,7 +56,7 @@ const Index = ({
                   width: '100%',
                 }}
               />
-              <Typography gutterBottom variant='h3' align='center'>پاسخ</Typography>
+              <Typography gutterBottom variant='h2' align='center'>پاسخ</Typography>
               <Divider />
               <TinyPreview
                 content={problem?.answer?.text}
@@ -69,6 +70,7 @@ const Index = ({
           </Grid>
           <Grid item xs={12} md={4}>
             <Stack spacing={2} component={Paper} sx={{ padding: 2 }}>
+              <ViewProperties problem={problem} />
               {mode === 'mentor-view' &&
                 <Button component={Link} fullWidth
                   to={`/event/${eventId}/problem-group/${problemGroupId}/problem/${problemId}/edit/`}

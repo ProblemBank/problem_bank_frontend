@@ -9,10 +9,11 @@ import {
   getSubtopicsAction,
   getTopicsAction,
 } from '../../redux/slices/problem';
-import Topic from './Topic';
+import Topic from '../atoms/Topic';
 import { TopicType, SubtopicType } from '../../types/Models';
 
 type TopicBoxPropsType = {
+  mode?: 'view' | 'edit';
   getTopics: any;
   getSubtopics: any;
 
@@ -26,11 +27,11 @@ type TopicBoxPropsType = {
 const TopicBox: FC<TopicBoxPropsType> = ({
   getTopics,
   getSubtopics,
+  setProperties,
 
   topics,
   subtopics,
-
-  setProperties,
+  mode = 'edit',
   properties,
 }) => {
 
@@ -77,20 +78,27 @@ const TopicBox: FC<TopicBoxPropsType> = ({
     })
   }
 
+  const shownTopics = topics.filter(topic => mode == 'edit' || (mode == 'view' && properties.topics.includes(topic.id)))
+  const shownSubtopics = subtopics.filter((subtopic) =>
+    properties.topics.includes(subtopic.topic) &&
+    (mode == 'edit' || (mode == 'view' && properties.subtopics.includes(subtopic.id))))
+
   return (
     <Stack justifyContent='center' alignItems='stretch' spacing={2}>
       <Stack spacing={1}>
         <Typography gutterBottom variant='h3'>{'موضوعات'}</Typography>
         <Paper sx={{ padding: 2 }}>
-          {topics.map((topic) => (
-            <Topic key={topic.id} name={topic.title} selected={properties?.topics?.includes(topic.id)}
-              clickable={true}
-              onClick={() => handleClickTopic(topic.id)}
-            />
-          ))}
           {
-            topics.length == 0 &&
-            <Typography>موضوعی وجود ندارد</Typography>
+            shownTopics.length == 0
+              ? <Typography>موضوعی وجود ندارد</Typography>
+              : shownTopics.map(topic => (
+                <Topic
+                  key={topic.id} name={topic.title}
+                  selected={properties.topics.includes(topic.id)}
+                  clickable={mode === 'edit'}
+                  onClick={() => handleClickTopic(topic.id)}
+                />
+              ))
           }
         </Paper>
       </Stack>
@@ -98,16 +106,16 @@ const TopicBox: FC<TopicBoxPropsType> = ({
         <Typography gutterBottom variant='h3'>{'زیرموضوعات'}</Typography>
         <Paper sx={{ padding: 2 }}>
           {
-            subtopics.filter((subtopic) => properties?.topics?.includes(subtopic.topic)).length == 0 &&
-            <Typography>زیرموضوعی وجود ندارد</Typography>
-          }
-          {
-            subtopics.filter((subtopic) => properties.topics.includes(subtopic.topic)).map((subtopic) => (
-              <Topic key={subtopic.id} name={subtopic.title} selected={properties.subtopics.includes(subtopic.id)}
-                clickable={true}
-                onClick={() => handleClickSubtopic(subtopic.id)}
-              />
-            ))
+            shownSubtopics.length == 0
+              ? <Typography>زیرموضوعی وجود ندارد</Typography>
+              : shownSubtopics.map((subtopic) => (
+                <Topic
+                  key={subtopic.id} name={subtopic.title}
+                  selected={properties.subtopics.includes(subtopic.id)}
+                  clickable={mode === 'edit'}
+                  onClick={() => handleClickSubtopic(subtopic.id)}
+                />
+              ))
           }
         </Paper>
       </Stack>

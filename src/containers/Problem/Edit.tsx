@@ -33,8 +33,9 @@ import {
   removeProblemAction,
 } from '../../redux/slices/problem';
 import Layout from '../../components/templates/Layout';
-import TopicBox from '../../components/problem/TopicBox';
+import TopicBox from '../../components/molecules/TopicBox';
 import { ProblemPropsType } from '../../types/Models';
+import SetProperties from '../../components/molecules/SetProperties';
 
 const Index = ({
   addNotification,
@@ -242,62 +243,7 @@ const Index = ({
           </Grid>
           <Grid item container xs={12} md={4}>
             <Stack spacing={2} component={Paper} sx={{ padding: 2, width: '100%' }}>
-              <TextField
-                fullWidth variant='outlined'
-                label='عنوان'
-                name='title'
-                onChange={putData}
-                value={properties.title} />
-              {mode == 'add' &&
-                <FormControl variant="outlined" fullWidth>
-                  <InputLabel>نوع مسئله</InputLabel>
-                  <Select
-                    value={properties.problem_type}
-                    onChange={putData}
-                    name='problem_type'
-                    label='نوع مسئله'>
-                    <MenuItem value={'DescriptiveProblem'}>{'تشریحی'}</MenuItem>
-                    <MenuItem value={'ShortAnswerProblem'}>{'کوتاه‌پاسخ'}</MenuItem>
-                  </Select>
-                </FormControl >
-              }
-              <FormControl variant="outlined" fullWidth>
-                <InputLabel>پایه</InputLabel>
-                <Select
-                  value={properties.grade}
-                  onChange={putData}
-                  name='grade'
-                  label='پایه'
-                >
-                  <MenuItem value={'ElementarySchoolFirstHalf'}>{'اول تا سوم ابتدایی'}</MenuItem>
-                  <MenuItem value={'ElementarySchoolSecondHalf'}>{'چهارم تا ششم ابتدایی'}</MenuItem>
-                  <MenuItem value={'HighSchoolFirstHalf'}>{'متوسطه دوره اول'}</MenuItem>
-                  <MenuItem value={'HighSchoolSecondHalf'}>{'متوسطه دوره دوم'}</MenuItem>
-                </Select>
-              </FormControl >
-              <FormControl variant="outlined" fullWidth>
-                <InputLabel>سختی</InputLabel>
-                <Select
-                  value={properties.difficulty}
-                  onChange={putData}
-                  name='difficulty'
-                  label='سختی'
-                >
-                  <MenuItem value={'VeryEasy'}>{'بسیار‌آسان'}</MenuItem>
-                  <MenuItem value={'Easy'}>{'آسان'}</MenuItem>
-                  <MenuItem value={'Medium'}>{'متوسط'}</MenuItem>
-                  <MenuItem value={'Hard'}>{'سخت'}</MenuItem>
-                  <MenuItem value={'VeryHard'}>{'بسیارسخت'}</MenuItem>
-                </Select>
-              </FormControl >
-              <TopicBox properties={properties} setProperties={setProperties} />
-              {mode == 'edit' &&
-                <Button
-                  onClick={() => setAreYouSureDialog(true)}
-                  fullWidth variant='outlined' style={{ color: 'red' }}>
-                  {'حذف مسئله'}
-                </Button>
-              }
+              <SetProperties setProperties={setProperties} properties={properties} />
             </Stack>
           </Grid>
         </Grid>
