@@ -7,7 +7,7 @@ import Event from '../containers/Event';
 import Events from '../pages/Events';
 import Dashboard from '../pages/Dashboard';
 import Login from '../pages/Login';
-import Problem from '../containers/OneProblem';
+import Problem from '../containers/Problem';
 import CorrectSubmittedProblem from '../containers/OneSubmittedAnswer';
 import ProblemSet from '../containers/ProblemSet';
 import PrivateRoute from './PrivateRoute';
