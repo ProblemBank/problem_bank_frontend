@@ -34,13 +34,10 @@ import {
 } from '../../redux/slices/problem';
 import Layout from '../../components/templates/Layout';
 import TopicBox from '../../components/problem/TopicBox';
-
-
+import { ProblemPropsType } from '../../types/Models';
 
 const Index = ({
   addNotification,
-  getAllTopics,
-  getAllSubtopics,
   getProblem,
   addProblemToGroup,
   removeProblem,
@@ -48,28 +45,22 @@ const Index = ({
   addProblem,
   editProblem,
 
-  allTopics,
-  allSubtopics,
   problem,
-  isFetching,
 }) => {
   const { mode, problemId, problemGroupId, eventId } = useParams();
   const [showAreYouSureDialog, setAreYouSureDialog] = useState(false);
   const [isDialogOpen, setDialogStatus] = useState(false);
-  const [properties, setProperties] = useState({
+  const [properties, setProperties] = useState<ProblemPropsType>({
     answer: {
       text: '',
     },
-    problem_type: '',
+    problem_type: 'DescriptiveProblem',
     title: '',
     text: '',
-    grade: '',
-    difficulty: '',
-    is_checked: false,
-    source: '',
+    grade: 'HighSchoolFirstHalf',
+    difficulty: 'Medium',
     topics: [],
     subtopics: [],
-    author: 1,
     file: null,
   });
 
@@ -169,7 +160,7 @@ const Index = ({
         </Grid>
         <Grid item container spacing={2} alignItems='flex-start'>
           <Grid item xs={12} md={8}>
-            <Stack spacing={2} component={Paper} sx={{ padding: 2 }}>
+            <Stack spacing={2} component={Paper} sx={{ padding: 2, width: '100%' }}>
               <Typography gutterBottom variant='h2' align='center'>{'صورت'}</Typography>
 
               <TinyEditor
@@ -250,7 +241,7 @@ const Index = ({
             </Stack>
           </Grid>
           <Grid item container xs={12} md={4}>
-            <Stack spacing={2} component={Paper} sx={{ padding: 2 }}>
+            <Stack spacing={2} component={Paper} sx={{ padding: 2, width: '100%' }}>
               <TextField
                 fullWidth variant='outlined'
                 label='عنوان'
@@ -265,8 +256,8 @@ const Index = ({
                     onChange={putData}
                     name='problem_type'
                     label='نوع مسئله'>
-                    <MenuItem value={'ShortAnswerProblem'}>{'کوتاه‌پاسخ'}</MenuItem>
                     <MenuItem value={'DescriptiveProblem'}>{'تشریحی'}</MenuItem>
+                    <MenuItem value={'ShortAnswerProblem'}>{'کوتاه‌پاسخ'}</MenuItem>
                   </Select>
                 </FormControl >
               }
