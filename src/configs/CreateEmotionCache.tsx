@@ -1,9 +1,9 @@
 import createCache from '@emotion/cache';
 import rtlPlugin from 'stylis-plugin-rtl';
 import { prefixer } from 'stylis';
-import { directionType } from '../types/global';
+import { DirectionType } from '../types/Global';
 
-const createEmotionCache = (direction: directionType) => {
+const createEmotionCache = (direction: DirectionType) => {
   if (direction === 'rtl') {
     return createCache({ key: 'muirtl', stylisPlugins: [prefixer, rtlPlugin] });
   } else {

@@ -16,13 +16,11 @@ import {
   CloudUpload as CloudUploadIcon,
 } from '@mui/icons-material';
 import ClearIcon from '@mui/icons-material/Clear';
-import makeStyles from '@mui/styles/makeStyles';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import AreYouSure from '../../components/Dialog/AreYouSure';
-import PropertiesBox from '../../components/problem/PropertiesBox';
 import TinyEditor from '../../components/tiny_editor/react_tiny/TinyEditorComponent';
 import {
   addNotificationAction,
@@ -35,28 +33,9 @@ import {
   removeProblemAction,
 } from '../../redux/slices/problem';
 import Layout from '../../components/templates/Layout';
+import TopicBox from '../../components/problem/TopicBox';
 
-const useStyles = makeStyles((theme) => ({
-  centerItems: {
-    paddingTop: theme.spacing(2),
-    paddingRight: theme.spacing(2),
-    minHeight: '100vh',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  paper: {
-    padding: theme.spacing(2),
-    width: '100%',
-  },
-  textArea: {
-    width: '100%',
-    resize: 'vertical',
-    borderRadius: '10px',
-    minHeight: '100px',
-    padding: theme.spacing(1),
-  }
-}))
+
 
 const Index = ({
   addNotification,
@@ -74,10 +53,9 @@ const Index = ({
   problem,
   isFetching,
 }) => {
-  const classes = useStyles();
   const { mode, problemId, problemGroupId, eventId } = useParams();
   const [showAreYouSureDialog, setAreYouSureDialog] = useState(false);
-
+  const [isDialogOpen, setDialogStatus] = useState(false);
   const [properties, setProperties] = useState({
     answer: {
       text: '',
@@ -94,10 +72,8 @@ const Index = ({
     author: 1,
     file: null,
   });
-  const [isDialogOpen, setDialogStatus] = useState(false);
 
   useEffect(() => {
-    // getAllSubjects({ gameId });
     if (mode == 'edit') {
       getProblem({ problemId });
     }
@@ -137,7 +113,7 @@ const Index = ({
     }
   }
 
-  const handleAddProblem = () => {
+  const submitProblem = () => {
     const { text, title, difficulty, problem_type, grade } = properties;
     if (!text || !title || !difficulty || !problem_type || !grade) {
       addNotification({
@@ -193,177 +169,152 @@ const Index = ({
         </Grid>
         <Grid item container spacing={2} alignItems='flex-start'>
           <Grid item xs={12} md={8}>
-            <Paper className={classes.paper}>
-              <Grid container spacing={2} justifyContent='flex-start'>
-                <Grid item xs={12}>
-                  <Typography gutterBottom variant='h3' align='center'>صورت</Typography>
-                </Grid>
-                <Grid item xs={12}>
-                  <TinyEditor
-                    content={properties.text}
-                    onChange={(text) => {
-                      setProperties({
-                        ...properties,
-                        text,
-                      })
-                    }} />
-                </Grid>
-                <Grid item>
-                  <Stack direction='row' spacing={1}>
-                    <Button
-                      disabled
-                      component="label"
-                      htmlFor={'upload-file-button'}
-                      variant="contained"
-                      color="primary"
-                      size="small"
-                      startIcon={<CloudUploadIcon />}
-                      sx={{ whiteSpace: 'nowrap' }}>
-                      {'بارگذاری فایل'}
-                    </Button>
-                    <input
-                      accept="application/pdf,image/*"
-                      style={{ display: 'none' }}
-                      id={'upload-file-button'}
-                      type="file"
-                      onChange={changeFile}
-                    />
-                    {properties?.file &&
-                      <Button
-                        size="small"
-                        variant='outlined'
-                        sx={{
-                          whiteSpace: 'nowrap',
-                        }}
-                        endIcon={
-                          <IconButton size='small' onClick={clearFile}>
-                            <ClearIcon sx={{ fontSize: 14 }} />
-                          </IconButton>
-                        }>
-                        {properties.file.name ? properties.file.name.substring(0, 30) : 'آخرین فایل ارسالی'}
-                      </Button>
-                    }
-                  </Stack>
+            <Stack spacing={2} component={Paper} sx={{ padding: 2 }}>
+              <Typography gutterBottom variant='h2' align='center'>{'صورت'}</Typography>
 
-                </Grid>
-                <Grid item xs={12}>
-                  <Typography gutterBottom variant='h3' align='center'>پاسخ</Typography>
-                </Grid>
-                <Grid item xs={12}>
-                  {!properties.problem_type &&
-                    <Typography align='center'>
-                      {'برای ثبت پاسخ، لطفاً ابتدا نوع مسئله را انتخاب کنید.'}
-                    </Typography>
-                  }
-                  {properties.problem_type == 'ShortAnswerProblem' &&
-                    <TextField
-                      fullWidth
-                      variant='outlined'
-                      label='پاسخ'
-                      name='answer'
-                      onChange={putData}
-                      value={properties.answer?.text} />
-                  }
-                  {properties.problem_type == 'DescriptiveProblem' &&
-                    <TinyEditor
-                      content={properties.answer.text}
-                      onChange={(text) => {
-                        setProperties({
-                          ...properties,
-                          answer: {
-                            ...properties.answer,
-                            text,
-                          }
-                        })
-                      }} />
-                  }
-                </Grid>
-                <Grid item xs={12}>
-                  <Button fullWidth variant='contained' color='primary' onClick={() => setDialogStatus(true)}>ذخیره</Button>
-                </Grid>
-              </Grid>
-            </Paper>
+              <TinyEditor
+                content={properties.text}
+                onChange={(text) => {
+                  setProperties({
+                    ...properties,
+                    text,
+                  })
+                }} />
+
+              <Stack direction='row' spacing={1}>
+                <Button
+                  disabled
+                  component="label"
+                  htmlFor={'upload-file-button'}
+                  variant="contained"
+                  color="primary"
+                  size="small"
+                  startIcon={<CloudUploadIcon />}
+                  sx={{ whiteSpace: 'nowrap' }}>
+                  {'بارگذاری فایل'}
+                </Button>
+                <input
+                  accept="application/pdf,image/*"
+                  style={{ display: 'none' }}
+                  id={'upload-file-button'}
+                  type="file"
+                  onChange={changeFile}
+                />
+                {properties?.file &&
+                  <Button
+                    size="small"
+                    variant='outlined'
+                    sx={{
+                      whiteSpace: 'nowrap',
+                    }}
+                    endIcon={
+                      <IconButton size='small' onClick={clearFile}>
+                        <ClearIcon sx={{ fontSize: 14 }} />
+                      </IconButton>
+                    }>
+                    {properties.file.name ? properties.file.name.substring(0, 30) : 'آخرین فایل ارسالی'}
+                  </Button>
+                }
+              </Stack>
+
+              <Typography gutterBottom variant='h2' align='center'>{'پاسخ'}</Typography>
+
+              {!properties.problem_type &&
+                <Typography align='center'>
+                  {'برای ثبت پاسخ، لطفاً ابتدا نوع مسئله را انتخاب کنید.'}
+                </Typography>
+              }
+              {properties.problem_type == 'ShortAnswerProblem' &&
+                <TextField
+                  fullWidth
+                  variant='outlined'
+                  label='پاسخ'
+                  name='answer'
+                  onChange={putData}
+                  value={properties.answer.text} />
+              }
+              {properties.problem_type == 'DescriptiveProblem' &&
+                <TinyEditor
+                  content={properties.answer.text}
+                  onChange={(text) => {
+                    setProperties({
+                      ...properties,
+                      answer: {
+                        ...properties.answer,
+                        text,
+                      }
+                    })
+                  }} />
+              }
+              <Button fullWidth variant='contained' color='primary' onClick={() => setDialogStatus(true)}>ذخیره</Button>
+            </Stack>
           </Grid>
           <Grid item container xs={12} md={4}>
-            <Paper className={classes.paper}>
-              <Grid container direction='column' spacing={2} >
-                <Grid item>
-                  <TextField
-                    fullWidth variant='outlined'
-                    label='عنوان'
-                    name='title'
+            <Stack spacing={2} component={Paper} sx={{ padding: 2 }}>
+              <TextField
+                fullWidth variant='outlined'
+                label='عنوان'
+                name='title'
+                onChange={putData}
+                value={properties.title} />
+              {mode == 'add' &&
+                <FormControl variant="outlined" fullWidth>
+                  <InputLabel>نوع مسئله</InputLabel>
+                  <Select
+                    value={properties.problem_type}
                     onChange={putData}
-                    value={properties.title} />
-                </Grid>
-                {mode == 'add' &&
-                  <Grid item>
-                    <FormControl variant="outlined" fullWidth>
-                      <InputLabel>نوع مسئله</InputLabel>
-                      <Select
-                        value={properties.problem_type}
-                        onChange={putData}
-                        name='problem_type'
-                        label='نوع مسئله'>
-                        <MenuItem value={'ShortAnswerProblem'}>{'کوتاه‌پاسخ'}</MenuItem>
-                        <MenuItem value={'DescriptiveProblem'}>{'تشریحی'}</MenuItem>
-                      </Select>
-                    </FormControl >
-                  </Grid>
-                }
-                <Grid item>
-                  <FormControl variant="outlined" fullWidth>
-                    <InputLabel>پایه</InputLabel>
-                    <Select
-                      value={properties.grade}
-                      onChange={putData}
-                      name='grade'
-                      label='پایه'
-                    >
-                      <MenuItem value={'ElementarySchoolFirstHalf'}>{'اول تا سوم ابتدایی'}</MenuItem>
-                      <MenuItem value={'ElementarySchoolSecondHalf'}>{'چهارم تا ششم ابتدایی'}</MenuItem>
-                      <MenuItem value={'HighSchoolFirstHalf'}>{'متوسطه دوره اول'}</MenuItem>
-                      <MenuItem value={'HighSchoolSecondHalf'}>{'متوسطه دوره دوم'}</MenuItem>
-                    </Select>
-                  </FormControl >
-                </Grid>
-                <Grid item>
-                  <FormControl variant="outlined" fullWidth>
-                    <InputLabel>سختی</InputLabel>
-                    <Select
-                      value={properties.difficulty}
-                      onChange={putData}
-                      name='difficulty'
-                      label='سختی'
-                    >
-                      <MenuItem value={'VeryEasy'}>{'بسیار‌آسان'}</MenuItem>
-                      <MenuItem value={'Easy'}>{'آسان'}</MenuItem>
-                      <MenuItem value={'Medium'}>{'متوسط'}</MenuItem>
-                      <MenuItem value={'Hard'}>{'سخت'}</MenuItem>
-                      <MenuItem value={'VeryHard'}>{'بسیارسخت'}</MenuItem>
-                    </Select>
-                  </FormControl >
-                </Grid>
-                <Grid item>
-                  <PropertiesBox properties={properties} setProperties={setProperties} />
-                </Grid>
-                {mode == 'edit' &&
-                  <Grid item>
-                    <Button
-                      onClick={() => setAreYouSureDialog(true)}
-                      fullWidth variant='outlined' style={{ color: 'red' }}>
-                      {'حذف مسئله'}
-                    </Button>
-                  </Grid>
-                }
-              </Grid>
-            </Paper>
+                    name='problem_type'
+                    label='نوع مسئله'>
+                    <MenuItem value={'ShortAnswerProblem'}>{'کوتاه‌پاسخ'}</MenuItem>
+                    <MenuItem value={'DescriptiveProblem'}>{'تشریحی'}</MenuItem>
+                  </Select>
+                </FormControl >
+              }
+              <FormControl variant="outlined" fullWidth>
+                <InputLabel>پایه</InputLabel>
+                <Select
+                  value={properties.grade}
+                  onChange={putData}
+                  name='grade'
+                  label='پایه'
+                >
+                  <MenuItem value={'ElementarySchoolFirstHalf'}>{'اول تا سوم ابتدایی'}</MenuItem>
+                  <MenuItem value={'ElementarySchoolSecondHalf'}>{'چهارم تا ششم ابتدایی'}</MenuItem>
+                  <MenuItem value={'HighSchoolFirstHalf'}>{'متوسطه دوره اول'}</MenuItem>
+                  <MenuItem value={'HighSchoolSecondHalf'}>{'متوسطه دوره دوم'}</MenuItem>
+                </Select>
+              </FormControl >
+              <FormControl variant="outlined" fullWidth>
+                <InputLabel>سختی</InputLabel>
+                <Select
+                  value={properties.difficulty}
+                  onChange={putData}
+                  name='difficulty'
+                  label='سختی'
+                >
+                  <MenuItem value={'VeryEasy'}>{'بسیار‌آسان'}</MenuItem>
+                  <MenuItem value={'Easy'}>{'آسان'}</MenuItem>
+                  <MenuItem value={'Medium'}>{'متوسط'}</MenuItem>
+                  <MenuItem value={'Hard'}>{'سخت'}</MenuItem>
+                  <MenuItem value={'VeryHard'}>{'بسیارسخت'}</MenuItem>
+                </Select>
+              </FormControl >
+              <TopicBox properties={properties} setProperties={setProperties} />
+              {mode == 'edit' &&
+                <Button
+                  onClick={() => setAreYouSureDialog(true)}
+                  fullWidth variant='outlined' style={{ color: 'red' }}>
+                  {'حذف مسئله'}
+                </Button>
+              }
+            </Stack>
           </Grid>
         </Grid>
       </Grid >
       <AreYouSure
         open={isDialogOpen}
         handleClose={() => { setDialogStatus(!isDialogOpen) }}
-        callBackFunction={handleAddProblem}
+        callBackFunction={submitProblem}
       />
       <AreYouSure
         open={showAreYouSureDialog}

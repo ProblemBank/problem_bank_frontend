@@ -95,30 +95,30 @@ export const copyProblemToGroupAction = createAsyncThunkApi(
   }
 );
 
-export const getAllTopicsAction = createAsyncThunkApi(
-  'problem/getAllTopicsAction',
+export const getTopicsAction = createAsyncThunkApi(
+  'problem/getTopicsAction',
   Apis.GET,
   topicCRUDUrl,
   {
     defaultNotification: {
-      error: 'مشکلی در دریافت همه‌ی موضوعات وجود داشت. دوباره تلاش کنید.',
+      error: 'مشکلی در دریافت موضوعات وجود داشت.',
     },
   }
 );
 
-export const getAllSubtopicsAction = createAsyncThunkApi(
-  'problem/getAllSubtopicsAction',
+export const getSubtopicsAction = createAsyncThunkApi(
+  'problem/getSubtopicsAction',
   Apis.GET,
   subtopicCRUDUrl,
   {
     defaultNotification: {
-      error: 'مشکلی در دریافت همه‌ی زیرموضوعات وجود داشت. دوباره تلاش کنید.',
+      error: 'مشکلی در دریافت زیرموضوعات وجود داشت.',
     },
   }
 );
 
-export const getAllSourcesAction = createAsyncThunkApi(
-  'problem/getAllSourcesAction',
+export const getSourcesAction = createAsyncThunkApi(
+  'problem/getSourcesAction',
   Apis.GET,
   sourceCRUDUrl,
   {
@@ -140,13 +140,6 @@ export const submitAnswerAction = createAsyncThunkApi(
   }
 );
 
-
-
-const initialState = {
-  isFetching: false,
-  problems: [],
-};
-
 const isFetching = (state) => {
   state.isFetching = true;
 };
@@ -157,7 +150,12 @@ const isNotFetching = (state) => {
 
 const eventSlice = createSlice({
   name: 'problem',
-  initialState,
+  initialState: {
+    isFetching: false,
+    topics: [],
+    subtopics: [],
+    problems: [],
+  },
   extraReducers: {
 
     [getOneProblemAction.pending.toString()]: isFetching,
@@ -200,26 +198,26 @@ const eventSlice = createSlice({
     },
     [getProblemsByFilterAction.rejected.toString()]: isNotFetching,
 
-    [getAllTopicsAction.pending.toString()]: isFetching,
-    [getAllTopicsAction.fulfilled.toString()]: (state, { payload: { response } }) => {
-      state.allTopics = response;
+    [getTopicsAction.pending.toString()]: isFetching,
+    [getTopicsAction.fulfilled.toString()]: (state, { payload: { response } }) => {
+      state.topics = response;
       state.isFetching = false;
     },
-    [getAllTopicsAction.rejected.toString()]: isNotFetching,
+    [getTopicsAction.rejected.toString()]: isNotFetching,
 
-    [getAllSubtopicsAction.pending.toString()]: isFetching,
-    [getAllSubtopicsAction.fulfilled.toString()]: (state, { payload: { response } }) => {
-      state.allSubtopics = response;
+    [getSubtopicsAction.pending.toString()]: isFetching,
+    [getSubtopicsAction.fulfilled.toString()]: (state, { payload: { response } }) => {
+      state.subtopics = response;
       state.isFetching = false;
     },
-    [getAllSubtopicsAction.rejected.toString()]: isNotFetching,
+    [getSubtopicsAction.rejected.toString()]: isNotFetching,
 
-    [getAllSourcesAction.pending.toString()]: isFetching,
-    [getAllSourcesAction.fulfilled.toString()]: (state, { payload: { response } }) => {
-      state.allResources = response;
+    [getSourcesAction.pending.toString()]: isFetching,
+    [getSourcesAction.fulfilled.toString()]: (state, { payload: { response } }) => {
+      state.resources = response;
       state.isFetching = false;
     },
-    [getAllSourcesAction.rejected.toString()]: isNotFetching,
+    [getSourcesAction.rejected.toString()]: isNotFetching,
 
     [submitAnswerAction.pending.toString()]: isFetching,
     [submitAnswerAction.fulfilled.toString()]: (state, { payload: { response } }) => {
