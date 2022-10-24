@@ -18,14 +18,15 @@ const Root = () => {
       <Route path="/create-account/" element={<CreateAccount />} />
       <Route path="/login/" element={<Login />} />
       <Route path="/" element={<Login />} />
+      <Route path="/problem-set/:page/" element={<ProblemSet />} />
+
       <Route path="/" element={<PrivateRoute />}>
         <Route path="/dashboard/" element={<Dashboard />} />
         <Route path="/events/" element={<Events />} />
 
         <Route path="/event/:eventId/" element={<Event />} />
-        <Route path="/submitted_answer/:submitId/" element={<CorrectSubmittedProblem />} />
-        <Route path="/submitted_answer/" element={<AllSubmittedProblems />} />
-        <Route path="/problem-set/:page/" element={<ProblemSet />} />
+        <Route path="/submitted-answers/:submitId/" element={<CorrectSubmittedProblem />} />
+        <Route path="/submitted-answers/" element={<AllSubmittedProblems />} />
 
         <Route path="/problem/:problemId/:mode/" element={<Problem />} />
         <Route path="/event/:eventId/problem-group/:problemGroupId/:mode/" element={<Problem />} />
