@@ -41,7 +41,7 @@ const MyEvents = ({
       </Stack>
 
       <Stack>
-        <Grid container spacing={2} justifyContent='center'>
+        <Grid container spacing={2}>
           {events.length > 0 ?
             events.map((event, index) => (
               <Grid key={index} item xs={12} sm={4} md={3}>
