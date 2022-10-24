@@ -1,11 +1,9 @@
 import { Grid, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import EventCard from '../components/Cards/Event';
-import JoinEvent from '../components/Dialog/JoinEvent';
+import EventCard from '../components/Cards/EventCard';
 import {
   getEventsAction,
 } from '../redux/slices/event';
@@ -46,7 +44,6 @@ const Events = ({
           ))}
         </Grid>
       </Grid >
-      <JoinEvent eventId={eventId} open={showJoinEventDialog} />
     </Layout>
   );
 };

@@ -82,8 +82,6 @@ export const joinEventAction = createAsyncThunkApi(
   }
 );
 
-
-
 const initialState = {
   isFetching: false,
   events: [],
@@ -129,7 +127,6 @@ const eventSlice = createSlice({
       state.isFetching = false;
     },
     [getEventsAction.rejected.toString()]: isNotFetching,
-
   },
 });
 

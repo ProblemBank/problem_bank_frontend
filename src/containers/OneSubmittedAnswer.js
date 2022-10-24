@@ -127,7 +127,7 @@ const Index = ({
               <Button
                 onClick={() => {
                   judgeOneSubmittedProblem({ submitId, mark: 0 }).then(() => {
-                    navigate('/submitted_answer/');
+                    navigate('/submitted-answers/');
                   })
                 }}>
                 {'غلط'}
@@ -135,7 +135,7 @@ const Index = ({
               <Button
                 onClick={() => {
                   judgeOneSubmittedProblem({ submitId, mark: 1 }).then(() => {
-                    navigate('/submitted_answer/')
+                    navigate('/submitted-answers/')
                   })
                 }}>
                 {'درست'}

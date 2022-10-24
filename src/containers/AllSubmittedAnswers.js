@@ -73,7 +73,7 @@ const Index = ({
                       variant='outlined'
                       component={Link}
                       disabled={problem.status == 'Judged'}
-                      to={`/submitted_answer/${problem.id}/`}>
+                      to={`/submitted-answers/${problem.id}/`}>
                       {toPersianNumber(problem.id)}
                     </Button>
                   </TableCell>

@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
-import EventCard from '../../components/Cards/Event';
+import EventCard from '../../components/Cards/EventCard';
 import CreateEventDialog from '../../components/organisms/dialogs/CreateEventDialog';
 import {
   getEventsAction,

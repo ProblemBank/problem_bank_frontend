@@ -10,17 +10,17 @@ const DashboardItems = () => {
   const logoButton = <LogoButton />;
   // todo: fix hard code
   const events = <DashboardButton name={'همه کلاس‌ها'} to={'/events/'} />;
-  const judgeAnswers = <DashboardButton disabled name={'تصحیح'} to={'/submitted_answer/'} />;
+  const judgeAnswers = <DashboardButton disabled name={'تصحیح'} to={'/submitted-answers/'} />;
   const allProblems = <DashboardButton name={'مجموعه مسائل'} to={'/problem-set/1/'} />;
   const logoutButton = <LogoutButton />;
   const Avatar = <AvatarComponent />;
   const backButton = <BackButton />;
 
   return {
+    desktopRightItems: [logoButton, events, allProblems],
     desktopLeftItems: [logoutButton, Avatar],
-    desktopRightItems: [events, allProblems],
+    mobileRightItems: [logoButton],
     mobileLeftItems: [Avatar],
-    mobileRightItems: [],
     mobileMenuListItems: [events, allProblems, logoutButton],
   };
 };

@@ -8,8 +8,8 @@ import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
-import EventCard from '../../components/Cards/Event';
-import JoinEvent from '../../components/Dialog/JoinEvent';
+import EventCard from '../../components/Cards/EventCard';
+import JoinEvent from '../../components/Dialog/JoinEventDialog';
 import {
   getEventsAction,
 } from '../../redux/slices/event';
