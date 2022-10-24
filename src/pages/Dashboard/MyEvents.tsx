@@ -40,18 +40,20 @@ const MyEvents = ({
         </Tooltip>
       </Stack>
 
-      <Grid container spacing={2}>
-        {events.length > 0 ?
-          events.map((event, index) => (
-            <Grid key={index} item xs={12} sm={4} md={3}>
-              <EventCard {...event} />
-            </Grid>
-          )) :
-          <Typography align='center' variant='h4'>
-            {'کلاسی وجود ندارد!'}
-          </Typography>
-        }
-      </Grid>
+      <Stack>
+        <Grid container spacing={2} justifyContent='center'>
+          {events.length > 0 ?
+            events.map((event, index) => (
+              <Grid key={index} item xs={12} sm={4} md={3}>
+                <EventCard {...event} />
+              </Grid>
+            )) :
+            <Typography align='center' variant='h4'>
+              {'کلاسی وجود ندارد!'}
+            </Typography>
+          }
+        </Grid>
+      </Stack>
       <CreateEventDialog
         open={showCreateEventDialog}
         handleClose={() => setShowCreateEventDialog(state => !state)} />
