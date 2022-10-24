@@ -15,7 +15,7 @@ import makeStyles from '@mui/styles/makeStyles';
 import { Menu as MenuIcon } from '@mui/icons-material';
 import clsx from 'clsx';
 import React, { useState } from 'react';
-import useWidth from '../../../utils/UseWidth';
+import useWidth from '../../utils/UseWidth';
 import HideOnScroll from './components/HideOnScroll';
 import modes from './modes';
 

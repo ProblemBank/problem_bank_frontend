@@ -1,7 +1,7 @@
 import { Box, Container } from '@mui/material';
 import React, { FC } from 'react';
 
-import Appbar from '../Appbar/ResponsiveAppBar';
+import Appbar from '../AppBar';
 
 type LayoutPropsType = {
   backgroundImage?: string;
