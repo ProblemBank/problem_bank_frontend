@@ -4,6 +4,7 @@ import {
   Grid,
   IconButton,
   Paper,
+  Stack,
   Table,
   TableBody,
   TableCell,
@@ -49,7 +50,7 @@ const ProblemsList: FC<ProblemsListPropsType> = ({
 
   return <>
     <Paper sx={{ padding: 2 }}>
-      <Grid container item direction="column" spacing={3}>
+      <Stack spacing={3}>
         <TableContainer>
           <Table>
             <TableHead>
@@ -98,18 +99,16 @@ const ProblemsList: FC<ProblemsListPropsType> = ({
           </Table>
         </TableContainer>
         {(problemGroup?.problems.length > 0 && role != 'participant') &&
-          <Grid item container justifyContent='center'>
-            <Button
-              sx={{ mt: 1, }}
-              variant='contained'
-              color='primary'
-              component={Link}
-              to={`/event/${eventId}/problem-group/${problemGroupId}/add/`}>
-              {'افزودن مسئله‌ی جدید'}
-            </Button>
-          </Grid>
+          <Button
+            sx={{ mt: 1, }}
+            variant='contained'
+            color='primary'
+            component={Link}
+            to={`/event/${eventId}/problem-group/${problemGroupId}/add/`}>
+            {'افزودن مسئله‌ی جدید'}
+          </Button>
         }
-      </Grid>
+      </Stack>
     </Paper>
     <AreYouSure
       open={showAreYouSureDialog}
@@ -120,7 +119,7 @@ const ProblemsList: FC<ProblemsListPropsType> = ({
           problemGroupId,
         })
       }} />
-  </ >;
+  </>
 };
 
 const mapStateToProps = (state, ownProps) => ({
