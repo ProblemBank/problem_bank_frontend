@@ -16,29 +16,9 @@ import {
 import Layout from '../../components/templates/Layout';
 import MyEvents from './MyEvents';
 
-const Events = ({
-  getEvents,
-  events,
+const Dashboard = ({
+
 }) => {
-  const { eventId } = useParams();
-  const [showJoinEventDialog, setShowEventDialog] = useState(false);
-
-  useEffect(() => {
-    if (eventId) {
-      setShowEventDialog(true);
-    } else {
-      setShowEventDialog(false);
-    }
-  }, [eventId])
-
-  useEffect(() => {
-    getEvents({ my_events: true });
-  }, []);
-
-  const createEvent = () => {
-
-  }
-
   return (
     <Layout backgroundImage=''>
       <MyEvents />
@@ -50,9 +30,6 @@ const mapStateToProps = (state) => ({
   events: state.event.events,
 });
 
-export default connect(
-  mapStateToProps,
-  {
-    getEvents: getEventsAction,
-  }
-)(Events);
+export default connect(mapStateToProps, {
+  getEvents: getEventsAction,
+})(Dashboard);
