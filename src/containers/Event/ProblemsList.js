@@ -94,15 +94,14 @@ const Event = ({
         </TableContainer>
         {(event?.problem_groups?.length > 0 && event.role != 'participant') &&
           <Grid item container justifyContent='center'>
-            <Box mt={1}>
-              <Button
-                variant='contained'
-                color='primary'
-                component={Link}
-                to={`/event/${eventId}/problem-group/${problemGroupId}/add/`}>
-                {'افزودن مسئله‌ی جدید'}
-              </Button>
-            </Box>
+            <Button
+              sx={{ mt: 1, }}
+              variant='contained'
+              color='primary'
+              component={Link}
+              to={`/event/${eventId}/problem-group/${problemGroupId}/add/`}>
+              {'افزودن مسئله‌ی جدید'}
+            </Button>
           </Grid>
         }
       </Grid>

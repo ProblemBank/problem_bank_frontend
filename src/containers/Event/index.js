@@ -1,39 +1,29 @@
 import { Grid, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
-
 import {
   editEventAction,
   getOneEventAction,
 } from '../../redux/slices/event';
 import {
-  clearProblemGroupAction,
   getProblemGroupAction,
 } from '../../redux/slices/problemGroup';
 import Layout from '../../components/templates/Layout';
 import ProblemsList from './ProblemsList';
 import Sidebar from './Sidebar';
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    padding: theme.spacing(2),
-  },
-}));
 
-const Event = ({
+const Class = ({
   getEvent,
   getProblemGroup,
-  clearProblemGroup,
 
-  problemGroup,
   event,
 }) => {
-  const classes = useStyles();
   const { eventId } = useParams();
 
   const [tabIndex, setTabIndex] = useState(0);
+  
   useEffect(() => {
     getEvent({ eventId });
   }, []);
@@ -41,9 +31,6 @@ const Event = ({
   useEffect(() => {
     if (event?.problem_groups?.length > 0) {
       getProblemGroup({ problemGroupId: event.problem_groups?.[tabIndex]?.id });
-    } else {
-      // todo:
-      clearProblemGroup({});
     }
   }, [tabIndex, event])
 
@@ -68,15 +55,10 @@ const Event = ({
 
 const mapStateToProps = (state) => ({
   event: state.event.event,
-  problemGroup: state.problemGroup.problemGroup,
 })
 
-export default connect(
-  mapStateToProps,
-  {
-    getEvent: getOneEventAction,
-    editEvent: editEventAction,
-    getProblemGroup: getProblemGroupAction,
-    clearProblemGroup: clearProblemGroupAction,
-  }
-)(Event);
+export default connect(mapStateToProps, {
+  getEvent: getOneEventAction,
+  editEvent: editEventAction,
+  getProblemGroup: getProblemGroupAction,
+})(Class);

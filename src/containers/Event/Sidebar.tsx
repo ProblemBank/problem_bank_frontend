@@ -4,6 +4,8 @@ import {
   Divider,
   Stack,
   Paper,
+  Tabs,
+  Tab,
   TextField,
   Typography,
   IconButton,
@@ -38,6 +40,10 @@ const Sidebar = ({
     })
   }
 
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setTabIndex(newValue);
+  };
+
   return (
     <>
       <Stack spacing={2} component={Paper} sx={{ padding: 2 }}>
@@ -46,26 +52,22 @@ const Sidebar = ({
             <Typography variant='h4'>
               {'صندوقچه‌ها'}
             </Typography>
-            <ButtonGroup disableFocusRipple orientation="vertical" color="primary" fullWidth>
-              {event?.problem_groups?.map((problemGroup, index) => (
-                <Button
-                  key={index}
-                  onClick={() => setTabIndex(index)}
-                  variant={tabIndex == index ? 'contained' : 'outlined'}>
-                  {problemGroup.title}
-                  {event?.role == 'owner' &&
-                    <IconButton
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setAreYouSureDialog(true);
-                      }}
-                      size='small'>
-                      <ClearIcon style={{ fontSize: 15, color: 'red' }} />
-                    </IconButton>
-                  }
-                </Button>
-              ))}
-            </ButtonGroup>
+            <Tabs variant='fullWidth' value={tabIndex} onChange={handleChange} orientation="vertical">
+              {event?.problem_groups?.map((problemGroup, index) =>
+                <Tab key={index} label={problemGroup.title} />)}
+              {/* // <Stack direction='row'>
+                //   {event?.role == 'owner' &&
+                //     <IconButton
+                //       onClick={(e) => {
+                //         e.preventDefault();
+                //         setAreYouSureDialog(true);
+                //       }}
+                //       size='small'>
+                //       <ClearIcon style={{ fontSize: 15, color: 'red' }} />
+                //     </IconButton>
+                //   }
+                // </Stack> */}
+            </Tabs>
             <Divider />
           </>
         }
