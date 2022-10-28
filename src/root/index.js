@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import AllSubmittedProblems from '../containers/AllSubmittedAnswers';
 import CreateAccount from '../pages/CreateAccount';
-import Event from '../containers/Event';
+import Class from '../containers/Class';
 import Events from '../pages/Events';
 import Dashboard from '../pages/Dashboard';
 import Login from '../pages/Login';
@@ -24,7 +24,7 @@ const Root = () => {
         <Route path="/dashboard/" element={<Dashboard />} />
         <Route path="/events/" element={<Events />} />
 
-        <Route path="/event/:eventId/" element={<Event />} />
+        <Route path="/event/:eventId/" element={<Class />} />
         <Route path="/submitted-answers/:submitId/" element={<CorrectSubmittedProblem />} />
         <Route path="/submitted-answers/" element={<AllSubmittedProblems />} />
 
