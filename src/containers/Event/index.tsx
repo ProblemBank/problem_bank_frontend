@@ -13,7 +13,6 @@ import Layout from '../../components/templates/Layout';
 import ProblemsList from './ProblemsList';
 import Sidebar from './Sidebar';
 
-
 const Class = ({
   getEvent,
   getProblemGroup,
@@ -23,16 +22,15 @@ const Class = ({
   const { eventId } = useParams();
 
   const [tabIndex, setTabIndex] = useState(0);
-  
-  useEffect(() => {
-    getEvent({ eventId });
-  }, []);
+  const [problemGroups, setProblemGroups] = useState([]);
 
   useEffect(() => {
-    if (event?.problem_groups?.length > 0) {
-      getProblemGroup({ problemGroupId: event.problem_groups?.[tabIndex]?.id });
-    }
-  }, [tabIndex, event])
+    getEvent({ eventId }).then(({ payload: { response }, meta: { requestStatus } }) => {
+      if (requestStatus === 'fulfilled') {
+        setProblemGroups(response.problem_groups);
+      };
+    })
+  }, []);
 
   return (
     <Layout>
@@ -46,7 +44,9 @@ const Class = ({
           <Sidebar tabIndex={tabIndex} setTabIndex={setTabIndex} />
         </Grid>
         <Grid item xs={12} sm={8}>
-          <ProblemsList tabIndex={tabIndex} setTabIndex={setTabIndex} />
+          {problemGroups[tabIndex] &&
+            <ProblemsList role={event.role} problemGroupId={problemGroups[tabIndex].id} />
+          }
         </Grid>
       </Grid>
     </Layout >

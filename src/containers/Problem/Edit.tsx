@@ -71,8 +71,6 @@ const Index = ({
     }
   }, [])
 
-  console.log(properties)
-
   useEffect(() => {
     if (problem && mode == 'edit') {
       const newProperties = {

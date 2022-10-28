@@ -85,6 +85,7 @@ export const joinEventAction = createAsyncThunkApi(
 const initialState = {
   isFetching: false,
   events: [],
+  event: null,
 };
 
 const isFetching = (state) => {

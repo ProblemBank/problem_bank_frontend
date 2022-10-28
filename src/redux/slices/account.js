@@ -71,11 +71,7 @@ const accountSlice = createSlice({
       state.refresh = response.refresh;
       state.isFetching = false;
     },
-    [loginAction.rejected.toString()]: (state, { payload: { response } }) => {
-      console.log(loginAction.rejected.toString())
-
-      state.isFetching = false;
-    },
+    [loginAction.rejected.toString()]: isNotFetching,
 
     [createAccountAction.pending.toString()]: isFetching,
     [createAccountAction.fulfilled.toString()]: isNotFetching,

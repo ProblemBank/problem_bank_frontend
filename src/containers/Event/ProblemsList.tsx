@@ -11,39 +11,44 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
 import ClearIcon from '@mui/icons-material/Clear';
-import React, { useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 
 import AreYouSure from '../../components/Dialog/AreYouSure';
 import {
+  getProblemGroupAction,
   removeProblemFromGroupAction,
 } from '../../redux/slices/problemGroup';
 import { toPersianNumber } from '../../utils/translateNumber';
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    padding: theme.spacing(3),
-  },
-}));
+type ProblemsListPropsType = {
+  removeProblemFromGroup: any;
+  getProblemGroup: any;
+  role: string;
+  problemGroupId: number;
+  problemGroup: any;
+}
 
-const Event = ({
+const ProblemsList: FC<ProblemsListPropsType> = ({
   removeProblemFromGroup,
-  event,
-  tabIndex,
+  getProblemGroup,
+
+  role,
+  problemGroupId,
   problemGroup,
 }) => {
-  const classes = useStyles();
   const { eventId } = useParams();
   const [showAreYouSureDialog, setAreYouSureDialog] = useState(false);
   const [selectedProblemId, setSelectedProblemId] = useState(false);
 
-  const problemGroupId = event?.problem_groups[tabIndex]?.id;
+  useEffect(() => {
+    getProblemGroup({ problemGroupId });
+  }, [problemGroupId])
 
   return <>
-    <Paper className={classes.paper}>
+    <Paper sx={{ padding: 2 }}>
       <Grid container item direction="column" spacing={3}>
         <TableContainer>
           <Table>
@@ -51,30 +56,30 @@ const Event = ({
               <TableRow>
                 <TableCell align='center'>شناسه</TableCell>
                 <TableCell align='center'>عنوان</TableCell>
-                {(event?.role == 'mentor' || event?.role == 'owner') &&
+                {(role == 'mentor' || role == 'owner') &&
                   <TableCell align='center'>حذف از صندوقچه</TableCell>
                 }
               </TableRow>
             </TableHead>
             <TableBody>
-              {problemGroup?.problems?.map((problem, index) => (
+              {problemGroup?.problems.map((problem, index) => (
                 <TableRow key={index}>
                   <TableCell align='center'>
                     {toPersianNumber(problem.id)}
                   </TableCell>
                   <TableCell align='center'>
-                    {(event?.role == 'mentor' || event?.role == 'owner') &&
+                    {(role == 'mentor' || role == 'owner') &&
                       <Button component={Link} to={`/event/${eventId}/problem-group/${problemGroupId}/problem/${problem.id}/mentor-view/`}>
                         {problem.title}
                       </Button>
                     }
-                    {(event?.role == 'participant') &&
+                    {(role == 'participant') &&
                       <Button component={Link} to={`/event/${eventId}/problem-group/${problemGroupId}/problem/${problem.id}/submit/`}>
                         {problem.title}
                       </Button>
                     }
                   </TableCell>
-                  {(event?.role == 'mentor' || event?.role == 'owner') &&
+                  {(role == 'mentor' || role == 'owner') &&
                     <TableCell align='center'>
                       <IconButton
                         onClick={(e) => {
@@ -92,7 +97,7 @@ const Event = ({
             </TableBody>
           </Table>
         </TableContainer>
-        {(event?.problem_groups?.length > 0 && event.role != 'participant') &&
+        {(problemGroup?.problems.length > 0 && role != 'participant') &&
           <Grid item container justifyContent='center'>
             <Button
               sx={{ mt: 1, }}
@@ -112,20 +117,18 @@ const Event = ({
       callBackFunction={() => {
         removeProblemFromGroup({
           problemId: selectedProblemId,
-          problemGroupId: event.problem_groups[tabIndex].id,
+          problemGroupId,
         })
       }} />
   </ >;
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, ownProps) => ({
   event: state.event.event,
-  problemGroup: state.problemGroup.problemGroup,
+  problemGroup: state.problemGroup.problemGroups[ownProps.problemGroupId],
 })
 
-export default connect(
-  mapStateToProps,
-  {
-    removeProblemFromGroup: removeProblemFromGroupAction,
-  }
-)(Event);
+export default connect(mapStateToProps, {
+  getProblemGroup: getProblemGroupAction,
+  removeProblemFromGroup: removeProblemFromGroupAction,
+})(ProblemsList);

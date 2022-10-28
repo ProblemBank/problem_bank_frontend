@@ -68,7 +68,7 @@ export const removeProblemFromGroupAction = createAsyncThunkApi(
 
 const initialState = {
   isFetching: false,
-  problemGroup: null,
+  problemGroups: {},
 };
 
 const isFetching = (state) => {
@@ -82,18 +82,12 @@ const isNotFetching = (state) => {
 const slice = createSlice({
   name: 'problemGroup',
   initialState,
-  reducers: {
-    clearProblemGroup: (state) => {
-      console.log("@@@@@@@@@@")
-      // state.problemGroup = null;
-      return initialState
-    },
-  },
+  reducers: {},
   extraReducers: {
 
     [getProblemGroupAction.pending.toString()]: isFetching,
-    [getProblemGroupAction.fulfilled.toString()]: (state, { payload: { response } }) => {
-      state.problemGroup = response;
+    [getProblemGroupAction.fulfilled.toString()]: (state, { payload: { response }, meta: { arg } }) => {
+      state.problemGroups[arg.problemGroupId] = response;
       state.isFetching = false;
     },
     [getProblemGroupAction.rejected.toString()]: isNotFetching,
@@ -128,6 +122,6 @@ const slice = createSlice({
   },
 });
 
-export const { clearProblemGroup: clearProblemGroupAction } = slice.actions;
+export const { } = slice.actions;
 
 export const { reducer: problemGroupReducer } = slice;
