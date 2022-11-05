@@ -49,8 +49,8 @@ const ProblemsList: FC<ProblemsListPropsType> = ({
   }, [problemGroupId])
 
   return <>
-    <Paper sx={{ padding: 2 }}>
-      <Stack spacing={3}>
+    <Paper>
+      <Stack>
         <TableContainer>
           <Table>
             <TableHead>
@@ -98,9 +98,9 @@ const ProblemsList: FC<ProblemsListPropsType> = ({
             </TableBody>
           </Table>
         </TableContainer>
-        {(problemGroup?.problems.length > 0 && role != 'participant') &&
+        {role !== 'participant' &&
           <Button
-            sx={{ mt: 1, }}
+            sx={{ m: 1 }}
             variant='contained'
             color='primary'
             component={Link}
