@@ -1,6 +1,6 @@
 import { persianMessages } from './messages';
 
-export const errorHandler = (
+const errorHandler = (
   error,
   dispatch,
   rejectWithValue,
@@ -27,19 +27,17 @@ export const errorHandler = (
   }
 
   switch (error.response.status) {
-    case 401:
-      if (error.response.config.url === 'account/login/') {
+    case 401: {
+      if (error.response.data.detail === 'No active account found with the given credentials') {
         break;
-      }
-      if (error.response.config.url.includes('refresh')) {
+      } else if (error.response.data.detail === 'Given token not valid for any token type') {
+        // todo: handle refresh token
         dispatch({ type: 'account/logout' });
         return rejectWithValue({
           message: 'نشست شما به پایان رسیده. لطفاً دوباره وارد سامانه شوید.',
         });
-      } else {
-        dispatch({ type: 'account/refreshTokenAction' });
-        return;
       }
+    }
     // case 404:
     //   return rejectWithValue({
     //     message: 'موردی یافت نشد.',
@@ -60,3 +58,5 @@ export const errorHandler = (
 
   return rejectWithValue();
 };
+
+export default errorHandler;

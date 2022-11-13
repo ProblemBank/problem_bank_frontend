@@ -1,5 +1,4 @@
 import baseAxios from '../../configs/axios';
-// import createFormData from '../../utils/jsonToFromDate';
 import { serialize } from 'object-to-formdata';
 
 const putApi = async (url, body) => (await baseAxios.put(url, body)).data;
@@ -35,6 +34,7 @@ export const Apis = {
   POST: postApi,
   PATCH: patchApi,
   POST_FORM_DATA: postFormDataApi,
+  PATCH_FORM_DATA: patchFormDataApi,
   GET: getApi,
   DELETE: deleteApi,
 };
