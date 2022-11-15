@@ -151,7 +151,7 @@ const Index = ({
       <Grid container spacing={2} justifyContent='center'>
         <Grid item>
           {mode == 'add' &&
-            <Typography variant="h1" align="center">{'«افزودن مسئله»'}</Typography>
+            <Typography variant="h1" align="center">{'ایجاد مسئله»'}</Typography>
           }
           {mode == 'edit' &&
             <Typography variant="h1" align="center">{'«ویرایش مسئله»'}</Typography>

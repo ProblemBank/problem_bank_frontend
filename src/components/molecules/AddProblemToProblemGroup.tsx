@@ -66,7 +66,7 @@ const AddProblemToProblemGroup: FC<AddProblemToProblemGroupPropsType> = ({
 
   return (
     <Stack spacing={2}>
-      <Typography gutterBottom variant='h3'>{'افزودن مسئله به صندوقچه'}</Typography>
+      <Typography gutterBottom variant='h3'>{'افزودن به صندوقچه'}</Typography>
       <FormControl variant="outlined" fullWidth>
         <InputLabel>کلاس</InputLabel>
         <Select

@@ -105,7 +105,7 @@ const ProblemsList: FC<ProblemsListPropsType> = ({
             color='primary'
             component={Link}
             to={`/event/${eventId}/problem-group/${problemGroupId}/add/`}>
-            {'افزودن مسئله‌ی جدید'}
+            {'ایجاد مسئله جدید'}
           </Button>
         }
       </Stack>

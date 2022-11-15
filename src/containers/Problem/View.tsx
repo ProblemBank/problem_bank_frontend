@@ -35,10 +35,6 @@ const ViewProblem = ({
     getProblem({ problemId });
   }, [])
 
-  if (!problem) {
-    return <></>
-  }
-
   return (
     <Layout>
       <Grid container spacing={4} justifyContent="center" alignItems='flex-start'>
@@ -74,7 +70,9 @@ const ViewProblem = ({
           </Grid>
           <Grid item xs={12} md={4}>
             <Stack spacing={2} component={Paper} sx={{ padding: 2 }}>
-              <ViewProperties problem={problem} />
+              {problem &&
+                <ViewProperties problem={problem} />
+              }
               {mode === 'mentor-view' &&
                 <Button component={Link} fullWidth
                   to={`/event/${eventId}/problem-group/${problemGroupId}/problem/${problemId}/edit/`}
