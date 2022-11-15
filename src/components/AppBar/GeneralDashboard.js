@@ -11,7 +11,7 @@ const DashboardItems = () => {
   // todo: fix hard code
   const events = <DashboardButton name={'همه کلاس‌ها'} to={'/events/'} />;
   const judgeAnswers = <DashboardButton disabled name={'تصحیح'} to={'/submitted-answers/'} />;
-  const allProblems = <DashboardButton name={'مجموعه مسائل'} to={'/problem-set/1/'} />;
+  const allProblems = <DashboardButton name={'مجموعه مسائل'} to={'/problemset/1/'} />;
   const logoutButton = <LogoutButton />;
   const Avatar = <AvatarComponent />;
   const backButton = <BackButton />;

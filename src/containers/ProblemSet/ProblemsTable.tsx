@@ -8,7 +8,7 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
-import React, { useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Topic from '../../components/atoms/Topic';
@@ -25,15 +25,15 @@ const PERSIAN_DIFFICULTIES = {
   'VeryHard': 'خیلی سخت',
 }
 
-const ProblemsTable = ({
-  getTopics,
+type ProblemsTablePropsType = {
+  problems: any;
+  topics: any;
+}
+
+const ProblemsTable: FC<ProblemsTablePropsType> = ({
   problems,
   topics,
 }) => {
-
-  useEffect(() => {
-    getTopics({});
-  }, [])
 
   return (
     <TableContainer component={Paper}>
@@ -71,6 +71,9 @@ const ProblemsTable = ({
                     .filter(topic => problem.topics.includes(topic.id))
                     .map((topic, index) => (
                       <Topic
+                        selected={false}
+                        clickable={true}
+                        onClick={() => { }}
                         name={topic.title}
                         key={index}
                       />

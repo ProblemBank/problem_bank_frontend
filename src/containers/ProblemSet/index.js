@@ -1,40 +1,30 @@
-import { Grid, Paper, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import {
+  Grid,
+  Paper,
+  Stack,
+  Typography,
+  Divider,
+} from '@mui/material';
 import Pagination from '@mui/material/Pagination';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-
 import {
   getProblemsByFilterAction,
 } from '../../redux/slices/problem';
-// import { getAllTags } from '../redux/actions/properties'
 import Layout from '../../components/templates/Layout';
 import ProblemTables from './ProblemsTable';
+import TopicBox from '../../components/molecules/TopicBox';
 
-
-const useStyles = makeStyles((theme) => ({
-  container: {
-    paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(2),
-  },
-  paper: {
-    padding: theme.spacing(2),
-    width: '100%',
-  },
-}))
-
-const Index = ({
+const ProblemSet = ({
   getProblemsByFilter,
 
   filteredProblems,
   totalNumberOfPages,
 }) => {
   const navigate = useNavigate();
-  const classes = useStyles();
-  const { page: currentPage } = useParams();
-  const [page, setPage] = useState(parseInt(currentPage));
+  const { page } = useParams();
   const [properties, setProperties] = useState({
     difficulties: [],
     grades: [],
@@ -43,53 +33,61 @@ const Index = ({
     subtopics: [],
   });
 
-  useEffect(() => {
-    getProblemsByFilter(properties);
-  }, [])
+  console.log(totalNumberOfPages)
+  console.log(page)
 
-  const handlePaginationChange = (event, value) => {
-    setPage(value);
+  useEffect(() => {
     getProblemsByFilter({
       ...properties,
-      page: value,
+      page,
     });
-    navigate(`/problem-set/${value}/`)
+  }, [properties, page])
+
+  const handlePaginationChange = (event, value) => {
+    navigate(`/problemset/${value}/`)
   }
+
+  console.log(properties);
 
   return (
     <Layout>
-      <Grid container spacing={4} justifyContent='center' alignItems='flex-start'>
+      <Grid container spacing={2} justifyContent='center' alignItems='flex-start'>
         <Grid item xs={12}>
           <Typography variant="h1" align="center" gutterBottom>
             {'«مجموعه مسائل»'}
           </Typography>
         </Grid>
-        <Grid item xs={12} md={8} container spacing={2}>
-          <ProblemTables problems={filteredProblems} />
-          <Grid item>
+        <Grid item xs={12} md={8}>
+          <Stack spacing={2}>
+            <ProblemTables problems={filteredProblems} />
             <Pagination
               variant="outlined"
               color="primary"
               shape='rounded'
               count={totalNumberOfPages}
-              page={page}
+              page={parseInt(page)}
               onChange={handlePaginationChange}
             />
-          </Grid>
+          </Stack>
         </Grid>
-        <Grid item container xs={12} md={4}>
-          <Grid item container direction='column' spacing={2} component={Paper}>
-            <Grid item>
-              <Typography variant="h2" align='center'>جستجو</Typography>
-            </Grid>
-            {/* <Divider />
+        <Grid item xs={12} md={4}>
+          <Stack spacing={2} component={Paper} sx={{ padding: 2 }}>
+            <Typography variant="h2" align='center'>جستجو</Typography>
+            <Divider />
+            <TopicBox properties={properties}
+              setProperties={(e) => {
+                setProperties(e);
+                navigate(`/problemset/1/`);
+              }}
+            />
+            {/*
                 <Grid item>
                   <PropertiesBox properties={properties} setProperties={setProperties} />
                 </Grid>
                 <Grid item>
                   <Button fullWidth variant='contained' color='primary' onClick={() => search(currentPage)}>جستجو کن</Button>
                 </Grid> */}
-          </Grid>
+          </Stack>
         </Grid>
       </Grid >
     </Layout >
@@ -103,9 +101,6 @@ const mapStateToProps = (state) => ({
   isFetching: state.problem.isFetching,
 })
 
-export default connect(
-  mapStateToProps,
-  {
-    getProblemsByFilter: getProblemsByFilterAction,
-  }
-)(Index)
+export default connect(mapStateToProps, {
+  getProblemsByFilter: getProblemsByFilterAction,
+})(ProblemSet)
