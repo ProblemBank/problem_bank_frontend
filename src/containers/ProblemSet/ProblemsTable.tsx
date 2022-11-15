@@ -8,7 +8,7 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Topic from '../../components/atoms/Topic';
@@ -62,7 +62,9 @@ const ProblemsTable: FC<ProblemsTablePropsType> = ({
                   {toPersianNumber(problem.id)}
                 </TableCell>
                 <TableCell align='center'>
-                  <Button component={Link} to={`/problem/${problem.id}/view/`}>
+                  <Button
+                    component={Link} to={`/problem/${problem.id}/view/`}
+                    target="_blank" rel="noopener noreferrer">
                     {problem.title}
                   </Button>
                 </TableCell>
