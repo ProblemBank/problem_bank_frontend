@@ -11,15 +11,15 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import JoinEvent from '../Dialog/JoinEventDialog';
 
-const EventCard = ({
-  id: eventId,
+const ClassCard = ({
+  id: classId,
   title,
   role,
 }) => {
   let { search } = useLocation();
   const query = new URLSearchParams(search);
   const joinEventId = query.get('join_event_id');
-  const [showJoinDialog, setShowJoinDialog] = useState(joinEventId == eventId);
+  const [showJoinDialog, setShowJoinDialog] = useState(joinEventId == classId);
 
   return (
     <Card
@@ -31,7 +31,7 @@ const EventCard = ({
 
         width: '100%',
         padding: '0px !important',
-        maxWidth: '400px',
+        maxWidth: '300px',
         backgroundColor: 'rgb(255, 255, 255, 0.94)',
         fontSize: '1rem',
         textDecoration: 'none',
@@ -61,7 +61,7 @@ const EventCard = ({
             variant="contained"
             fullWidth
             component={Link}
-            to={`/event/${eventId}/`}
+            to={`/event/${classId}/`}
             color="secondary">
             {'ورود'}
           </Button> :
@@ -76,9 +76,9 @@ const EventCard = ({
           </Button>
         }
       </CardActions>
-      <JoinEvent open={showJoinDialog} eventId={eventId} handleClose={() => setShowJoinDialog(false)} />
+      <JoinEvent open={showJoinDialog} eventId={classId} handleClose={() => setShowJoinDialog(false)} />
     </Card>
   );
 };
 
-export default EventCard;
+export default ClassCard;

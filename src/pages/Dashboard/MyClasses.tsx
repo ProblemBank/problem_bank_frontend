@@ -10,14 +10,14 @@ import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
-import EventCard from '../../components/Cards/EventCard';
+import ClassCard from '../../components/Cards/ClassCard';
 import CreateEventDialog from '../../components/organisms/dialogs/CreateEventDialog';
 import {
   getEventsAction,
 } from '../../redux/slices/event';
 
 
-const MyEvents = ({
+const MyClasses = ({
   getEvents,
   events,
 }) => {
@@ -44,8 +44,8 @@ const MyEvents = ({
         <Grid container spacing={2}>
           {events.length > 0 ?
             events.map((event, index) => (
-              <Grid key={index} item xs={12} sm={4} md={3}>
-                <EventCard {...event} />
+              <Grid container key={index} item xs={12} sm={4} md={3} justifyContent='center'>
+                <ClassCard {...event} />
               </Grid>
             )) :
             <Typography align='center' variant='h4'>
@@ -67,4 +67,4 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   getEvents: getEventsAction,
-})(MyEvents);
+})(MyClasses);

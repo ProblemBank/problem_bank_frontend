@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import EventCard from '../components/Cards/EventCard';
+import ClassCard from '../components/Cards/ClassCard';
 import {
   getEventsAction,
 } from '../redux/slices/event';
@@ -39,7 +39,7 @@ const Events = ({
         <Grid container item xs={12} spacing={2}>
           {events?.map((event, index) => (
             <Grid key={index} item xs={12} sm={4} md={3}>
-              <EventCard {...event} />
+              <ClassCard {...event} />
             </Grid>
           ))}
         </Grid>
