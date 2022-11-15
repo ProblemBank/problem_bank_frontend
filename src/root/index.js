@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import AllSubmittedProblems from '../containers/AllSubmittedAnswers';
 import CreateAccount from '../pages/CreateAccount';
 import Class from '../containers/Class';
-import Events from '../pages/Events';
+import Classes from '../pages/Classes';
 import Dashboard from '../pages/Dashboard';
 import Login from '../pages/Login';
 import Problem from '../containers/Problem';
@@ -18,11 +18,11 @@ const Root = () => {
       <Route path="/create-account/" element={<CreateAccount />} />
       <Route path="/login/" element={<Login />} />
       <Route path="/" element={<Login />} />
-      <Route path="/problemset/:page/" element={<ProblemSet />} />
 
       <Route path="/" element={<PrivateRoute />}>
+        <Route path="/problemset/:page/" element={<ProblemSet />} />
         <Route path="/dashboard/" element={<Dashboard />} />
-        <Route path="/events/" element={<Events />} />
+        <Route path="/events/" element={<Classes />} />
 
         <Route path="/event/:eventId/" element={<Class />} />
         <Route path="/submitted-answers/:submitId/" element={<CorrectSubmittedProblem />} />

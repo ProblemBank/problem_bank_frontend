@@ -8,8 +8,8 @@ import LogoutButton from './components/LogoutButton';
 
 const DashboardItems = () => {
   const logoButton = <LogoButton />;
-  // todo: fix hard code
-  const events = <DashboardButton name={'همه کلاس‌ها'} to={'/events/'} />;
+  const dashboard = <DashboardButton name={'داشبورد'} to={'/dashboard/'} />;
+  const classes = <DashboardButton name={'همه کلاس‌ها'} to={'/events/'} />;
   const judgeAnswers = <DashboardButton disabled name={'تصحیح'} to={'/submitted-answers/'} />;
   const allProblems = <DashboardButton name={'مجموعه مسائل'} to={'/problemset/1/'} />;
   const logoutButton = <LogoutButton />;
@@ -17,11 +17,11 @@ const DashboardItems = () => {
   const backButton = <BackButton />;
 
   return {
-    desktopRightItems: [logoButton, events, allProblems],
+    desktopRightItems: [logoButton, dashboard, classes, allProblems],
     desktopLeftItems: [logoutButton, Avatar],
     mobileRightItems: [],
     mobileLeftItems: [logoButton],
-    mobileMenuListItems: [events, allProblems, logoutButton],
+    mobileMenuListItems: [dashboard, classes, allProblems, logoutButton],
   };
 };
 

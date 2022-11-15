@@ -32,13 +32,13 @@ const Events = ({
     <Layout backgroundImage=''>
       <Grid container spacing={4} justifyContent='center' alignItems='flex-start'>
         <Grid item xs={12}>
-          <Typography variant="h1" align="center" gutterBottom>
-            {'«کلاس‌ها»'}
+          <Typography variant="h1">
+            {'همه کلاس‌ها'}
           </Typography>
         </Grid>
         <Grid container item xs={12} spacing={2}>
           {events?.map((event, index) => (
-            <Grid key={index} item xs={12} sm={4} md={3}>
+            <Grid container key={index} item xs={12} sm={4} md={3} justifyContent='center'>
               <ClassCard {...event} />
             </Grid>
           ))}

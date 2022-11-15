@@ -28,36 +28,35 @@ const MyClasses = ({
   }, []);
 
   return (
-    <Stack sx={{ width: '100%' }} spacing={4} alignItems='flex-start'>
-      <Stack direction='row' alignItems='center'>
-        <Typography variant="h1">
-          {'کلاس‌های من'}
-        </Typography>
-        <Tooltip arrow title='ایجاد کلاس جدید'>
-          <IconButton onClick={() => setShowCreateEventDialog(true)}>
-            <AddCircleIcon />
-          </IconButton>
-        </Tooltip>
-      </Stack>
-
-      <Stack>
-        <Grid container spacing={2}>
-          {events.length > 0 ?
-            events.map((event, index) => (
-              <Grid container key={index} item xs={12} sm={4} md={3} justifyContent='center'>
-                <ClassCard {...event} />
-              </Grid>
-            )) :
-            <Typography align='center' variant='h4'>
-              {'کلاسی وجود ندارد!'}
-            </Typography>
-          }
-        </Grid>
-      </Stack>
+    <Grid container spacing={4} justifyContent='center' alignItems='flex-start'>
+      <Grid item xs={12}>
+        <Stack direction='row' alignItems='center'>
+          <Typography variant="h1">
+            {'کلاس‌های من'}
+          </Typography>
+          <Tooltip arrow title='ایجاد کلاس جدید'>
+            <IconButton onClick={() => setShowCreateEventDialog(true)}>
+              <AddCircleIcon />
+            </IconButton>
+          </Tooltip>
+        </Stack>
+      </Grid>
+      <Grid container item xs={12} spacing={2}>
+        {events.length > 0 ?
+          events.map((event, index) => (
+            <Grid container key={index} item xs={12} sm={4} md={3} justifyContent='center'>
+              <ClassCard {...event} />
+            </Grid>
+          )) :
+          <Typography align='center' variant='h4'>
+            {'کلاسی وجود ندارد!'}
+          </Typography>
+        }
+      </Grid>
       <CreateEventDialog
         open={showCreateEventDialog}
         handleClose={() => setShowCreateEventDialog(state => !state)} />
-    </Stack>
+    </Grid>
   );
 };
 
