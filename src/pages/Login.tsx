@@ -56,13 +56,12 @@ const LoginPage: FC<LoginPagePropsType> = ({
   return (
     <Container
       sx={{
-        minHeight: '100vh',
+        height: '100vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
       }}>
       <Grid container item xs={12} sm={8} md={4} spacing={2}>
-        <Grid style={{ height: 64, width: '100%' }}></Grid>
         <Grid item xs={12}>
           <Paper sx={{ p: 2 }}>
             <Grid container>

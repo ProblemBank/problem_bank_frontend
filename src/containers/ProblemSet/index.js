@@ -61,6 +61,7 @@ const ProblemSet = ({
           <Stack spacing={2}>
             <ProblemTables problems={filteredProblems} />
             <Pagination
+              size='small'
               variant="outlined"
               color="primary"
               shape='rounded'

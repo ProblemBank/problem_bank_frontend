@@ -15,8 +15,6 @@ import Sidebar from './Sidebar';
 
 const Class = ({
   getEvent,
-  getProblemGroup,
-
   event,
 }) => {
   const { eventId } = useParams();
