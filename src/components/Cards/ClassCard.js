@@ -15,6 +15,7 @@ const ClassCard = ({
   id: classId,
   title,
   role,
+  image_link,
 }) => {
   let { search } = useLocation();
   const query = new URLSearchParams(search);
@@ -46,7 +47,7 @@ const ClassCard = ({
       <CardActionArea disabled>
         <CardMedia
           sx={{ height: 200 }}
-          image="/logo.png"
+          image={image_link || "/logo.png"}
           title="Contemplative Reptile"
         />
         <CardContent>
