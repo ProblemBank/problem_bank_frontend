@@ -46,7 +46,6 @@ const Index = ({
   }, [])
 
   const filteredData = allSubmittedProblems?.slice()?.sort((a, b) => a.id - b.id);
-  console.log(allSubmittedProblems)
 
   return (
     <Layout>

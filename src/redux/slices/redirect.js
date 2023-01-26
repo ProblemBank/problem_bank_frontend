@@ -10,10 +10,6 @@ const redirectSlice = createSlice({
     initRedirect: () => initialState,
   },
   extraReducers: {
-    // [removeProblemAction.fulfilled.toString()]: (state, action) => {
-    //   console.log(action);
-    //   state.redirectTo = `/event/${action.meta.arg.eventId}/`
-    // },
   },
 });
 

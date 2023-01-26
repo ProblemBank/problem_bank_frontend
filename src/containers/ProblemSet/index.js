@@ -33,9 +33,6 @@ const ProblemSet = ({
     subtopics: [],
   });
 
-  console.log(totalNumberOfPages)
-  console.log(page)
-
   useEffect(() => {
     getProblemsByFilter({
       ...properties,
@@ -46,8 +43,6 @@ const ProblemSet = ({
   const handlePaginationChange = (event, value) => {
     navigate(`/problemset/${value}/`)
   }
-
-  console.log(properties);
 
   return (
     <Layout>
