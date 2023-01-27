@@ -92,7 +92,7 @@ const LoginPage: FC<LoginPagePropsType> = ({
                     }}
                     value={data.username}
                     name="username"
-                    label="نام کاربری"
+                    label="شماره تلفن"
                     inputProps={{ className: 'ltr-input' }}
                   />
                 </Grid>
