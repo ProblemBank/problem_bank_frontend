@@ -7,6 +7,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Skeleton,
 } from '@mui/material';
 import React, { FC } from 'react';
 import { connect } from 'react-redux';
@@ -35,6 +36,7 @@ const ProblemsTable: FC<ProblemsTablePropsType> = ({
   topics,
 }) => {
 
+
   return (
     <TableContainer component={Paper}>
       <Table>
@@ -55,8 +57,8 @@ const ProblemsTable: FC<ProblemsTablePropsType> = ({
           </TableRow>
         </TableHead>
         <TableBody>
-          {problems?.map(
-            (problem, index) =>
+          {problems
+            ? problems.map((problem, index) =>
               <TableRow key={index}>
                 <TableCell align='center'>
                   {toPersianNumber(problem.id)}
@@ -85,7 +87,23 @@ const ProblemsTable: FC<ProblemsTablePropsType> = ({
                   {PERSIAN_DIFFICULTIES[problem.difficulty]}
                 </TableCell>
               </TableRow>
-          )}
+            )
+            : [...Array(10)].map((_, index) => (
+              <TableRow key={index} sx={{ height: 70 }} >
+                <TableCell align='center'>
+                  <Skeleton variant="rounded" />
+                </TableCell>
+                <TableCell align='center'>
+                  <Skeleton variant="rounded" />
+                </TableCell>
+                <TableCell align='center'>
+                  <Skeleton variant="rounded" />
+                </TableCell>
+                <TableCell align='center'>
+                  <Skeleton variant="rounded" />
+                </TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </TableContainer>
