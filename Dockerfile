@@ -6,8 +6,9 @@ ENV PATH="./node_modules/.bin:$PATH"
 COPY . .
 RUN yarn run build
 
-FROM nginx:latest as production
-ENV SERVER_NAME = _
-ENV NGINX_ENVSUBST_OUTPUT_DIR=/etc/nginx
-COPY ./nginx.conf.template /etc/nginx/templates/
-COPY --from=build /app/build /var/www/public
+# production environment
+FROM nginx:stable-alpine
+COPY --from=build /app/build /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
